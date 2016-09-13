@@ -90,6 +90,8 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,

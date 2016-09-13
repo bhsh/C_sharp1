@@ -13,6 +13,7 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace WindowsFormsApplication3
 {
@@ -240,16 +241,6 @@ namespace WindowsFormsApplication3
             //    timer1.Enabled = false;
             ////}
 
-            int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
-            int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
-            int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
-
-            int progress   = 95 * ofileCount / cfileCount;
-
-            toolStripProgressBar1.Value = progress;
-            toolStripStatusLabel1.Text = "Status："  + "(" + progress.ToString() + "%" + ")";
-            toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
-
             if (p.WaitForExit(0) == true)
             {
                 timer1.Enabled = false;
@@ -445,11 +436,13 @@ namespace WindowsFormsApplication3
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
+            toolStrip1.Enabled = false;
             //rebuild all from the low insight...
 
             //Enter the dos command.
             //Process p = new Process();
             textBox1.Text = "";
+            toolStripProgressBar1.Value = 0;
 
             //Set the program that will be started later!
             p.StartInfo.FileName = "cmd.exe";
@@ -475,7 +468,7 @@ namespace WindowsFormsApplication3
 
             //set the pass the parameter into the  process, and the show the system version.
             flag = 0;
-            timer1.Enabled = true;
+            //timer1.Enabled = true;
             //p.StandardInput.WriteLine("Ver");
             //p.StandardInput.WriteLine("make all");
             p.StandardInput.WriteLine("make clean all");
@@ -486,16 +479,27 @@ namespace WindowsFormsApplication3
             //////////////////////
             //test code
             //string q = "";
-            //while (!p.HasExited)
-            //{
-            // q += p.StandardOutput.ReadLine();
-            //string Result_dos = p.StandardOutput.ReadLine();
-            //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
-            // textBox1.AppendText(Result_dos + "\n");
-            //textBox1.AppendText(p.StandardOutput.ReadToEnd() + "\n");
-            //}
+            while (!p.HasExited)
+            {
+              //q += p.StandardOutput.ReadLine();
+              string Result_dos = p.StandardOutput.ReadLine();
+              //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
+              textBox1.AppendText(Result_dos + "\n");
+                //textBox1.AppendText(p.StandardOutput.ReadToEnd() + "\n");
+              int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+              int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+              int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+              int progress = 95 * ofileCount / cfileCount;
+
+              toolStripProgressBar1.Value = progress;
+              toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
+              toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
+              Thread.Sleep(500);
+            }
+            toolStripProgressBar1.Value = 100;
             //textBox1.Text = q;
             /////////////////////
+            toolStrip1.Enabled = true;
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
