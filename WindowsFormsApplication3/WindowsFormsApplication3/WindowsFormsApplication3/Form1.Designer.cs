@@ -359,7 +359,7 @@
             // 
             this.toolStripTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(120, 25);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStrip3
@@ -403,9 +403,9 @@
             // 
             // toolStripTextBox2
             // 
-            this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(80, 25);
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 25);
             // 
             // toolStripLabel4
             // 
@@ -417,7 +417,7 @@
             // 
             this.toolStripTextBox4.Name = "toolStripTextBox4";
             this.toolStripTextBox4.ReadOnly = true;
-            this.toolStripTextBox4.Size = new System.Drawing.Size(370, 25);
+            this.toolStripTextBox4.Size = new System.Drawing.Size(350, 25);
             // 
             // toolStripLabel5
             // 
@@ -429,6 +429,7 @@
             // 
             this.toolStripTextBox5.Name = "toolStripTextBox5";
             this.toolStripTextBox5.Size = new System.Drawing.Size(562, 25);
+            this.toolStripTextBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox5_KeyDown);
             this.toolStripTextBox5.Click += new System.EventHandler(this.toolStripTextBox5_Click);
             // 
             // toolStripSeparator3
@@ -486,7 +487,7 @@
             // 
             this.toolStripTextBox3.Name = "toolStripTextBox3";
             this.toolStripTextBox3.ReadOnly = true;
-            this.toolStripTextBox3.Size = new System.Drawing.Size(355, 25);
+            this.toolStripTextBox3.Size = new System.Drawing.Size(335, 25);
             this.toolStripTextBox3.Click += new System.EventHandler(this.toolStripTextBox3_Click);
             // 
             // toolStripSeparator4

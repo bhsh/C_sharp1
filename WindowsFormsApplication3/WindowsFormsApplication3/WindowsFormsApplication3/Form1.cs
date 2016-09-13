@@ -125,7 +125,90 @@ namespace WindowsFormsApplication3
                 Process.Start(ude_setup_path);
             }
         }
+        string compiler_path;
+        string project_name;
+        string project_ver;
+        string my_output;
 
+        public void Write(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            //开始写入
+            sw.Write(my_output);
+            //清空缓冲区
+            sw.Flush();
+            //关闭流
+            sw.Close();
+            fs.Close();
+        }
+        private void Parse_Project_Cfg_File()
+        {
+            string s = @"Compiler_Path = D:\Program Files\Volcano\VSx\configuration\org.eclipse.e4.ui.css.swt.theme";
+            string pattern = "Compiler_Path";
+            Match result = Regex.Match(s, pattern);
+            //textBox4.Text = result.Value;
+            string path = @"C:\Users\bai\Desktop\proj.ini";
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Console.WriteLine(line.ToString());
+                // read a effective line.
+                //Get the path of the compiler.
+                Match result_2 = Regex.Match(line, pattern);
+                //textBox4.Text = result.Value;
+                if (result_2.Success == true)
+                {
+                    ///string content = "agcsmallmacsmallgggsmallytx";
+                    string content = line;
+                    string[] resultString = Regex.Split(content, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox4.Text = resultString[1];
+                    compiler_path = resultString[1];
+                    //Console.WriteLine(resultString[1]);
+                    //foreach (string i in resultString)
+                    //{
+                        ///i = i.Trim();
+                        //Console.WriteLine(i.ToString());
+                    //}
+                }
+                string pattern_project = "project_Name";
+                //Get the project name
+                Match result_3 = Regex.Match(line, pattern_project);
+                if (result_3.Success == true)
+                {
+                    string content_project = line;
+                    string[] resultString = Regex.Split(content_project, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox1.Text = resultString[1];
+                    project_name = resultString[1];
+                }
+                string pattern_sw_ver = "Software_Version";
+                //Get the project name
+                Match result_sw_ver = Regex.Match(line, pattern_sw_ver);
+                if (result_sw_ver.Success == true)
+                {
+                    string content_sw_ver = line;
+                    string[] resultString = Regex.Split(content_sw_ver, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox2.Text = resultString[1];
+                    project_ver = resultString[1];
+                }
+                my_output = my_output + line + "\n";
+            }
+            Write(@"C:\Users\bai\Desktop\my.ini");
+
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         
@@ -327,6 +410,7 @@ namespace WindowsFormsApplication3
 
             //Get the current project path
             toolStripTextBox3.Text = System.Environment.CurrentDirectory;
+            Parse_Project_Cfg_File();
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -571,6 +655,51 @@ namespace WindowsFormsApplication3
         private void toolStripTextBox3_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
+        }
+
+        private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+            string command_line = this.toolStripTextBox5.Text.Trim();
+            // If enter key is entered!
+            if (e.KeyCode == Keys.Enter)
+            {
+                //rebuild all from the low insight...
+
+                //Enter the dos command.
+                //Process p = new Process();
+                textBox1.Text = "";
+
+                //Set the program that will be started later!
+                p.StartInfo.FileName = "cmd.exe";
+
+                //Disable the shell to be started!
+                p.StartInfo.UseShellExecute = false;
+
+                //Set the redirect input
+                p.StartInfo.RedirectStandardInput = true;
+
+                //Set the redirect output
+                p.StartInfo.RedirectStandardOutput = true;
+
+                //Set the redirect error
+                p.StartInfo.RedirectStandardError = true;
+
+                //Don't show the process in window.
+                //p.StartInfo.CreateNoWindow = false;
+                p.StartInfo.CreateNoWindow = true;
+
+                //Start the process;
+                p.Start();
+
+                //set the pass the parameter into the  process, and the show the system version.
+                flag = 0;
+                timer1.Enabled = true;
+                //p.StandardInput.WriteLine("Ver");
+                p.StandardInput.WriteLine(command_line);
+
+                //Close the dos window.
+                p.StandardInput.WriteLine("exit");
+            }
         }
     }
 }
