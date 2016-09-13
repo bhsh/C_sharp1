@@ -65,17 +65,21 @@
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox4 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox5 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebuildAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildLowlibToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -102,6 +106,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.fileToolStripMenuItem.Text = "File";
@@ -126,6 +132,10 @@
             // 
             // buildToolStripMenuItem
             // 
+            this.buildToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buildAllToolStripMenuItem,
+            this.rebuildAllToolStripMenuItem,
+            this.buildLowlibToolStripMenuItem});
             this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
             this.buildToolStripMenuItem.Size = new System.Drawing.Size(49, 21);
             this.buildToolStripMenuItem.Text = "Build";
@@ -286,11 +296,11 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(0, 141);
+            this.textBox1.Location = new System.Drawing.Point(0, 128);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(698, 259);
+            this.textBox1.Size = new System.Drawing.Size(698, 272);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -299,7 +309,10 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripTextBox1,
-            this.toolStripSeparator5});
+            this.toolStripSeparator5,
+            this.toolStripLabel3,
+            this.toolStripTextBox3,
+            this.toolStripSeparator4});
             this.toolStrip2.Location = new System.Drawing.Point(0, 50);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(693, 25);
@@ -344,9 +357,10 @@
             // 
             // toolStripTextBox1
             // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 25);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStrip3
             // 
@@ -354,9 +368,6 @@
             this.toolStripLabel2,
             this.toolStripTextBox2,
             this.toolStripSeparator3,
-            this.toolStripLabel3,
-            this.toolStripTextBox3,
-            this.toolStripSeparator4,
             this.toolStripLabel4,
             this.toolStripTextBox4,
             this.toolStripSeparator6});
@@ -369,8 +380,8 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(108, 22);
-            this.toolStripLabel1.Text = "Project Directory:";
+            this.toolStripLabel1.Size = new System.Drawing.Size(90, 22);
+            this.toolStripLabel1.Text = "Project Name:";
             // 
             // toolStrip4
             // 
@@ -387,36 +398,26 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(93, 22);
-            this.toolStripLabel2.Text = "Compiler Path:";
+            this.toolStripLabel2.Size = new System.Drawing.Size(110, 22);
+            this.toolStripLabel2.Text = "Software Version:";
             // 
             // toolStripTextBox2
             // 
             this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(150, 25);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(90, 22);
-            this.toolStripLabel3.Text = "Project Name:";
-            // 
-            // toolStripTextBox3
-            // 
-            this.toolStripTextBox3.Name = "toolStripTextBox3";
-            this.toolStripTextBox3.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox2.Size = new System.Drawing.Size(80, 25);
             // 
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(110, 22);
-            this.toolStripLabel4.Text = "Software Version:";
+            this.toolStripLabel4.Size = new System.Drawing.Size(93, 22);
+            this.toolStripLabel4.Text = "Compiler Path:";
             // 
             // toolStripTextBox4
             // 
             this.toolStripTextBox4.Name = "toolStripTextBox4";
-            this.toolStripTextBox4.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox4.ReadOnly = true;
+            this.toolStripTextBox4.Size = new System.Drawing.Size(370, 25);
             // 
             // toolStripLabel5
             // 
@@ -427,18 +428,13 @@
             // toolStripTextBox5
             // 
             this.toolStripTextBox5.Name = "toolStripTextBox5";
-            this.toolStripTextBox5.Size = new System.Drawing.Size(550, 25);
+            this.toolStripTextBox5.Size = new System.Drawing.Size(562, 25);
             this.toolStripTextBox5.Click += new System.EventHandler(this.toolStripTextBox5_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripSeparator5
             // 
@@ -454,6 +450,49 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // buildAllToolStripMenuItem
+            // 
+            this.buildAllToolStripMenuItem.Name = "buildAllToolStripMenuItem";
+            this.buildAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.buildAllToolStripMenuItem.Text = "Build All";
+            // 
+            // rebuildAllToolStripMenuItem
+            // 
+            this.rebuildAllToolStripMenuItem.Name = "rebuildAllToolStripMenuItem";
+            this.rebuildAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rebuildAllToolStripMenuItem.Text = "Rebuild All";
+            // 
+            // buildLowlibToolStripMenuItem
+            // 
+            this.buildLowlibToolStripMenuItem.Name = "buildLowlibToolStripMenuItem";
+            this.buildLowlibToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.buildLowlibToolStripMenuItem.Text = "Build Low_lib";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(108, 22);
+            this.toolStripLabel3.Text = "Project Directory:";
+            // 
+            // toolStripTextBox3
+            // 
+            this.toolStripTextBox3.Name = "toolStripTextBox3";
+            this.toolStripTextBox3.ReadOnly = true;
+            this.toolStripTextBox3.Size = new System.Drawing.Size(355, 25);
+            this.toolStripTextBox3.Click += new System.EventHandler(this.toolStripTextBox3_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // Form1
             // 
@@ -525,18 +564,22 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox4;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buildAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebuildAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buildLowlibToolStripMenuItem;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

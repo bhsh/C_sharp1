@@ -157,15 +157,15 @@ namespace WindowsFormsApplication3
             //    timer1.Enabled = false;
             ////}
 
-            //int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
-            //int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
-            ///int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+            int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+            int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+            int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
 
-            //int progress   = 95 * ofileCount / cfileCount;
+            int progress   = 95 * ofileCount / cfileCount;
 
-            //toolStripProgressBar1.Value = progress;
-            //toolStripStatusLabel1.Text = "Status："  + "(" + progress.ToString() + "%" + ")";
-           // toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
+            toolStripProgressBar1.Value = progress;
+            toolStripStatusLabel1.Text = "Status："  + "(" + progress.ToString() + "%" + ")";
+            toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
 
             if (p.WaitForExit(0) == true)
             {
@@ -323,6 +323,10 @@ namespace WindowsFormsApplication3
                 }
             }
             /// <summary>
+            /// 
+
+            //Get the current project path
+            toolStripTextBox3.Text = System.Environment.CurrentDirectory;
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -552,6 +556,21 @@ namespace WindowsFormsApplication3
         private void toolStripTextBox5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBox3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
         }
     }
 }
