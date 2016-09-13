@@ -145,6 +145,11 @@ namespace WindowsFormsApplication3
             string Result_dos = p.StandardOutput.ReadLine();
             //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
             textBox1.AppendText(Result_dos + "\n");
+            //if ((p.StandardOutput.ReadLine() == null)&&(p.WaitForExit(0) == true))
+            //{
+            //    timer1.Enabled = false;
+            //}
+           
             //textBox2.Focus();
   
             //if (flag == 1)
@@ -384,10 +389,25 @@ namespace WindowsFormsApplication3
             flag = 0;
             timer1.Enabled = true;
             //p.StandardInput.WriteLine("Ver");
-            p.StandardInput.WriteLine("make all");
+            //p.StandardInput.WriteLine("make all");
+            p.StandardInput.WriteLine("make clean all");
+            p.StandardInput.WriteLine("exit");
             //p.Close();
             //Close the dos window.
             //p.StandardInput.WriteLine("exit");
+            //////////////////////
+            //test code
+            //string q = "";
+            //while (!p.HasExited)
+            //{
+            // q += p.StandardOutput.ReadLine();
+            //string Result_dos = p.StandardOutput.ReadLine();
+            //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
+            // textBox1.AppendText(Result_dos + "\n");
+            //textBox1.AppendText(p.StandardOutput.ReadToEnd() + "\n");
+            //}
+            //textBox1.Text = q;
+            /////////////////////
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
@@ -527,6 +547,11 @@ namespace WindowsFormsApplication3
                     item.Kill();
                 }
             }
+        }
+
+        private void toolStripTextBox5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
