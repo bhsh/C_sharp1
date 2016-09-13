@@ -226,25 +226,26 @@ namespace WindowsFormsApplication3
             //textBox2.Text = Result;
             //string Result = p.StandardOutput.;
             //}
-            string Result_dos = p.StandardOutput.ReadLine();
+            ////////////string Result_dos = p.StandardOutput.ReadLine();
             //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
-            textBox1.AppendText(Result_dos + "\n");
+            //////////////textBox1.AppendText(Result_dos + "\n");
             //if ((p.StandardOutput.ReadLine() == null)&&(p.WaitForExit(0) == true))
             //{
             //    timer1.Enabled = false;
             //}
-           
+
             //textBox2.Focus();
-  
+
             //if (flag == 1)
             //{
             //    timer1.Enabled = false;
             ////}
 
-            if (p.WaitForExit(0) == true)
-            {
-                timer1.Enabled = false;
-            }
+            //if (p.WaitForExit(0) == true)
+            // {
+            //    timer1.Enabled = false;
+            //}
+            toolStripProgressBar1.Value = my_progress;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -433,7 +434,7 @@ namespace WindowsFormsApplication3
         {
             //INCA 7.1
         }
-
+        int my_progress;
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             toolStrip1.Enabled = false;
@@ -468,7 +469,7 @@ namespace WindowsFormsApplication3
 
             //set the pass the parameter into the  process, and the show the system version.
             flag = 0;
-            //timer1.Enabled = true;
+            timer1.Enabled = true;
             //p.StandardInput.WriteLine("Ver");
             //p.StandardInput.WriteLine("make all");
             p.StandardInput.WriteLine("make clean all");
@@ -491,15 +492,21 @@ namespace WindowsFormsApplication3
               int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
               int progress = 95 * ofileCount / cfileCount;
 
-              toolStripProgressBar1.Value = progress;
+                //toolStripProgressBar1.Value = progress;
+              my_progress = progress;
               toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
               toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
-              Thread.Sleep(500);
+              Thread.Sleep(100);
             }
-            toolStripProgressBar1.Value = 100;
+            //toolStripProgressBar1.Value = 100;
             //textBox1.Text = q;
             /////////////////////
             toolStrip1.Enabled = true;
+           // if(toolStrip1.Enabled == true)
+           // {
+           //     toolStripProgressBar1.Value = 100;
+           // }
+
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
