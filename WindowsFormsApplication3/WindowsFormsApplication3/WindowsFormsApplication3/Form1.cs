@@ -763,7 +763,7 @@ namespace WindowsFormsApplication3
                         //textBox4.Text = sourceString;
                         //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
                     }
-                    Write2(@"C:\Users\bai\Desktop\my.ini");
+                    Write2(@"C:\Users\bai\Desktop\proj.ini");
                     MessageBox.Show("The project name has been changed!");
                 }
                 else if (dr == DialogResult.No)
