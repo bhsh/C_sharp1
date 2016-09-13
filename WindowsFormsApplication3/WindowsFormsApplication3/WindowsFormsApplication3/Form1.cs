@@ -702,9 +702,120 @@ namespace WindowsFormsApplication3
             }
         }
 
+        string toolStripTextBox2_output;
+        public void Write2(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            //开始写入
+            sw.Write(toolStripTextBox2_output);
+            //清空缓冲区
+            sw.Flush();
+            //关闭流
+            sw.Close();
+            fs.Close();
+        }
+
+        public void Write3(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            //开始写入
+            sw.Write(software_version_output);
+            //清空缓冲区
+            sw.Flush();
+            //关闭流
+            sw.Close();
+            fs.Close();
+        }
+
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             //Update the project name
+            if (e.KeyCode == Keys.Enter)
+            {
+                DialogResult dr;
+                dr = MessageBox.Show("Do you really want to change the project name???", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    toolStripTextBox2_output = null;
+                    //toolStripTextBox2.Text = "The first button is clicked!";
+                    // = toolStripTextBox2.Text;
+                    string path = @"C:\Users\bai\Desktop\proj.ini";
+                    StreamReader sr = new StreamReader(path, Encoding.Default);
+                    String line;
+                    string temp;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string pattern_project = "project_Name";
+                        Match result_3 = Regex.Match(line, pattern_project);
+                        //string sourceString = "Ni hao 123";
+                        if (result_3.Success == true)
+                        {
+                            temp = line.Replace(project_name, toolStripTextBox1.Text);
+                        }
+                        else
+                        {
+                            temp = line;
+                        }
+                        toolStripTextBox2_output = toolStripTextBox2_output + temp + "\n";
+                        //textBox4.Text = sourceString;
+                        //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
+                    }
+                    Write2(@"C:\Users\bai\Desktop\my.ini");
+                    MessageBox.Show("The project name has been changed!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    MessageBox.Show("The project name has been kept unchanged!");
+                }
+            }
+        }
+
+        string software_version_output;
+        private void toolStripTextBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Update the software version
+            if (e.KeyCode == Keys.Enter)
+            {
+                DialogResult dr;
+                dr = MessageBox.Show("Do you really want to change the software version???", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    software_version_output = null;
+                    //toolStripTextBox2.Text = "The first button is clicked!";
+                    // = toolStripTextBox2.Text;
+                    string path = @"C:\Users\bai\Desktop\proj.ini";
+                    StreamReader sr = new StreamReader(path, Encoding.Default);
+                    String line;
+                    string temp;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string pattern_project = "Software_Version";
+                        Match software_version_result = Regex.Match(line, pattern_project);
+                        //string sourceString = "Ni hao 123";
+                        if (software_version_result.Success == true)
+                        {
+                            temp = line.Replace(project_ver, toolStripTextBox2.Text);
+                        }
+                        else
+                        {
+                            temp = line;
+                        }
+                        software_version_output = software_version_output + temp + "\n";
+                        //textBox4.Text = sourceString;
+                        //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
+                    }
+                    Write3(@"C:\Users\bai\Desktop\my.ini");
+                    MessageBox.Show("The software version has been changed!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    MessageBox.Show("The software version has been kept unchanged!");
+                }
+            }
         }
     }
 }

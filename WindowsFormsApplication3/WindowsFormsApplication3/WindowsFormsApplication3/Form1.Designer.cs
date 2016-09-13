@@ -407,6 +407,7 @@
             this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
             this.toolStripTextBox2.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox2_KeyDown);
             // 
             // toolStripLabel4
             // 
