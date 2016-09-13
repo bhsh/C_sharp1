@@ -701,5 +701,10 @@ namespace WindowsFormsApplication3
                 p.StandardInput.WriteLine("exit");
             }
         }
+
+        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Update the project name
+        }
     }
 }
