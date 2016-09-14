@@ -510,6 +510,7 @@ namespace WindowsFormsApplication3
 
 
             // The button is used to test the process
+            toolStripProgressBar1.Value = 0;
             Process p = new Process(); //实例一个Process类，启动一个独立进程
             p.StartInfo.FileName = "cmd.exe";  //设定程序名
             //p.StartInfo.FileName = "amk.exe";  //设定程序名
@@ -577,6 +578,21 @@ namespace WindowsFormsApplication3
                 // numOutputLines++;
                 // Add the text to the collected output.
                 textBox1.AppendText(e.Data + "\n");
+
+                int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+                int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+                int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+                int progress = 95 * ofileCount / cfileCount;
+
+                toolStripProgressBar1.Value = progress;
+                my_progress = progress;
+                toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
+                toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
+            }
+            else
+            {
+                toolStripProgressBar1.Value = 100;
+                toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
             }
         }
         void ErrorDataReceived(object sender, DataReceivedEventArgs e)
