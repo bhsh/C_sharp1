@@ -149,7 +149,7 @@ namespace WindowsFormsApplication3
             string pattern = "Compiler_Path";
             Match result = Regex.Match(s, pattern);
             //textBox4.Text = result.Value;
-            string path = @"C:\Users\bai\Desktop\proj.ini";
+            string path = @"C:\Users\thinkpad\Desktop\proj.ini";
             StreamReader sr = new StreamReader(path, Encoding.Default);
             String line;
             while ((line = sr.ReadLine()) != null)
@@ -207,7 +207,7 @@ namespace WindowsFormsApplication3
                 }
                 my_output = my_output + line + "\n";
             }
-            Write(@"C:\Users\bai\Desktop\my.ini");
+            Write(@"C:\Users\thinkpad\Desktop\my.ini");
 
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -437,76 +437,152 @@ namespace WindowsFormsApplication3
         int my_progress;
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            toolStrip1.Enabled = false;
+            //toolStrip1.Enabled = false;
             //rebuild all from the low insight...
 
             //Enter the dos command.
             //Process p = new Process();
-            textBox1.Text = "";
-            toolStripProgressBar1.Value = 0;
+            //textBox1.Text = "";
+            //toolStripProgressBar1.Value = 0;
 
             //Set the program that will be started later!
-            p.StartInfo.FileName = "cmd.exe";
+            //p.StartInfo.FileName = "cmd.exe";
 
             //Disable the shell to be started!
-            p.StartInfo.UseShellExecute = false;
+           // p.StartInfo.UseShellExecute = false;
 
             //Set the redirect input
-            p.StartInfo.RedirectStandardInput = true;
+            //p.StartInfo.RedirectStandardInput = true;
 
             //Set the redirect output
-            p.StartInfo.RedirectStandardOutput = true;
+            //p.StartInfo.RedirectStandardOutput = true;
 
             //Set the redirect error
-            p.StartInfo.RedirectStandardError = true;
+           // p.StartInfo.RedirectStandardError = true;
 
             //Don't show the process in window.
             //p.StartInfo.CreateNoWindow = false;
-            p.StartInfo.CreateNoWindow = true;
+            //p.StartInfo.CreateNoWindow = true;
 
             //Start the process;
-            p.Start();
+           // p.Start();
 
             //set the pass the parameter into the  process, and the show the system version.
-            flag = 0;
-            timer1.Enabled = true;
+            //flag = 0;
+            //timer1.Enabled = true;
             //p.StandardInput.WriteLine("Ver");
             //p.StandardInput.WriteLine("make all");
-            p.StandardInput.WriteLine("make clean all");
-            p.StandardInput.WriteLine("exit");
+           // p.StandardInput.WriteLine("make clean all");
+           // p.StandardInput.WriteLine("exit");
             //p.Close();
             //Close the dos window.
             //p.StandardInput.WriteLine("exit");
             //////////////////////
             //test code
             //string q = "";
-            while (!p.HasExited)
-            {
+            //while (!p.HasExited)
+            //{
               //q += p.StandardOutput.ReadLine();
-              string Result_dos = p.StandardOutput.ReadLine();
+              //string Result_dos = p.StandardOutput.ReadLine();
               //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
-              textBox1.AppendText(Result_dos + "\n");
+              //textBox1.AppendText(Result_dos + "\n");
                 //textBox1.AppendText(p.StandardOutput.ReadToEnd() + "\n");
-              int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
-              int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
-              int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
-              int progress = 95 * ofileCount / cfileCount;
+              //int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+              //int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+              //int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+              //int progress = 95 * ofileCount / cfileCount;
 
                 //toolStripProgressBar1.Value = progress;
-              my_progress = progress;
-              toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
-              toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
-              Thread.Sleep(100);
-            }
+             // my_progress = progress;
+              //toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
+              //toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
+              //Thread.Sleep(100);
+            //}
             //toolStripProgressBar1.Value = 100;
             //textBox1.Text = q;
             /////////////////////
-            toolStrip1.Enabled = true;
+           // toolStrip1.Enabled = true;
            // if(toolStrip1.Enabled == true)
            // {
            //     toolStripProgressBar1.Value = 100;
            // }
 
+
+
+            // The button is used to test the process
+            Process p = new Process(); //实例一个Process类，启动一个独立进程
+            p.StartInfo.FileName = "cmd.exe";  //设定程序名
+            //p.StartInfo.FileName = "amk.exe";  //设定程序名
+            //p.StartInfo.Arguments = "clean all";  //设定程式执行参数   
+            p.StartInfo.UseShellExecute = false;    //关闭Shell的使用
+            p.StartInfo.RedirectStandardInput = true;  //重定向标准输入
+            p.StartInfo.RedirectStandardOutput = true; //重定向标准输出  
+            p.StartInfo.RedirectStandardError = true;   //重定向错误输出         
+            p.StartInfo.CreateNoWindow = true;  //设置不显示窗口
+            //p.StartInfo.Arguments = "clean all";
+            //StringBuilder q = new StringBuilder();
+            //while (!p.HasExited)
+            //while(0)
+            //p.BeginOutputReadLine();
+            //string error = p.StandardError.ReadToEnd();
+            //p.WaitForExit();
+            // p.Close();
+
+            //p.OutputDataReceived += new DataReceivedEventHandler((s, e) => { Console.WriteLine(e.Data); });
+            //p.ErrorDataReceived  += new DataReceivedEventHandler((s, e) => { Console.WriteLine(e.Data); });
+            //p.Start();
+            // p.BeginOutputReadLine();
+            p.OutputDataReceived += OutputDataReceived;
+            p.ErrorDataReceived += ErrorDataReceived;
+            p.Start();    //启动
+            //p.StandardInput.Write("dir");       
+            p.StandardInput.WriteLine("make clean all");
+            p.StandardInput.WriteLine("exit");
+            //textBox4.Text = p.StandardOutput.ReadToEnd(); //从输出流取得命令执行结果
+            //textBox4.Text = p.StandardOutput.();
+            //string output = p.StandardOutput.ReadToEnd();
+            //p.WaitForExit();
+            //p.Close();
+            //textBox4.Text = output;
+            p.BeginOutputReadLine();
+            p.BeginErrorReadLine();
+            //p.WaitForExit();
+            p.Close();
+            //p.OutputDataReceived -= OutputDataReceived;
+            //p.ErrorDataReceived -= ErrorDataReceived;
+
+            // {
+            //q.Append(p.StandardOutput.ReadToEnd());
+            //counter++;
+            //textBox1.Text = counter.ToString();
+            //}
+            //string r = q.ToString();
+            //textBox4.Text = r;
+            //p.StandardInput.WriteLine("exit");
+            //p.WaitForExit(0);
+            // counter++;
+
+        }
+        
+        void OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            // Process line provided in e.Data
+            //counter++;
+            //textBox4.Text = counter.ToString();
+            //string output = p.StandardOutput.ReadToEnd();
+            //textBox4.Text = output;
+            // Collect the sort command output.
+            if (!String.IsNullOrEmpty(e.Data))
+            {
+                // numOutputLines++;
+                // Add the text to the collected output.
+                textBox1.AppendText(e.Data + "\n");
+            }
+        }
+        void ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            // Process line provided in e.Data
+            textBox1.AppendText(e.Data + "\n");
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
@@ -753,7 +829,7 @@ namespace WindowsFormsApplication3
                     toolStripTextBox2_output = null;
                     //toolStripTextBox2.Text = "The first button is clicked!";
                     // = toolStripTextBox2.Text;
-                    string path = @"C:\Users\bai\Desktop\proj.ini";
+                    string path = @"C:\Users\thinkpad\Desktop\proj.ini";
                     StreamReader sr = new StreamReader(path, Encoding.Default);
                     String line;
                     string temp;
@@ -774,7 +850,7 @@ namespace WindowsFormsApplication3
                         //textBox4.Text = sourceString;
                         //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
                     }
-                    Write2(@"C:\Users\bai\Desktop\proj.ini");
+                    Write2(@"C:\Users\thinkpad\Desktop\proj.ini");
                     MessageBox.Show("The project name has been changed!");
                 }
                 else if (dr == DialogResult.No)
@@ -798,7 +874,7 @@ namespace WindowsFormsApplication3
                     software_version_output = null;
                     //toolStripTextBox2.Text = "The first button is clicked!";
                     // = toolStripTextBox2.Text;
-                    string path = @"C:\Users\bai\Desktop\proj.ini";
+                    string path = @"C:\Users\thinkpad\Desktop\proj.ini";
                     StreamReader sr = new StreamReader(path, Encoding.Default);
                     String line;
                     string temp;
@@ -819,7 +895,7 @@ namespace WindowsFormsApplication3
                         //textBox4.Text = sourceString;
                         //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
                     }
-                    Write3(@"C:\Users\bai\Desktop\my.ini");
+                    Write3(@"C:\Users\thinkpad\Desktop\my.ini");
                     MessageBox.Show("The software version has been changed!");
                 }
                 else if (dr == DialogResult.No)
