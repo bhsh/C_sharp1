@@ -214,38 +214,17 @@ namespace WindowsFormsApplication3
         {
         
         }
-        int post;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            post++;
-            string Result = post.ToString();
-            //textBox2.Text = post.ToString();
-            //if(p.Threads == true)
-            //{
-            //string Result = p.StandardOutput.ReadToEnd();
-            //textBox2.Text = Result;
-            //string Result = p.StandardOutput.;
-            //}
-            ////////////string Result_dos = p.StandardOutput.ReadLine();
-            //textBox2.AppendText("skjfhskdfhs" + Result + Result_dos +"\n");
-            //////////////textBox1.AppendText(Result_dos + "\n");
-            //if ((p.StandardOutput.ReadLine() == null)&&(p.WaitForExit(0) == true))
-            //{
-            //    timer1.Enabled = false;
-            //}
+            if (System.Diagnostics.Process.GetProcessesByName("make").ToList().Count > 0)
+            {
 
-            //textBox2.Focus();
-
-            //if (flag == 1)
-            //{
-            //    timer1.Enabled = false;
-            ////}
-
-            //if (p.WaitForExit(0) == true)
-            // {
-            //    timer1.Enabled = false;
-            //}
-            toolStripProgressBar1.Value = my_progress;
+            }
+            else
+            {
+                timer1.Enabled = false;
+                buildbutton_control(true);
+            }
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -496,6 +475,7 @@ namespace WindowsFormsApplication3
             {
                 //toolStripProgressBar1.Value = 100;
                 //toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
+                //buildbutton_control(true);
             }
         }
         /*****************************************************************
@@ -530,6 +510,7 @@ namespace WindowsFormsApplication3
             // The button is used to test the process
             //toolStripProgressBar1.Value = 0;
             textBox1.Text = "";
+            timer1.Enabled = true;
             buildbutton_control(false);
             launch_process("make all");
         }
