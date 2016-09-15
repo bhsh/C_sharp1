@@ -190,10 +190,11 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
-            string str = Getinstalledsoftware();
-            string[] sArr = str.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            string str = Getinstalledsoftware(); //Get the list of all the setup softwares
+            string[] sArr = str.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries); //Store the list into array
             //Console.WriteLine("SystemDirectory: {0}", sArr[0]);
 
+            //Search the list array for the avaliable setup path
             foreach (string element in sArr)
             {
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
