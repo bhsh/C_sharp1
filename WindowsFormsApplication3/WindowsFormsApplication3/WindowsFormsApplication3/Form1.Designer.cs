@@ -398,19 +398,19 @@
             // asToolStripMenuItem
             // 
             this.asToolStripMenuItem.Name = "asToolStripMenuItem";
-            this.asToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.asToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.asToolStripMenuItem.Text = "as";
             // 
             // asasToolStripMenuItem
             // 
             this.asasToolStripMenuItem.Name = "asasToolStripMenuItem";
-            this.asasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.asasToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.asasToolStripMenuItem.Text = "asas";
             // 
             // asToolStripMenuItem1
             // 
             this.asToolStripMenuItem1.Name = "asToolStripMenuItem1";
-            this.asToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.asToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
             this.asToolStripMenuItem1.Text = "as";
             // 
             // textBox1
@@ -556,6 +556,7 @@
             this.toolStripTextBox4.Name = "toolStripTextBox4";
             this.toolStripTextBox4.ReadOnly = true;
             this.toolStripTextBox4.Size = new System.Drawing.Size(350, 25);
+            this.toolStripTextBox4.Click += new System.EventHandler(this.toolStripTextBox4_Click);
             // 
             // toolStripSeparator6
             // 
