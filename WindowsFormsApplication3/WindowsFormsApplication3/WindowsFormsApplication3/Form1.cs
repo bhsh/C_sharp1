@@ -183,34 +183,13 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Console.WriteLine();
-            //  <-- Keep this information secure! -->
-            //Console.WriteLine("SystemDirectory: {0}", Environment.SystemDirectory);
-            //textBox1.Text = Environment.SystemDirectory;
-            //textBox1.Text = Environment.CurrentDirectory;
-            //textBox1.Text = Environment.GetEnvironmentVariable("path");
-            //textBox1.Text = Environment.GetEnvironmentVariable("set");
-            //textBox1.Text = System.Windows.Forms.Application.ExecutablePath;
-            //textBox1.Text = System.Windows.Forms.Application.StartupPath;
-            //textBox1.Text = Getinstalledsoftware();
-            //Console.WriteLine("SystemDirectory: {0}", Getinstalledsoftware());
             string str = Getinstalledsoftware();
             string[] sArr = str.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
             //Console.WriteLine("SystemDirectory: {0}", sArr[0]);
-            //textBox1.Text = sArr[0];
-            foreach (string element in sArr)
-            {
-                //Console.WriteLine("SystemDirectory: {0}", element);
-                string s = element;
-                string pattern = "SmartGit";
-                MatchCollection mc = System.Text.RegularExpressions.Regex.Matches(s, pattern, RegexOptions.IgnoreCase);
-                //Console.WriteLine("SystemDirectory: {0}", mc);
-            }
 
-            //search the matlab 2013a for use
             foreach (string element in sArr)
             {
-                if (Matlab_GetNum(element) == true)
+                if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
                     //matlab_setup_path = ;
                     //string matlab_str = Getinstalledsoftware();
@@ -218,25 +197,15 @@ namespace WindowsFormsApplication3
                     matlab_setup_path = string_local_matlab[1] + @"\bin\matlab.exe";
                     //Console.WriteLine("SystemDirectory: {0}", matlab_setup_path);
                 }
-            }
-
-            //search the smartgit for use
-            foreach (string element in sArr)
-            {
-                if (SmartGit_GetNum(element) == true)
+                else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
                     //matlab_setup_path = ;
                     //string matlab_str = Getinstalledsoftware();
                     string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                     smartgit_setup_path = string_local_SmartGit[1] + @"bin\smartgit.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
+                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);                               
                 }
-            }
-
-            //search the ude for use
-            foreach (string element in sArr)
-            {
-                if (Ude_GetNum(element) == true)
+                else if (Ude_GetNum(element) == true) ///<search the ude for use>
                 {
                     //matlab_setup_path = ;
                     //string matlab_str = Getinstalledsoftware();
@@ -244,11 +213,7 @@ namespace WindowsFormsApplication3
                     ude_setup_path = string_local_ude[1] + @"\UdeDesktop.exe";
                     //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
                 }
-            }
-
-            foreach (string element in sArr)
-            {
-                if (INCA_GetNum(element) == true)
+                else if (INCA_GetNum(element) == true) ///<search the inca for use>
                 {
                     //matlab_setup_path = ;
                     //string matlab_str = Getinstalledsoftware();
@@ -256,11 +221,7 @@ namespace WindowsFormsApplication3
                     inca_setup_path = string_local_inca[1] + @"\INCA.exe";
                     //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
                 }
-            }
-
-            foreach (string element in sArr)
-            {
-                if (TASKING_GetNum(element) == true)
+                else if (TASKING_GetNum(element) == true) ///<search the tasking for use>
                 {
                     //matlab_setup_path = ;
                     //string matlab_str = Getinstalledsoftware();
@@ -269,8 +230,6 @@ namespace WindowsFormsApplication3
                     //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
                 }
             }
-            /// <summary>
-            /// 
 
             //Get the current project path
             toolStripTextBox3.Text = System.Environment.CurrentDirectory;
