@@ -479,24 +479,23 @@ namespace WindowsFormsApplication3
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
-                // numOutputLines++;
                 // Add the text to the collected output.
                 textBox1.AppendText(e.Data + "\n");
 
-                int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
-                int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
-                int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
-                int progress = 95 * ofileCount / cfileCount;
+                //int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+                //int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+                //int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+                //int progress = 95 * ofileCount / cfileCount;
 
-                toolStripProgressBar1.Value = progress;
-                my_progress = progress;
-                toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
-                toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
+                //toolStripProgressBar1.Value = progress;
+                //my_progress = progress;
+                //toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
+                //toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
             }
             else
             {
-                toolStripProgressBar1.Value = 100;
-                toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
+                //toolStripProgressBar1.Value = 100;
+                //toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
             }
         }
         /*****************************************************************
@@ -553,6 +552,36 @@ namespace WindowsFormsApplication3
             launch_process("make build_lib clean unall");
             //launch_process("make clean unall");
         }
+
+        /*****************************************************************
+        * Description:command line input.
+        * Function name:toolStripTextBox5_KeyDown.
+        ******************************************************************/
+        private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+            string command_line = this.toolStripTextBox5.Text.Trim();
+            // If enter key is entered!
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Launch the command from the command line.
+                launch_process(command_line);
+            }
+        }
+        /*****************************************************************
+        * Description:End the make process to stop the build process.
+        * Function name:toolStripButton16_Click.
+        ******************************************************************/
+        private void toolStripButton16_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "make")
+                {
+                    item.Kill();
+                }
+            }
+        }
         /*****************************************************************
         * 
         *
@@ -593,51 +622,6 @@ namespace WindowsFormsApplication3
         private void toolStripTextBox3_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
-        }
-
-        private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
-        {
-            string command_line = this.toolStripTextBox5.Text.Trim();
-            // If enter key is entered!
-            if (e.KeyCode == Keys.Enter)
-            {
-                //rebuild all from the low insight...
-
-                //Enter the dos command.
-                //Process p = new Process();
-                textBox1.Text = "";
-
-                //Set the program that will be started later!
-                p.StartInfo.FileName = "cmd.exe";
-
-                //Disable the shell to be started!
-                p.StartInfo.UseShellExecute = false;
-
-                //Set the redirect input
-                p.StartInfo.RedirectStandardInput = true;
-
-                //Set the redirect output
-                p.StartInfo.RedirectStandardOutput = true;
-
-                //Set the redirect error
-                p.StartInfo.RedirectStandardError = true;
-
-                //Don't show the process in window.
-                //p.StartInfo.CreateNoWindow = false;
-                p.StartInfo.CreateNoWindow = true;
-
-                //Start the process;
-                p.Start();
-
-                //set the pass the parameter into the  process, and the show the system version.
-                flag = 0;
-                timer1.Enabled = true;
-                //p.StandardInput.WriteLine("Ver");
-                p.StandardInput.WriteLine(command_line);
-
-                //Close the dos window.
-                p.StandardInput.WriteLine("exit");
-            }
         }
 
         string toolStripTextBox2_output;

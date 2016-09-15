@@ -89,6 +89,7 @@
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox5 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -206,6 +207,7 @@
             this.toolStripButton8,
             this.toolStripButton9,
             this.toolStripButton10,
+            this.toolStripButton16,
             this.toolStripSeparator8,
             this.toolStripButton11,
             this.toolStripButton12});
@@ -593,6 +595,17 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton16
+            // 
+            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
+            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton16.Name = "toolStripButton16";
+            this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton16.Text = "toolStripButton16";
+            this.toolStripButton16.ToolTipText = "Kill build";
+            this.toolStripButton16.Click += new System.EventHandler(this.toolStripButton16_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -688,6 +701,7 @@
         private System.Windows.Forms.ToolStripMenuItem asToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripButton toolStripButton16;
     }
 }
 
