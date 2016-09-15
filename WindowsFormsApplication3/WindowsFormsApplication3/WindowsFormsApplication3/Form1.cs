@@ -810,7 +810,7 @@ namespace WindowsFormsApplication3
                             {
                                 temp = line;
                             }
-                            out_into_file = out_into_file + temp + "\n";
+                            out_into_file = out_into_file + temp + "\r\n";
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
@@ -821,12 +821,12 @@ namespace WindowsFormsApplication3
                         MessageBox.Show("The software version has been kept unchanged!");
                     }
                 }
-            }
-            else
-            { 
-                //do nothing
-                MessageBox.Show("The software versione has not been changed!");
-            }
+                else
+                {
+                    //do nothing
+                    MessageBox.Show("The software versione has not been changed!");
+                }
+            }  
         }
         /*****************************************************************
         * The End of the toolStripTextBox2
