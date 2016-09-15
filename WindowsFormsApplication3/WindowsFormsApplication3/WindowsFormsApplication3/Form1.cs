@@ -218,7 +218,7 @@ namespace WindowsFormsApplication3
                     tasking_setup_path = string_local_tasking[1] + tasking_suffix_path;
                     
                     //test code
-                    this.toolStripTextBox4.Text = string_local_tasking[1];
+                    //this.toolStripTextBox4.Text = string_local_tasking[1];
                 }
             }       
         }
