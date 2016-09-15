@@ -727,6 +727,7 @@
             this.toolStripButton18.Name = "toolStripButton18";
             this.toolStripButton18.Size = new System.Drawing.Size(32, 22);
             this.toolStripButton18.Text = "source insight3";
+            this.toolStripButton18.ButtonClick += new System.EventHandler(this.toolStripButton18_ButtonClick);
             // 
             // toolStripButton19
             // 
@@ -778,18 +779,21 @@
             this.openPathToolStripMenuItem3.Name = "openPathToolStripMenuItem3";
             this.openPathToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.openPathToolStripMenuItem3.Text = "Open Path";
+            this.openPathToolStripMenuItem3.Click += new System.EventHandler(this.openPath_sourceinsight_Click);
             // 
             // copyPathToolStripMenuItem2
             // 
             this.copyPathToolStripMenuItem2.Name = "copyPathToolStripMenuItem2";
             this.copyPathToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.copyPathToolStripMenuItem2.Text = "Copy Path";
+            this.copyPathToolStripMenuItem2.Click += new System.EventHandler(this.copyPath_sourceinsight_Click);
             // 
             // endProcessToolStripMenuItem3
             // 
             this.endProcessToolStripMenuItem3.Name = "endProcessToolStripMenuItem3";
             this.endProcessToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.endProcessToolStripMenuItem3.Text = "End Process";
+            this.endProcessToolStripMenuItem3.Click += new System.EventHandler(this.endprocess_sourceinsight_Click);
             // 
             // toolStripSeparator10
             // 

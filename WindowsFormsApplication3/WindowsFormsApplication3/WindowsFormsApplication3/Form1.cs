@@ -56,6 +56,7 @@ namespace WindowsFormsApplication3
         string ude_suffix_path          = @"\UdeDesktop.exe";
         string inca_suffix_path         = @"\INCA.exe";
         string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
+        string sourceinsight_suffix_path= @"Insight3.exe";
 
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
@@ -93,7 +94,11 @@ namespace WindowsFormsApplication3
         }
         public static bool TASKING_GetNum(string str)
         {
-            return Regex.IsMatch(str, @"TASKING VX-toolset");
+            return Regex.IsMatch(str, @"TASKING VX-toolset for TriCore v4.3r3");
+        }
+        public static bool SourceInsight_GetNum(string str)
+        {
+            return Regex.IsMatch(str, @"Source Insight 3.5");
         }
 
         /*****************************************************************
@@ -204,6 +209,7 @@ namespace WindowsFormsApplication3
             //Search the list array for the avaliable setup path
             foreach (string element in sArr)
             {
+                Console.WriteLine("SystemDirectory: {0}", element);
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
                     string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -236,6 +242,12 @@ namespace WindowsFormsApplication3
                     
                     //test code
                     //this.toolStripTextBox4.Text = string_local_tasking[1];
+                }
+                else if (SourceInsight_GetNum(element) == true) ///<search the sourceinsight for use>
+                {
+                    string[] string_local_sourceinsight = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                    Org_sourceinsight_setup_path = string_local_sourceinsight[1];
+                    sourceinsight_setup_path = Org_sourceinsight_setup_path + sourceinsight_suffix_path;
                 }
             } 
       
@@ -287,6 +299,46 @@ namespace WindowsFormsApplication3
             else
             {
                 toolStripButton1.Enabled = false;
+            }
+
+            //totalcommander:check if the path exsits
+            if (System.IO.File.Exists(totalcommander_setup_path))
+            {
+                toolStripButton19.Enabled = true;
+            }
+            else
+            {
+                toolStripButton19.Enabled = false;
+            }
+
+            //totalcommander:check if the path exsits
+            if (System.IO.File.Exists(totalcommander_setup_path))
+            {
+                toolStripButton19.Enabled = true;
+            }
+            else
+            {
+                toolStripButton19.Enabled = false;
+            }
+
+            //everything:check if the path exsits
+            if (System.IO.File.Exists(everything_setup_path))
+            {
+                toolStripButton20.Enabled = true;
+            }
+            else
+            {
+                toolStripButton20.Enabled = false;
+            }
+
+            //source insight:check if the path exsits
+            if (System.IO.File.Exists(sourceinsight_setup_path))
+            {
+                toolStripButton18.Enabled = true;
+            }
+            else
+            {
+                toolStripButton18.Enabled = false;
             }
         }
 
@@ -502,6 +554,9 @@ namespace WindowsFormsApplication3
         * The smartgit button end
         ******************************************************************/
 
+        /*****************************************************************
+        * The UDE button
+        ******************************************************************/
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             //UDE
@@ -526,6 +581,64 @@ namespace WindowsFormsApplication3
                 Process.Start(ude_setup_path);
             }
         }
+        /*****************************************************************
+        * The UDE button end
+        ******************************************************************/
+
+        /*****************************************************************
+        * The Source Insight button
+        ******************************************************************/
+        private void toolStripButton18_ButtonClick(object sender, EventArgs e)
+        {
+            //source insight
+            if (System.Diagnostics.Process.GetProcessesByName("Insight3").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The Insight3 is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(sourceinsight_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(sourceinsight_setup_path);
+            }
+        }
+
+        //Source Insight: open path
+        private void openPath_sourceinsight_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_sourceinsight_setup_path);
+        }
+        //Source Insight: copy path
+        private void copyPath_sourceinsight_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_sourceinsight_setup_path); //copy target into Clipboard
+        }
+        //Source Insight: end process
+        private void endprocess_sourceinsight_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "Insight3")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * The Source Insight button end
+        ******************************************************************/
 
         public void Write_File(string path,string info_stream)
         {
