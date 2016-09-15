@@ -225,7 +225,7 @@ namespace WindowsFormsApplication3
             }
 
             //Get the current project path
-            toolStripTextBox3.Text = System.Environment.CurrentDirectory;
+            //toolStripTextBox3.Text = System.Environment.CurrentDirectory;
             Parse_Project_Cfg_File();
         }
         /*****************************************************************
@@ -629,10 +629,10 @@ namespace WindowsFormsApplication3
 
         }
 
-        private void toolStripTextBox3_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
-        }
+        //private void toolStripTextBox3_Click(object sender, EventArgs e)
+        //{
+          //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
+        //}
 
         string toolStripTextBox2_output;
         public void Write2(string path)
