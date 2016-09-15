@@ -471,28 +471,12 @@ namespace WindowsFormsApplication3
 
             p.Close(); //Close the local process       
         }
-
         /*****************************************************************
-        * Description:make all.
-        * Function name:toolStripButton7_Click.
+        * Description: Receive the info for command line.
+        * Function name:OutputDataReceived.
         ******************************************************************/
-        int my_progress;
-        private void toolStripButton7_Click(object sender, EventArgs e)
-        {
-            // The button is used to test the process
-            toolStripProgressBar1.Value = 0;
-
-            launch_process("make clean all");
-        }
-        
         void OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            // Process line provided in e.Data
-            //counter++;
-            //textBox4.Text = counter.ToString();
-            //string output = p.StandardOutput.ReadToEnd();
-            //textBox4.Text = output;
-            // Collect the sort command output.
             if (!String.IsNullOrEmpty(e.Data))
             {
                 // numOutputLines++;
@@ -515,12 +499,27 @@ namespace WindowsFormsApplication3
                 toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
             }
         }
+        /*****************************************************************
+        * Description: Receive the error info for command line.
+        * Function name:ErrorDataReceived.
+        ******************************************************************/
         void ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             // Process line provided in e.Data
             textBox1.AppendText(e.Data + "\n");
         }
-
+        /*****************************************************************
+        * Description:make all.
+        * Function name:toolStripButton7_Click.
+        ******************************************************************/
+        int my_progress;
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            // The button is used to test the process
+            toolStripProgressBar1.Value = 0;
+            launch_process("make clean all");
+        }
+ 
         /*****************************************************************
         * Description:make clean all.
         * Function name:toolStripButton8_Click.
