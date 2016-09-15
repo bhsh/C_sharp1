@@ -27,16 +27,16 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
-        string tasking_setup_path  = null;
-        string matlab_setup_path   = null;
-        string smartgit_setup_path = null;
-        string ude_setup_path      = null;
-        string inca_setup_path     = null;
+        string tasking_setup_path   = null;
+        string matlab_setup_path    = null;
+        string smartgit_setup_path  = null;
+        string ude_setup_path       = null;
+        string inca_setup_path      = null;
 
-        string cfg_compiler_path = null;
-        string cfg_project_name = null;
-        string cfg_project_ver = null;
-        string my_output     = null;
+        string cfg_compiler_path    = null;
+        string cfg_project_name     = null;
+        string cfg_project_ver      = null;
+        string my_output            = null;
 
         //suffix path
         string matlab_suffix_path   = @"\bin\matlab.exe";
@@ -49,6 +49,10 @@ namespace WindowsFormsApplication3
         string Compiler_Path_Pattern    = "Compiler_Path";
         string Project_Name_Pattern     = "project_Name";
         string Software_Version_Pattern = "Software_Version";
+
+        //cfg path
+        string cfg_file_path =  @"C:\Users\thinkpad\Desktop\proj.ini";
+
         /*****************************************************************
         * The End of the Definitions  
         ******************************************************************/
@@ -125,8 +129,7 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Parse_Project_Cfg_File()
         {
-            string path = @"C:\Users\thinkpad\Desktop\proj.ini";
-            StreamReader sr = new StreamReader(path, Encoding.Default);
+            StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
             String line;
             while ((line = sr.ReadLine()) != null)
             {
@@ -137,7 +140,7 @@ namespace WindowsFormsApplication3
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();//remove the useless space
-                    this.toolStripTextBox4.Text = resultString[1];
+                    //this.toolStripTextBox4.Text = resultString[1];
                     cfg_compiler_path = resultString[1];
                 }
 
@@ -213,6 +216,9 @@ namespace WindowsFormsApplication3
                 {
                     string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                     tasking_setup_path = string_local_tasking[1] + tasking_suffix_path;
+                    
+                    //test code
+                    this.toolStripTextBox4.Text = string_local_tasking[1];
                 }
             }       
         }
@@ -226,13 +232,14 @@ namespace WindowsFormsApplication3
             string temp_2 = cfg_compiler_path.Trim();
 
             if (temp_1 != temp_2)
-            { 
+            {   
                 DialogResult dr;
                 dr = MessageBox.Show(" The compiler path found in your computer is different from\n the configuration file(proj.ini)!\n\n\n Do you want to update the configuration file(proj.ini) with the compiler path found?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 
                 if (dr == DialogResult.Yes)
-                {
+                {   
+                    cfg_compiler_path = tasking_setup_path;
                     //update the cfg file(.ini) with the newest path.
                     MessageBox.Show("The configuration file(proj.ini) has been updated!");
                 }
@@ -259,7 +266,7 @@ namespace WindowsFormsApplication3
 
             Parse_Project_Cfg_File(); // Parse the confiuration file
 
-            Check_compiler_path(); //Update the compiler path
+            //Check_compiler_path(); //Update the compiler path
         }
 
         /*****************************************************************
@@ -665,121 +672,165 @@ namespace WindowsFormsApplication3
           //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
         //}
 
-        string toolStripTextBox2_output;
-        public void Write2(string path)
+        /*****************************************************************
+        * 
+        * Description:Update the configuration file(.ini)
+        * 
+        ******************************************************************/
+        private void Get_last_cfg_project_nam()
         {
-            FileStream fs = new FileStream(path, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            //开始写入
-            sw.Write(toolStripTextBox2_output);
-            //清空缓冲区
-            sw.Flush();
-            //关闭流
-            sw.Close();
-            fs.Close();
-        }
+            //Get the last cfg_project_name
+            StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Get the project name
+                Match Project_Name_Result = Regex.Match(line, Project_Name_Pattern);
+                if (Project_Name_Result.Success == true)
+                {
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
-        public void Write3(string path)
-        {
-            FileStream fs = new FileStream(path, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            //开始写入
-            sw.Write(software_version_output);
-            //清空缓冲区
-            sw.Flush();
-            //关闭流
-            sw.Close();
-            fs.Close();
+                    resultString[1] = resultString[1].Trim();  //remove the useless space
+                    cfg_project_name = resultString[1];
+                }
+            }
+            sr.Close();
         }
-
+        /*****************************************************************
+        * Description:Update the projet name from the TextBox1_KeyDown
+        ******************************************************************/
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            //Update the project name
+        {  
+            string  out_into_file = null;
+
+            //Update the project name if the input is changed and enter key is entered!
             if (e.KeyCode == Keys.Enter)
             {
-                DialogResult dr;
-                dr = MessageBox.Show("Do you really want to change the project name???", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
+                Get_last_cfg_project_nam();
+
+                //check if the toolbox is changed!
+                string temp_1 = cfg_project_name.Trim();
+                string temp_2 = toolStripTextBox1.Text.Trim();
+
+                if (temp_1 != temp_2) // toolbox is updated!
                 {
-                    toolStripTextBox2_output = null;
-                    //toolStripTextBox2.Text = "The first button is clicked!";
-                    // = toolStripTextBox2.Text;
-                    string path = @"C:\Users\thinkpad\Desktop\proj.ini";
-                    StreamReader sr = new StreamReader(path, Encoding.Default);
-                    String line;
-                    string temp;
-                    while ((line = sr.ReadLine()) != null)
+                    DialogResult dr;
+                    dr = MessageBox.Show("Do you really want to change the project name?", "Notice", MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (dr == DialogResult.Yes)
                     {
-                        string pattern_project = "project_Name";
-                        Match result_3 = Regex.Match(line, pattern_project);
-                        //string sourceString = "Ni hao 123";
-                        if (result_3.Success == true)
+                        StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
+                        String line;
+                        string temp;
+                        while ((line = sr.ReadLine()) != null)
                         {
-                            temp = line.Replace(cfg_project_name, toolStripTextBox1.Text);
+                            Match Project_Name_Rresult = Regex.Match(line, Project_Name_Pattern);
+                            if (Project_Name_Rresult.Success == true)
+                            {
+                                temp = line.Replace(cfg_project_name, toolStripTextBox1.Text);
+                            }
+                            else
+                            {
+                                temp = line;
+                            }
+                            out_into_file = out_into_file + temp + "\r\n";
                         }
-                        else
-                        {
-                            temp = line;
-                        }
-                        toolStripTextBox2_output = toolStripTextBox2_output + temp + "\n";
-                        //textBox4.Text = sourceString;
-                        //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
+                        sr.Close();
+                        Write_File(cfg_file_path, out_into_file);
+                        MessageBox.Show("The project name has been changed!");
                     }
-                    Write2(@"C:\Users\thinkpad\Desktop\proj.ini");
-                    MessageBox.Show("The project name has been changed!");
+                    else if (dr == DialogResult.No)
+                    {
+                        MessageBox.Show("The project name has been kept unchanged!");
+                    }
                 }
-                else if (dr == DialogResult.No)
-                {
-                    MessageBox.Show("The project name has been kept unchanged!");
+                else
+                { 
+                   //do nothing
+                    MessageBox.Show("The project name has not been changed!");
                 }
             }
         }
 
-        string software_version_output;
+        /*****************************************************************
+        * Description:Update the projet name from the toolStripTextBox2
+        ******************************************************************/
+        private void Get_last_cfg_software_ver()
+        {  
+            //Get the last cfg_project_name
+            StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Get the project name
+                Match Software_Version_Result = Regex.Match(line, Software_Version_Pattern);
+                if (Software_Version_Result.Success == true)
+                {
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();  //remove the useless space
+                    cfg_project_ver = resultString[1];
+                }
+            }
+            sr.Close();
+        }
+
         private void toolStripTextBox2_KeyDown(object sender, KeyEventArgs e)
         {
+            string out_into_file = null;
+
             //Update the software version
             if (e.KeyCode == Keys.Enter)
             {
-                DialogResult dr;
-                dr = MessageBox.Show("Do you really want to change the software version???", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
+                Get_last_cfg_software_ver();
+
+                //check if the toolbox is changed!
+                string temp_1 = cfg_project_ver.Trim();
+                string temp_2 = toolStripTextBox2.Text.Trim();
+
+                if (temp_1 != temp_2) // toolbox is updated!
                 {
-                    software_version_output = null;
-                    //toolStripTextBox2.Text = "The first button is clicked!";
-                    // = toolStripTextBox2.Text;
-                    string path = @"C:\Users\thinkpad\Desktop\proj.ini";
-                    StreamReader sr = new StreamReader(path, Encoding.Default);
-                    String line;
-                    string temp;
-                    while ((line = sr.ReadLine()) != null)
+                    DialogResult dr;
+                    dr = MessageBox.Show("Do you really want to change the software version?", "Notice", MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (dr == DialogResult.Yes)
                     {
-                        string pattern_project = "Software_Version";
-                        Match software_version_result = Regex.Match(line, pattern_project);
-                        //string sourceString = "Ni hao 123";
-                        if (software_version_result.Success == true)
+                        string path = @"C:\Users\thinkpad\Desktop\proj.ini";
+                        StreamReader sr = new StreamReader(path, Encoding.Default);
+                        String line;
+                        string temp;
+                        while ((line = sr.ReadLine()) != null)
                         {
-                            temp = line.Replace(cfg_project_ver, toolStripTextBox2.Text);
+                            Match software_version_result = Regex.Match(line, Software_Version_Pattern);
+                            if (software_version_result.Success == true)
+                            {
+                                temp = line.Replace(cfg_project_ver, toolStripTextBox2.Text);
+                            }
+                            else
+                            {
+                                temp = line;
+                            }
+                            out_into_file = out_into_file + temp + "\n";
                         }
-                        else
-                        {
-                            temp = line;
-                        }
-                        software_version_output = software_version_output + temp + "\n";
-                        //textBox4.Text = sourceString;
-                        //Console.WriteLine(sourceString);//这个时候打印出来的还是 Ni hao 123;
+                        sr.Close();
+                        Write_File(cfg_file_path, out_into_file);
+                        MessageBox.Show("The software version has been changed!");
                     }
-                    Write3(@"C:\Users\thinkpad\Desktop\my.ini");
-                    MessageBox.Show("The software version has been changed!");
-                }
-                else if (dr == DialogResult.No)
-                {
-                    MessageBox.Show("The software version has been kept unchanged!");
+                    else if (dr == DialogResult.No)
+                    {
+                        MessageBox.Show("The software version has been kept unchanged!");
+                    }
                 }
             }
+            else
+            { 
+                //do nothing
+                MessageBox.Show("The software versione has not been changed!");
+            }
         }
+        /*****************************************************************
+        * The End of the toolStripTextBox2
+        ******************************************************************/
 
         private void toolStripButton1_ButtonClick(object sender, EventArgs e)
         {
