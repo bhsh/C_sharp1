@@ -517,7 +517,7 @@ namespace WindowsFormsApplication3
         {
             // The button is used to test the process
             toolStripProgressBar1.Value = 0;
-            launch_process("make clean all");
+            launch_process("make all");
         }
  
         /*****************************************************************
@@ -527,46 +527,8 @@ namespace WindowsFormsApplication3
         private void toolStripButton8_Click(object sender, EventArgs e)
         {   
             //rebuild all from the low insight...
-
-            //Enter the dos command.
-            //Process p = new Process();
             textBox1.Text = "";
-
-            //Set the program that will be started later!
-            p.StartInfo.FileName = "cmd.exe";
-
-            //Disable the shell to be started!
-            p.StartInfo.UseShellExecute = false;
-
-            //Set the redirect input
-            p.StartInfo.RedirectStandardInput = true;
-
-            //Set the redirect output
-            p.StartInfo.RedirectStandardOutput = true;
-
-            //Set the redirect error
-            p.StartInfo.RedirectStandardError = true;
-
-            //Don't show the process in window.
-            //p.StartInfo.CreateNoWindow = false;
-            p.StartInfo.CreateNoWindow = true;
-
-            //Start the process;
-            p.Start();
-
-            //set the pass the parameter into the  process, and the show the system version.
-            flag = 0;
-            timer1.Enabled = true;
-            //p.StandardInput.WriteLine("Ver");
-            p.StandardInput.WriteLine("make clean all");
-
-            //Close the dos window.
-            p.StandardInput.WriteLine("exit");
-            //flag = 1;
-            textBox1.Text = "55555555555555555555555";
-            //timer1.Enabled = false;
-            //string Result = p.StandardOutput.ReadToEnd();
-            //textBox1.Text = Result;
+            launch_process("make clean all");
         }
 
         /*****************************************************************
@@ -575,42 +537,9 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
-            //rebuild all from the low insight...
-
-            //Enter the dos command.
-            //Process p = new Process();
+            //build the low library from the low insight...
             textBox1.Text = "";
-
-            //Set the program that will be started later!
-            p.StartInfo.FileName = "cmd.exe";
-
-            //Disable the shell to be started!
-            p.StartInfo.UseShellExecute = false;
-
-            //Set the redirect input
-            p.StartInfo.RedirectStandardInput = true;
-
-            //Set the redirect output
-            p.StartInfo.RedirectStandardOutput = true;
-
-            //Set the redirect error
-            p.StartInfo.RedirectStandardError = true;
-
-            //Don't show the process in window.
-            //p.StartInfo.CreateNoWindow = false;
-            p.StartInfo.CreateNoWindow = true;
-
-            //Start the process;
-            p.Start();
-
-            //set the pass the parameter into the  process, and the show the system version.
-            flag = 0;
-            timer1.Enabled = true;
-            //p.StandardInput.WriteLine("Ver");
-            p.StandardInput.WriteLine("make build_lib");
-
-            //Close the dos window.
-            p.StandardInput.WriteLine("exit");
+            launch_process("make build_lib");
         }
 
         /*****************************************************************
@@ -619,44 +548,10 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            //rebuild all from the low insight...
-
-            //Enter the dos command.
-            //Process p = new Process();
+            //build low library for release from the low insight...
             textBox1.Text = "";
-
-            //Set the program that will be started later!
-            p.StartInfo.FileName = "cmd.exe";
-
-            //Disable the shell to be started!
-            p.StartInfo.UseShellExecute = false;
-
-            //Set the redirect input
-            p.StartInfo.RedirectStandardInput = true;
-
-            //Set the redirect output
-            p.StartInfo.RedirectStandardOutput = true;
-
-            //Set the redirect error
-            p.StartInfo.RedirectStandardError = true;
-
-            //Don't show the process in window.
-            //p.StartInfo.CreateNoWindow = false;
-            p.StartInfo.CreateNoWindow = true;
-
-            //Start the process;
-            p.Start();
-
-            //set the pass the parameter into the  process, and the show the system version.
-            flag = 0;
-            timer1.Enabled = true;
-            //p.StandardInput.WriteLine("Ver");
-            p.StandardInput.WriteLine("make build_lib");
-            p.StandardInput.WriteLine("make clean");
-            p.StandardInput.WriteLine("make unall");
-
-            //Close the dos window.
-            p.StandardInput.WriteLine("exit");
+            launch_process("make build_lib clean unall");
+            //launch_process("make clean unall");
         }
         /*****************************************************************
         * 
@@ -667,8 +562,6 @@ namespace WindowsFormsApplication3
         * 
         * 
         ******************************************************************/
-
-
 
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
