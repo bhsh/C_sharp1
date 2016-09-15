@@ -24,7 +24,6 @@ namespace WindowsFormsApplication3
             InitializeComponent();
         }
 
-
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
@@ -33,6 +32,11 @@ namespace WindowsFormsApplication3
         string smartgit_setup_path = null;
         string ude_setup_path = null;
         string inca_setup_path = null;
+
+        string compiler_path;
+        string project_name;
+        string project_ver;
+        string my_output;
         /*****************************************************************
         * The End of the Definitions  
         ******************************************************************/
@@ -276,9 +280,6 @@ namespace WindowsFormsApplication3
         * The End of the Form Load 
         ******************************************************************/
 
-
-
-
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             //matlab/simulink
@@ -356,10 +357,6 @@ namespace WindowsFormsApplication3
                 Process.Start(ude_setup_path);
             }
         }
-        string compiler_path;
-        string project_name;
-        string project_ver;
-        string my_output;
 
         public void Write(string path)
         {
@@ -650,13 +647,7 @@ namespace WindowsFormsApplication3
             buildbutton_control(true);
         }
         /*****************************************************************
-        * 
-        *
-        * 
-        * Description:End Code section for build method
-        * 
-        * 
-        * 
+        * Description:End Code section for build method 
         ******************************************************************/
 
         private void toolStripButton11_Click(object sender, EventArgs e)
