@@ -214,18 +214,6 @@ namespace WindowsFormsApplication3
         {
         
         }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (System.Diagnostics.Process.GetProcessesByName("make").ToList().Count > 0)
-            {
-
-            }
-            else
-            {
-                timer1.Enabled = false;
-                buildbutton_control(true);
-            }
-        }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
@@ -422,6 +410,56 @@ namespace WindowsFormsApplication3
         * 
         * 
         ******************************************************************/
+        /*****************************************************************
+        * Description: Get the status of the build progress.
+        * Function name:update_progress_barstatus.
+        ******************************************************************/
+        private void update_progress_barstatus(int progress_phase)
+        {
+            int progress;
+
+            int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
+            int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
+            int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
+
+            if (progress_phase == 0)
+            {               
+                progress = 95 * ofileCount / cfileCount;
+            }
+            else
+            {
+                progress = 100;     
+            }
+
+            toolStripProgressBar1.Value = progress;
+
+            toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
+            toolStripStatusLabel2.Text = cfileCount.ToString() + " c" + "," + hfileCount.ToString() + " h";
+        }
+        /*****************************************************************
+        * Description: The timer1 is used to update the progress bar and status.
+        * Function name:timer1_Tick.
+        ******************************************************************/
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("make").ToList().Count > 0)
+            {   
+                //update the progress bar and status in phase I
+                update_progress_barstatus(0);
+            }
+            else
+            {
+                //disable timer1
+                timer1.Enabled = false;
+
+                //update the progress bar and status in phase I
+                update_progress_barstatus(1);
+                
+                //Eable the build buttons
+                buildbutton_control(true);
+            }
+        }
+
         /*****************************************************************
         * Description: launch a process for the command input.
         * Function name:launch_process.
