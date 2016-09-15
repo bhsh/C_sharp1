@@ -27,16 +27,23 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
-        string tasking_setup_path = null;
-        string matlab_setup_path = null;
+        string tasking_setup_path  = null;
+        string matlab_setup_path   = null;
         string smartgit_setup_path = null;
-        string ude_setup_path = null;
-        string inca_setup_path = null;
+        string ude_setup_path      = null;
+        string inca_setup_path     = null;
 
         string compiler_path;
         string project_name;
         string project_ver;
         string my_output;
+
+        //suffix path
+        string matlab_suffix_path   = @"\bin\matlab.exe";
+        string smartgit_suffix_path = @"bin\smartgit.exe";
+        string ude_suffix_path      = @"\UdeDesktop.exe";
+        string inca_suffix_path     = @"\INCA.exe";
+        string tasking_suffix_path  = @"\ctc\eclipse\eclipse.exe";
         /*****************************************************************
         * The End of the Definitions  
         ******************************************************************/
@@ -191,43 +198,28 @@ namespace WindowsFormsApplication3
             {
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
-                    //matlab_setup_path = ;
-                    //string matlab_str = Getinstalledsoftware();
                     string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    matlab_setup_path = string_local_matlab[1] + @"\bin\matlab.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", matlab_setup_path);
+                    matlab_setup_path = string_local_matlab[1] + matlab_suffix_path;
                 }
                 else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
-                    //matlab_setup_path = ;
-                    //string matlab_str = Getinstalledsoftware();
                     string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    smartgit_setup_path = string_local_SmartGit[1] + @"bin\smartgit.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);                               
+                    smartgit_setup_path = string_local_SmartGit[1] + smartgit_suffix_path;                              
                 }
                 else if (Ude_GetNum(element) == true) ///<search the ude for use>
                 {
-                    //matlab_setup_path = ;
-                    //string matlab_str = Getinstalledsoftware();
                     string[] string_local_ude = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    ude_setup_path = string_local_ude[1] + @"\UdeDesktop.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
+                    ude_setup_path = string_local_ude[1] + ude_suffix_path;
                 }
                 else if (INCA_GetNum(element) == true) ///<search the inca for use>
                 {
-                    //matlab_setup_path = ;
-                    //string matlab_str = Getinstalledsoftware();
                     string[] string_local_inca = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    inca_setup_path = string_local_inca[1] + @"\INCA.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
+                    inca_setup_path = string_local_inca[1] + inca_suffix_path;
                 }
                 else if (TASKING_GetNum(element) == true) ///<search the tasking for use>
                 {
-                    //matlab_setup_path = ;
-                    //string matlab_str = Getinstalledsoftware();
                     string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    tasking_setup_path = string_local_tasking[1] + @"\ctc\eclipse\eclipse.exe";
-                    //Console.WriteLine("SystemDirectory: {0}", smartgit_setup_path);
+                    tasking_setup_path = string_local_tasking[1] + tasking_suffix_path;
                 }
             }
 
