@@ -164,7 +164,9 @@ namespace WindowsFormsApplication3
                 }
                 my_output = my_output + line + "\r\n";
             }
-            Write_File(@"C:\Users\thinkpad\Desktop\my.ini", my_output);
+            sr.Close(); // close the stream and the input file is released.
+
+            Write_File(@"C:\Users\thinkpad\Desktop\my2.ini", my_output);
         }
         /*****************************************************************
         * Check the current directory  
