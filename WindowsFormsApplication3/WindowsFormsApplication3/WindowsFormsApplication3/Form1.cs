@@ -27,23 +27,35 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
-        string tasking_setup_path   = null;
-        string matlab_setup_path    = null;
-        string smartgit_setup_path  = null;
-        string ude_setup_path       = null;
-        string inca_setup_path      = null;
+        string tasking_setup_path       = null;
+        string matlab_setup_path        = null;
+        string smartgit_setup_path      = null;
+        string ude_setup_path           = null;
+        string inca_setup_path          = null;
+        string sourceinsight_setup_path = null;
+        string everything_setup_path    = null;
+        string totalcommander_setup_path= null;
 
-        string cfg_compiler_path    = null;
-        string cfg_project_name     = null;
-        string cfg_project_ver      = null;
-        string my_output            = null;
+        string Org_tasking_setup_path        = null;
+        string Org_matlab_setup_path         = null;
+        string Org_smartgit_setup_path       = null;
+        string Org_ude_setup_path            = null;
+        string Org_inca_setup_path           = null;
+        string Org_sourceinsight_setup_path  = null;
+        string Org_everything_setup_path     = null;
+        string Org_totalcommander_setup_path = null;
+
+        string cfg_compiler_path        = null;
+        string cfg_project_name         = null;
+        string cfg_project_ver          = null;
+        string my_output                = null;
 
         //suffix path
-        string matlab_suffix_path   = @"\bin\matlab.exe";
-        string smartgit_suffix_path = @"bin\smartgit.exe";
-        string ude_suffix_path      = @"\UdeDesktop.exe";
-        string inca_suffix_path     = @"\INCA.exe";
-        string tasking_suffix_path  = @"\ctc\eclipse\eclipse.exe";
+        string matlab_suffix_path       = @"\bin\matlab.exe";
+        string smartgit_suffix_path     = @"bin\smartgit.exe";
+        string ude_suffix_path          = @"\UdeDesktop.exe";
+        string inca_suffix_path         = @"\INCA.exe";
+        string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
 
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
@@ -195,27 +207,32 @@ namespace WindowsFormsApplication3
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
                     string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    matlab_setup_path = string_local_matlab[1] + matlab_suffix_path;
+                    Org_tasking_setup_path = string_local_matlab[1];
+                    matlab_setup_path = Org_tasking_setup_path  + matlab_suffix_path;
                 }
                 else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
                     string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    smartgit_setup_path = string_local_SmartGit[1] + smartgit_suffix_path;
+                    Org_smartgit_setup_path = string_local_SmartGit[1];
+                    smartgit_setup_path = Org_smartgit_setup_path + smartgit_suffix_path;
                 }
                 else if (Ude_GetNum(element) == true) ///<search the ude for use>
                 {
                     string[] string_local_ude = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    ude_setup_path = string_local_ude[1] + ude_suffix_path;
+                    Org_ude_setup_path = string_local_ude[1];
+                    ude_setup_path = Org_ude_setup_path + ude_suffix_path;
                 }
                 else if (INCA_GetNum(element) == true) ///<search the inca for use>
                 {
                     string[] string_local_inca = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    inca_setup_path = string_local_inca[1] + inca_suffix_path;
+                    Org_inca_setup_path = string_local_inca[1];
+                    inca_setup_path = Org_inca_setup_path + inca_suffix_path;
                 }
                 else if (TASKING_GetNum(element) == true) ///<search the tasking for use>
                 {
                     string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    tasking_setup_path = string_local_tasking[1] + tasking_suffix_path;
+                    Org_tasking_setup_path = string_local_tasking[1];
+                    tasking_setup_path = Org_tasking_setup_path + tasking_suffix_path;
                     
                     //test code
                     //this.toolStripTextBox4.Text = string_local_tasking[1];
@@ -298,6 +315,9 @@ namespace WindowsFormsApplication3
            
         }
 
+        /*****************************************************************
+        * The compiler button 
+        ******************************************************************/
         private void toolStripButton1_Click(object sender, EventArgs e)
         {  
             //tasking
@@ -323,8 +343,33 @@ namespace WindowsFormsApplication3
             }
         }
 
-        Process p = new Process();
-        int flag = 0;
+        //compiler: open path
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_tasking_setup_path);
+        }
+        //compiler: copy path into Clipboard
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_tasking_setup_path); //copy target into Clipboard
+        }
+        //compiler: end process
+        private void endToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "eclipse")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * The compiler button end
+        ******************************************************************/
+
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             //UDE
