@@ -33,10 +33,10 @@ namespace WindowsFormsApplication3
         string ude_setup_path      = null;
         string inca_setup_path     = null;
 
-        string compiler_path;
-        string project_name;
-        string project_ver;
-        string my_output;
+        string compiler_path = null;
+        string project_name  = null;
+        string project_ver   = null;
+        string my_output     = null;
 
         //suffix path
         string matlab_suffix_path   = @"\bin\matlab.exe";
@@ -44,6 +44,11 @@ namespace WindowsFormsApplication3
         string ude_suffix_path      = @"\UdeDesktop.exe";
         string inca_suffix_path     = @"\INCA.exe";
         string tasking_suffix_path  = @"\ctc\eclipse\eclipse.exe";
+
+        //.ini cfg file 
+        string Compiler_Path_Pattern    = "Compiler_Path";
+        string Project_Name_Pattern     = "project_Name";
+        string Software_Version_Pattern = "Software_Version";
         /*****************************************************************
         * The End of the Definitions  
         ******************************************************************/
@@ -120,75 +125,60 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Parse_Project_Cfg_File()
         {
-            string s = @"Compiler_Path = D:\Program Files\Volcano\VSx\configuration\org.eclipse.e4.ui.css.swt.theme";
-            string pattern = "Compiler_Path";
-            Match result = Regex.Match(s, pattern);
-            //textBox4.Text = result.Value;
             string path = @"C:\Users\thinkpad\Desktop\proj.ini";
             StreamReader sr = new StreamReader(path, Encoding.Default);
             String line;
             while ((line = sr.ReadLine()) != null)
             {
-                //Console.WriteLine(line.ToString());
-                // read a effective line.
                 //Get the path of the compiler.
-                Match result_2 = Regex.Match(line, pattern);
-                //textBox4.Text = result.Value;
+                Match result_2 = Regex.Match(line, Compiler_Path_Pattern);
                 if (result_2.Success == true)
                 {
-                    ///string content = "agcsmallmacsmallgggsmallytx";
-                    string content = line;
-                    string[] resultString = Regex.Split(content, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();//remove the useless space
                     this.toolStripTextBox4.Text = resultString[1];
                     compiler_path = resultString[1];
-                    //Console.WriteLine(resultString[1]);
-                    //foreach (string i in resultString)
-                    //{
-                    ///i = i.Trim();
-                    //Console.WriteLine(i.ToString());
-                    //}
                 }
-                string pattern_project = "project_Name";
+
                 //Get the project name
-                Match result_3 = Regex.Match(line, pattern_project);
+                Match result_3 = Regex.Match(line, Project_Name_Pattern);
                 if (result_3.Success == true)
                 {
-                    string content_project = line;
-                    string[] resultString = Regex.Split(content_project, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();  //remove the useless space
                     this.toolStripTextBox1.Text = resultString[1];
                     project_name = resultString[1];
                 }
-                string pattern_sw_ver = "Software_Version";
-                //Get the project name
-                Match result_sw_ver = Regex.Match(line, pattern_sw_ver);
+
+                //Get the software version
+                Match result_sw_ver = Regex.Match(line, Software_Version_Pattern);
                 if (result_sw_ver.Success == true)
                 {
-                    string content_sw_ver = line;
-                    string[] resultString = Regex.Split(content_sw_ver, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();//remove the useless space
                     this.toolStripTextBox2.Text = resultString[1];
                     project_ver = resultString[1];
                 }
-                my_output = my_output + line + "\n";
+                my_output = my_output + line + "\r\n";
             }
-            Write(@"C:\Users\thinkpad\Desktop\my.ini");
+            Write_File(@"C:\Users\thinkpad\Desktop\my.ini", my_output);
         }
-
         /*****************************************************************
-        * The form load  
+        * Check the current directory  
         ******************************************************************/
-        private void Form1_Load(object sender, EventArgs e)
+        private void Check_Dir()
+        {
+            string curr_dir;
+            curr_dir = System.Environment.CurrentDirectory;
+            //toolStripTextBox3.Text = System.Environment.CurrentDirectory;
+        }
+        /*****************************************************************
+        * Get the path of tools   
+        ******************************************************************/
+        private void Get_tools_paths()
         {
             string str = Getinstalledsoftware(); //Get the list of all the setup softwares
             string[] sArr = str.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries); //Store the list into array
@@ -205,7 +195,7 @@ namespace WindowsFormsApplication3
                 else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
                     string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    smartgit_setup_path = string_local_SmartGit[1] + smartgit_suffix_path;                              
+                    smartgit_setup_path = string_local_SmartGit[1] + smartgit_suffix_path;
                 }
                 else if (Ude_GetNum(element) == true) ///<search the ude for use>
                 {
@@ -222,16 +212,24 @@ namespace WindowsFormsApplication3
                     string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                     tasking_setup_path = string_local_tasking[1] + tasking_suffix_path;
                 }
-            }
-
-            //Get the current project path
-            //toolStripTextBox3.Text = System.Environment.CurrentDirectory;
-            Parse_Project_Cfg_File();
+            }       
         }
+
+        /*****************************************************************
+        * The form load  
+        ******************************************************************/
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Check_Dir(); //Check if the current dir is located in \01_Mak
+
+            Get_tools_paths();  //Get the paths of tools from the register tables
+
+            Parse_Project_Cfg_File(); // Parse the confiuration file
+        }
+
         /*****************************************************************
         * The End of the Form Load 
         ******************************************************************/
-
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             //matlab/simulink
@@ -310,16 +308,14 @@ namespace WindowsFormsApplication3
             }
         }
 
-        public void Write(string path)
+        public void Write_File(string path,string info_stream)
         {
             FileStream fs = new FileStream(path, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            //开始写入
-            sw.Write(my_output);
-            //清空缓冲区
-            sw.Flush();
-            //关闭流
-            sw.Close();
+
+            sw.Write(info_stream); //begin to write
+            sw.Flush();       //clean buffer
+            sw.Close(); //close stream
             fs.Close();
         }
 
