@@ -226,9 +226,20 @@ namespace WindowsFormsApplication3
             string temp_2 = cfg_compiler_path.Trim();
 
             if (temp_1 != temp_2)
-            {
-               //update the cfg file(.ini) with the newest path.
-               
+            { 
+                DialogResult dr;
+                dr = MessageBox.Show(" The compiler path found in your computer is different from\n the configuration file(proj.ini)!\n\n\n Do you want to update the configuration file(proj.ini) with the compiler path found?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
+                if (dr == DialogResult.Yes)
+                {
+                    //update the cfg file(.ini) with the newest path.
+                    MessageBox.Show("The configuration file(proj.ini) has been updated!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }    
             }
             else
             { 
@@ -247,6 +258,8 @@ namespace WindowsFormsApplication3
             Get_tools_paths();  //Get the paths of tools from the register tables
 
             Parse_Project_Cfg_File(); // Parse the confiuration file
+
+            Check_compiler_path(); //Update the compiler path
         }
 
         /*****************************************************************
