@@ -507,6 +507,19 @@ namespace WindowsFormsApplication3
             // Process line provided in e.Data
             textBox1.AppendText(e.Data + "\n");
         }
+
+        /*****************************************************************
+        * Description:buildbutton status.
+        * Function name:buildbutton_control.
+        ******************************************************************/
+        private void buildbutton_control(bool actived_status)
+        {
+            toolStripButton7.Enabled = actived_status;
+            toolStripButton8.Enabled = actived_status;
+            toolStripButton9.Enabled = actived_status;
+            toolStripButton10.Enabled = actived_status;     
+        }
+
         /*****************************************************************
         * Description:make all.
         * Function name:toolStripButton7_Click.
@@ -515,7 +528,9 @@ namespace WindowsFormsApplication3
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             // The button is used to test the process
-            toolStripProgressBar1.Value = 0;
+            //toolStripProgressBar1.Value = 0;
+            textBox1.Text = "";
+            buildbutton_control(false);
             launch_process("make all");
         }
  
@@ -527,6 +542,7 @@ namespace WindowsFormsApplication3
         {   
             //rebuild all from the low insight...
             textBox1.Text = "";
+            buildbutton_control(false);
             launch_process("make clean all");
         }
 
@@ -538,6 +554,7 @@ namespace WindowsFormsApplication3
         {
             //build the low library from the low insight...
             textBox1.Text = "";
+            buildbutton_control(false);
             launch_process("make build_lib");
         }
 
@@ -549,6 +566,7 @@ namespace WindowsFormsApplication3
         {
             //build low library for release from the low insight...
             textBox1.Text = "";
+            buildbutton_control(false);
             launch_process("make build_lib clean unall");
             //launch_process("make clean unall");
         }
@@ -581,6 +599,9 @@ namespace WindowsFormsApplication3
                     item.Kill();
                 }
             }
+
+            //Enable build buttons again.
+            buildbutton_control(true);
         }
         /*****************************************************************
         * 
@@ -758,6 +779,11 @@ namespace WindowsFormsApplication3
         private void toolStripTextBox4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton17_Click(object sender, EventArgs e)
+        {
+            Process.Start("cmd.exe");
         }
     }
 }
