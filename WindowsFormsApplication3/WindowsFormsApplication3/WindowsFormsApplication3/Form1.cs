@@ -498,22 +498,6 @@ namespace WindowsFormsApplication3
             {
                 // Add the text to the collected output.
                 textBox1.AppendText(e.Data + "\n");
-
-                //int cfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.c", SearchOption.AllDirectories).Length;
-                //int hfileCount = Directory.GetFiles(@"..\00_Codefiles\", "*.h", SearchOption.AllDirectories).Length;
-                //int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
-                //int progress = 95 * ofileCount / cfileCount;
-
-                //toolStripProgressBar1.Value = progress;
-                //my_progress = progress;
-                //toolStripStatusLabel1.Text = "Status：" + "(" + progress.ToString() + "%" + ")";
-                //toolStripStatusLabel2.Text = cfileCount.ToString() + " cfile" + "," + hfileCount.ToString() + "hfile";
-            }
-            else
-            {
-                //toolStripProgressBar1.Value = 100;
-                //toolStripStatusLabel1.Text = "Status：" + "(" + "100" + "%" + ")";
-                //buildbutton_control(true);
             }
         }
         /*****************************************************************
@@ -522,10 +506,12 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         void ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
-            // Process line provided in e.Data
-            textBox1.AppendText(e.Data + "\n");
+            if (!String.IsNullOrEmpty(e.Data))
+            {
+                // Process line provided in e.Data
+                textBox1.AppendText(e.Data + "\n");
+            }
         }
-
         /*****************************************************************
         * Description:buildbutton status.
         * Function name:buildbutton_control.
@@ -537,22 +523,32 @@ namespace WindowsFormsApplication3
             toolStripButton9.Enabled = actived_status;
             toolStripButton10.Enabled = actived_status;     
         }
+        /*****************************************************************
+        * Description:make clean.
+        * Function name:toolStripButton21_Click.
+        ******************************************************************/
+        private void toolStripButton21_Click(object sender, EventArgs e)
+        {
+            //rebuild all from the low insight...
 
+            textBox1.Text = "";   //clear the info windows first.
+            buildbutton_control(false);  //disable the build buttons
+            launch_process("make clean");  //launch the command process
+            //timer1.Enabled = true;  //enable timer1 to update the progress and bar  
+        }
         /*****************************************************************
         * Description:make all.
         * Function name:toolStripButton7_Click.
         ******************************************************************/
-        int my_progress;
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             // The button is used to test the process
             //toolStripProgressBar1.Value = 0;
-            textBox1.Text = "";
-            timer1.Enabled = true;
-            buildbutton_control(false);
-            launch_process("make all");
+            textBox1.Text = "";  //clear the info windows first.
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar
+            buildbutton_control(false); //disable the build buttons
+            launch_process("make all");//launch the command process
         }
- 
         /*****************************************************************
         * Description:make clean all.
         * Function name:toolStripButton8_Click.
@@ -560,9 +556,11 @@ namespace WindowsFormsApplication3
         private void toolStripButton8_Click(object sender, EventArgs e)
         {   
             //rebuild all from the low insight...
-            textBox1.Text = "";
-            buildbutton_control(false);
-            launch_process("make clean all");
+
+            textBox1.Text = "";   //clear the info windows first.
+            buildbutton_control(false);  //disable the build buttons
+            launch_process("make clean all");  //launch the command process
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar          
         }
 
         /*****************************************************************
@@ -586,7 +584,7 @@ namespace WindowsFormsApplication3
             //build low library for release from the low insight...
             textBox1.Text = "";
             buildbutton_control(false);
-            launch_process("make build_lib clean unall");
+            launch_process("make clean unall");
             //launch_process("make clean unall");
         }
 
