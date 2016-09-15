@@ -656,6 +656,7 @@ namespace WindowsFormsApplication3
         
         }
 
+        //Open The Project Directory
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             string path = @"..";
@@ -1131,5 +1132,33 @@ namespace WindowsFormsApplication3
         {
             Process.Start("cmd.exe");
         }
+
+        //Open The Configuration Directory
+        private void toolStripButton13_Click(object sender, EventArgs e)
+        {
+            string path = @".";
+            System.Diagnostics.Process.Start(path);
+        }
+
+        //Open Target File Directory
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            string path = @"..\04_Release\01_Output";
+            System.Diagnostics.Process.Start(path);
+        }
+
+        //Open Simulink Directory
+        private void toolStripButton15_Click(object sender, EventArgs e)
+        {
+            string path = @"..\03_Simulink_Workspace";
+            System.Diagnostics.Process.Start(path);
+        }
+
+        private void toolStripButton22_Click(object sender, EventArgs e)
+        {
+            string path = @"..\08_Documents";
+            System.Diagnostics.Process.Start(path);
+        }
+
     }
 }

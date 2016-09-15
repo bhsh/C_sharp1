@@ -119,6 +119,7 @@
             this.copyPathToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.endProcessToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -224,6 +225,7 @@
             this.toolStripButton13,
             this.toolStripButton14,
             this.toolStripButton15,
+            this.toolStripButton22,
             this.toolStripSeparator1,
             this.toolStripButton1,
             this.toolStripButton2,
@@ -269,6 +271,8 @@
             this.toolStripButton13.Name = "toolStripButton13";
             this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton13.Text = "toolStripButton13";
+            this.toolStripButton13.ToolTipText = "Open Configuration Directory";
+            this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
             // 
             // toolStripButton14
             // 
@@ -278,7 +282,8 @@
             this.toolStripButton14.Name = "toolStripButton14";
             this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton14.Text = "toolStripButton14";
-            this.toolStripButton14.ToolTipText = "Low library Directory";
+            this.toolStripButton14.ToolTipText = "Open Target File Directory";
+            this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
             // toolStripButton15
             // 
@@ -288,6 +293,8 @@
             this.toolStripButton15.Name = "toolStripButton15";
             this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton15.Text = "Target File Directory";
+            this.toolStripButton15.ToolTipText = "Open Simulink Directory";
+            this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
             // 
             // toolStripSeparator1
             // 
@@ -869,6 +876,17 @@
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             this.toolStripSeparator13.Size = new System.Drawing.Size(149, 6);
             // 
+            // toolStripButton22
+            // 
+            this.toolStripButton22.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton22.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton22.Image")));
+            this.toolStripButton22.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton22.Name = "toolStripButton22";
+            this.toolStripButton22.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton22.Text = "toolStripButton22";
+            this.toolStripButton22.ToolTipText = "Open Documents Directory";
+            this.toolStripButton22.Click += new System.EventHandler(this.toolStripButton22_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -991,6 +1009,7 @@
         private System.Windows.Forms.ToolStripMenuItem copyPathToolStripMenuItem5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem endProcessToolStripMenuItem6;
+        private System.Windows.Forms.ToolStripButton toolStripButton22;
     }
 }
 
