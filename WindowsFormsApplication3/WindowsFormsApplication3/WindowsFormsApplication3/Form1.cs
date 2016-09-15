@@ -33,9 +33,9 @@ namespace WindowsFormsApplication3
         string ude_setup_path      = null;
         string inca_setup_path     = null;
 
-        string compiler_path = null;
-        string project_name  = null;
-        string project_ver   = null;
+        string cfg_compiler_path = null;
+        string cfg_project_name = null;
+        string cfg_project_ver = null;
         string my_output     = null;
 
         //suffix path
@@ -131,36 +131,36 @@ namespace WindowsFormsApplication3
             while ((line = sr.ReadLine()) != null)
             {
                 //Get the path of the compiler.
-                Match result_2 = Regex.Match(line, Compiler_Path_Pattern);
-                if (result_2.Success == true)
+                Match Compiler_Path_Result = Regex.Match(line, Compiler_Path_Pattern);
+                if (Compiler_Path_Result.Success == true)
                 {
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();//remove the useless space
                     this.toolStripTextBox4.Text = resultString[1];
-                    compiler_path = resultString[1];
+                    cfg_compiler_path = resultString[1];
                 }
 
                 //Get the project name
-                Match result_3 = Regex.Match(line, Project_Name_Pattern);
-                if (result_3.Success == true)
+                Match Project_Name_Result = Regex.Match(line, Project_Name_Pattern);
+                if (Project_Name_Result.Success == true)
                 {
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();  //remove the useless space
                     this.toolStripTextBox1.Text = resultString[1];
-                    project_name = resultString[1];
+                    cfg_project_name = resultString[1];
                 }
 
                 //Get the software version
-                Match result_sw_ver = Regex.Match(line, Software_Version_Pattern);
-                if (result_sw_ver.Success == true)
+                Match Software_Version_Result = Regex.Match(line, Software_Version_Pattern);
+                if (Software_Version_Result.Success == true)
                 {
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();//remove the useless space
                     this.toolStripTextBox2.Text = resultString[1];
-                    project_ver = resultString[1];
+                    cfg_project_ver = resultString[1];
                 }
                 my_output = my_output + line + "\r\n";
             }
@@ -217,6 +217,26 @@ namespace WindowsFormsApplication3
             }       
         }
 
+        /*****************************************************************
+        * Compare the real compiler path with configuration file(.ini)  
+        ******************************************************************/
+        private void Check_compiler_path()
+        {  
+            string temp_1 = tasking_setup_path.Trim();
+            string temp_2 = cfg_compiler_path.Trim();
+
+            if (temp_1 != temp_2)
+            {
+               //update the cfg file(.ini) with the newest path.
+               
+            }
+            else
+            { 
+               //do nothing ,and keep unchanged
+            }
+           
+
+        }
         /*****************************************************************
         * The form load  
         ******************************************************************/
@@ -683,7 +703,7 @@ namespace WindowsFormsApplication3
                         //string sourceString = "Ni hao 123";
                         if (result_3.Success == true)
                         {
-                            temp = line.Replace(project_name, toolStripTextBox1.Text);
+                            temp = line.Replace(cfg_project_name, toolStripTextBox1.Text);
                         }
                         else
                         {
@@ -728,7 +748,7 @@ namespace WindowsFormsApplication3
                         //string sourceString = "Ni hao 123";
                         if (software_version_result.Success == true)
                         {
-                            temp = line.Replace(project_ver, toolStripTextBox2.Text);
+                            temp = line.Replace(cfg_project_ver, toolStripTextBox2.Text);
                         }
                         else
                         {
