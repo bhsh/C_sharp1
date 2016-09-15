@@ -23,6 +23,26 @@ namespace WindowsFormsApplication3
         {
             InitializeComponent();
         }
+
+
+        /*****************************************************************
+        * Description:Global Variables in the Form1 class
+        ******************************************************************/
+        string tasking_setup_path = null;
+        string matlab_setup_path = null;
+        string smartgit_setup_path = null;
+        string ude_setup_path = null;
+        string inca_setup_path = null;
+        /*****************************************************************
+        * The End of the Definitions  
+        ******************************************************************/
+
+        /*****************************************************************
+        * Form Load
+        ******************************************************************/
+        /*****************************************************************
+        * The definitons of the match functions  
+        ******************************************************************/
         public static bool Matlab_GetNum(string str)
         {
             return Regex.IsMatch(str, @"MATLAB R2013a");
@@ -44,201 +64,10 @@ namespace WindowsFormsApplication3
             return Regex.IsMatch(str, @"TASKING VX-toolset");
         }
 
-        string tasking_setup_path = null;
-        string matlab_setup_path = null;
-        string smartgit_setup_path = null;
-        string ude_setup_path = null;
-        string inca_setup_path = null;
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            //matlab/simulink
-            if (System.Diagnostics.Process.GetProcessesByName("MATLAB").ToList().Count > 0)
-            {
-                //yes 
-                DialogResult dr;
-                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
-                {
-                    Process.Start(matlab_setup_path);
-                }
-                else if (dr == DialogResult.No)
-                {
-                    //do nothing!
-                }
-            }
-            else
-            {
-                //no 
-                Process.Start(matlab_setup_path);
-            }
-           
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {  
-            //tasking
-            if (System.Diagnostics.Process.GetProcessesByName("eclipse").ToList().Count > 0)
-            {
-                //yes 
-                DialogResult dr;
-                dr = MessageBox.Show(" The TASKING is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
-                {
-                    Process.Start(tasking_setup_path);
-                }
-                else if (dr == DialogResult.No)
-                {
-                    //do nothing!
-                }
-            }
-            else
-            {
-                //no 
-                Process.Start(tasking_setup_path);
-            }
-        }
-
-        Process p = new Process();
-        int flag = 0;
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            //UDE
-            if (System.Diagnostics.Process.GetProcessesByName("UdeDesktop").ToList().Count > 0)
-            {
-                //yes 
-                DialogResult dr;
-                dr = MessageBox.Show(" The UDE is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
-                {
-                    Process.Start(ude_setup_path);
-                }
-                else if (dr == DialogResult.No)
-                {
-                    //do nothing!
-                }
-            }
-            else
-            {
-                //no 
-                Process.Start(ude_setup_path);
-            }
-        }
-        string compiler_path;
-        string project_name;
-        string project_ver;
-        string my_output;
-
-        public void Write(string path)
-        {
-            FileStream fs = new FileStream(path, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            //开始写入
-            sw.Write(my_output);
-            //清空缓冲区
-            sw.Flush();
-            //关闭流
-            sw.Close();
-            fs.Close();
-        }
-        private void Parse_Project_Cfg_File()
-        {
-            string s = @"Compiler_Path = D:\Program Files\Volcano\VSx\configuration\org.eclipse.e4.ui.css.swt.theme";
-            string pattern = "Compiler_Path";
-            Match result = Regex.Match(s, pattern);
-            //textBox4.Text = result.Value;
-            string path = @"C:\Users\thinkpad\Desktop\proj.ini";
-            StreamReader sr = new StreamReader(path, Encoding.Default);
-            String line;
-            while ((line = sr.ReadLine()) != null)
-            {
-                //Console.WriteLine(line.ToString());
-                // read a effective line.
-                //Get the path of the compiler.
-                Match result_2 = Regex.Match(line, pattern);
-                //textBox4.Text = result.Value;
-                if (result_2.Success == true)
-                {
-                    ///string content = "agcsmallmacsmallgggsmallytx";
-                    string content = line;
-                    string[] resultString = Regex.Split(content, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
-                    this.toolStripTextBox4.Text = resultString[1];
-                    compiler_path = resultString[1];
-                    //Console.WriteLine(resultString[1]);
-                    //foreach (string i in resultString)
-                    //{
-                        ///i = i.Trim();
-                        //Console.WriteLine(i.ToString());
-                    //}
-                }
-                string pattern_project = "project_Name";
-                //Get the project name
-                Match result_3 = Regex.Match(line, pattern_project);
-                if (result_3.Success == true)
-                {
-                    string content_project = line;
-                    string[] resultString = Regex.Split(content_project, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
-                    this.toolStripTextBox1.Text = resultString[1];
-                    project_name = resultString[1];
-                }
-                string pattern_sw_ver = "Software_Version";
-                //Get the project name
-                Match result_sw_ver = Regex.Match(line, pattern_sw_ver);
-                if (result_sw_ver.Success == true)
-                {
-                    string content_sw_ver = line;
-                    string[] resultString = Regex.Split(content_sw_ver, "=", RegexOptions.IgnoreCase);
-                    //remove the useless space
-                    //str = str.Trim();
-                    //resultString[1] =;
-                    resultString[1] = resultString[1].Trim();
-                    this.toolStripTextBox2.Text = resultString[1];
-                    project_ver = resultString[1];
-                }
-                my_output = my_output + line + "\n";
-            }
-            Write(@"C:\Users\thinkpad\Desktop\my.ini");
-
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            string path = @"..";
-            System.Diagnostics.Process.Start(path);
-            //System.Diagnostics.Process.Start("eclipse.exe", path);
-        }
-
-        private void toolStripProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
+        /*****************************************************************
+        * The Getinstalledsoftware  
+        ******************************************************************/
         /// Gets a list of installed software and, if known, the software's install path.
-        /// </summary>
-        /// <returns></returns>
         private string Getinstalledsoftware()
         {
             //Declare the string to hold the list:
@@ -272,10 +101,82 @@ namespace WindowsFormsApplication3
                     }
                 }
             }
-
             return Software;
         }
 
+        /*****************************************************************
+        * The Parse_Project_Cfg_File  
+        ******************************************************************/
+        private void Parse_Project_Cfg_File()
+        {
+            string s = @"Compiler_Path = D:\Program Files\Volcano\VSx\configuration\org.eclipse.e4.ui.css.swt.theme";
+            string pattern = "Compiler_Path";
+            Match result = Regex.Match(s, pattern);
+            //textBox4.Text = result.Value;
+            string path = @"C:\Users\thinkpad\Desktop\proj.ini";
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Console.WriteLine(line.ToString());
+                // read a effective line.
+                //Get the path of the compiler.
+                Match result_2 = Regex.Match(line, pattern);
+                //textBox4.Text = result.Value;
+                if (result_2.Success == true)
+                {
+                    ///string content = "agcsmallmacsmallgggsmallytx";
+                    string content = line;
+                    string[] resultString = Regex.Split(content, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox4.Text = resultString[1];
+                    compiler_path = resultString[1];
+                    //Console.WriteLine(resultString[1]);
+                    //foreach (string i in resultString)
+                    //{
+                    ///i = i.Trim();
+                    //Console.WriteLine(i.ToString());
+                    //}
+                }
+                string pattern_project = "project_Name";
+                //Get the project name
+                Match result_3 = Regex.Match(line, pattern_project);
+                if (result_3.Success == true)
+                {
+                    string content_project = line;
+                    string[] resultString = Regex.Split(content_project, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox1.Text = resultString[1];
+                    project_name = resultString[1];
+                }
+                string pattern_sw_ver = "Software_Version";
+                //Get the project name
+                Match result_sw_ver = Regex.Match(line, pattern_sw_ver);
+                if (result_sw_ver.Success == true)
+                {
+                    string content_sw_ver = line;
+                    string[] resultString = Regex.Split(content_sw_ver, "=", RegexOptions.IgnoreCase);
+                    //remove the useless space
+                    //str = str.Trim();
+                    //resultString[1] =;
+                    resultString[1] = resultString[1].Trim();
+                    this.toolStripTextBox2.Text = resultString[1];
+                    project_ver = resultString[1];
+                }
+                my_output = my_output + line + "\n";
+            }
+            Write(@"C:\Users\thinkpad\Desktop\my.ini");
+        }
+
+        /*****************************************************************
+        * The form load  
+        ******************************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
             //Console.WriteLine();
@@ -371,7 +272,135 @@ namespace WindowsFormsApplication3
             toolStripTextBox3.Text = System.Environment.CurrentDirectory;
             Parse_Project_Cfg_File();
         }
+        /*****************************************************************
+        * The End of the Form Load 
+        ******************************************************************/
 
+
+
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            //matlab/simulink
+            if (System.Diagnostics.Process.GetProcessesByName("MATLAB").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(matlab_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(matlab_setup_path);
+            }
+           
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {  
+            //tasking
+            if (System.Diagnostics.Process.GetProcessesByName("eclipse").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The TASKING is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(tasking_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(tasking_setup_path);
+            }
+        }
+
+        Process p = new Process();
+        int flag = 0;
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            //UDE
+            if (System.Diagnostics.Process.GetProcessesByName("UdeDesktop").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The UDE is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(ude_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(ude_setup_path);
+            }
+        }
+        string compiler_path;
+        string project_name;
+        string project_ver;
+        string my_output;
+
+        public void Write(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            //开始写入
+            sw.Write(my_output);
+            //清空缓冲区
+            sw.Flush();
+            //关闭流
+            sw.Close();
+            fs.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            string path = @"..";
+            System.Diagnostics.Process.Start(path);
+            //System.Diagnostics.Process.Start("eclipse.exe", path);
+        }
+
+        private void toolStripProgressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+  
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             //smartgit 
