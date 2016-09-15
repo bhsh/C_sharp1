@@ -207,8 +207,8 @@ namespace WindowsFormsApplication3
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
                     string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_tasking_setup_path = string_local_matlab[1];
-                    matlab_setup_path = Org_tasking_setup_path  + matlab_suffix_path;
+                    Org_matlab_setup_path = string_local_matlab[1];
+                    matlab_setup_path = Org_matlab_setup_path + matlab_suffix_path;
                 }
                 else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
@@ -289,31 +289,6 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * The End of the Form Load 
         ******************************************************************/
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            //matlab/simulink
-            if (System.Diagnostics.Process.GetProcessesByName("MATLAB").ToList().Count > 0)
-            {
-                //yes 
-                DialogResult dr;
-                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
-                {
-                    Process.Start(matlab_setup_path);
-                }
-                else if (dr == DialogResult.No)
-                {
-                    //do nothing!
-                }
-            }
-            else
-            {
-                //no 
-                Process.Start(matlab_setup_path);
-            }
-           
-        }
 
         /*****************************************************************
         * The compiler button 
@@ -368,6 +343,113 @@ namespace WindowsFormsApplication3
         }
         /*****************************************************************
         * The compiler button end
+        ******************************************************************/
+        /*****************************************************************
+        * The matlab button 
+        ******************************************************************/
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            //matlab/simulink
+            if (System.Diagnostics.Process.GetProcessesByName("MATLAB").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(matlab_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(matlab_setup_path);
+            }
+        }
+        //matlab: open path
+        private void openPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_matlab_setup_path);
+        }
+        //matlab: copy path
+        private void copyPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_matlab_setup_path); //copy target into Clipboard
+        }
+        //matlab: end process
+        private void endprocess_matlab_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "MATLAB")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * The matlab button end
+        ******************************************************************/
+
+        /*****************************************************************
+        * The smartgit button
+        ******************************************************************/
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            //smartgit 
+            if (System.Diagnostics.Process.GetProcessesByName("smartgit").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The SmartGit is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(smartgit_setup_path);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(smartgit_setup_path);
+            }
+        }
+        //smartgit: open path
+        private void openPath_smartgit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_smartgit_setup_path);
+        }
+        //smartgit: copy path
+        private void copyPath_smartgit_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_smartgit_setup_path); //copy target into Clipboard
+        }
+        //smartgit: end process
+        private void endprocess_smartgit_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "smartgit")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * The smartgit button end
         ******************************************************************/
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -433,31 +515,6 @@ namespace WindowsFormsApplication3
 
         }
   
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            //smartgit 
-            if (System.Diagnostics.Process.GetProcessesByName("smartgit").ToList().Count > 0)
-            {
-                //yes 
-                DialogResult dr;
-                dr = MessageBox.Show(" The SmartGit is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                if (dr == DialogResult.Yes)
-                {
-                    Process.Start(smartgit_setup_path);
-                }
-                else if (dr == DialogResult.No)
-                {
-                    //do nothing!
-                }
-            }
-            else
-            {
-                //no 
-                Process.Start(smartgit_setup_path);
-            }
-        }
-
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             //INCA 7.1
