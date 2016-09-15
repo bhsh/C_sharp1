@@ -63,7 +63,6 @@
             this.copyPathToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.endProcessToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton20 = new System.Windows.Forms.ToolStripButton();
@@ -99,6 +98,11 @@
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox5 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripSplitButton();
+            this.openPathToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyPahToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endProcessToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -403,17 +407,6 @@
             this.endProcessToolStripMenuItem1.Text = "End Process";
             this.endProcessToolStripMenuItem1.Click += new System.EventHandler(this.endprocess_smartgit_Click);
             // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "toolStripButton5";
-            this.toolStripButton5.ToolTipText = "UDE";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
             // toolStripButton18
             // 
             this.toolStripButton18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -705,6 +698,45 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPathToolStripMenuItem2,
+            this.copyPahToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.endProcessToolStripMenuItem2});
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(32, 22);
+            this.toolStripButton5.Text = "toolStripButton5";
+            this.toolStripButton5.ToolTipText = "UDE";
+            this.toolStripButton5.ButtonClick += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // openPathToolStripMenuItem2
+            // 
+            this.openPathToolStripMenuItem2.Name = "openPathToolStripMenuItem2";
+            this.openPathToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.openPathToolStripMenuItem2.Text = "Open Path";
+            // 
+            // copyPahToolStripMenuItem
+            // 
+            this.copyPahToolStripMenuItem.Name = "copyPahToolStripMenuItem";
+            this.copyPahToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyPahToolStripMenuItem.Text = "Copy Pah";
+            // 
+            // endProcessToolStripMenuItem2
+            // 
+            this.endProcessToolStripMenuItem2.Name = "endProcessToolStripMenuItem2";
+            this.endProcessToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.endProcessToolStripMenuItem2.Text = "End Process";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(149, 6);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -754,7 +786,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -807,6 +838,11 @@
         private System.Windows.Forms.ToolStripMenuItem copyPathToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem endProcessToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButton5;
+        private System.Windows.Forms.ToolStripMenuItem openPathToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem copyPahToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem endProcessToolStripMenuItem2;
     }
 }
 

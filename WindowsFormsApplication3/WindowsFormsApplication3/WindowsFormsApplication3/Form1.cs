@@ -237,7 +237,57 @@ namespace WindowsFormsApplication3
                     //test code
                     //this.toolStripTextBox4.Text = string_local_tasking[1];
                 }
-            }       
+            } 
+      
+            //matlab:check if the path exsits
+            if (System.IO.File.Exists(matlab_setup_path))
+            {
+                toolStripButton2.Enabled = true;
+            }
+            else
+            {
+                toolStripButton2.Enabled = false;
+            }
+
+            //smartgit:check if the path exsits
+            if (System.IO.File.Exists(smartgit_setup_path))
+            {
+                toolStripButton3.Enabled = true;
+            }
+            else
+            {
+                toolStripButton3.Enabled = false;
+            }
+
+            //ude:check if the path exsits
+            if (System.IO.File.Exists(ude_setup_path))
+            {
+                toolStripButton5.Enabled = true;
+            }
+            else
+            {
+                toolStripButton5.Enabled = false;
+            }
+
+            //inca:check if the path exsits
+            if (System.IO.File.Exists(inca_setup_path))
+            {
+                toolStripButton6.Enabled = true;
+            }
+            else
+            {
+                toolStripButton6.Enabled = false;
+            }
+
+            //tasking:check if the path exsits
+            if (System.IO.File.Exists(tasking_setup_path))
+            {
+                toolStripButton1.Enabled = true;
+            }
+            else
+            {
+                toolStripButton1.Enabled = false;
+            }
         }
 
         /*****************************************************************
@@ -280,7 +330,7 @@ namespace WindowsFormsApplication3
             Check_Dir(); //Check if the current dir is located in \01_Mak
 
             Get_tools_paths();  //Get the paths of tools from the register tables
-
+            
             Parse_Project_Cfg_File(); // Parse the confiuration file
 
             //Check_compiler_path(); //Update the compiler path
@@ -942,6 +992,16 @@ namespace WindowsFormsApplication3
         private void toolStripButton12_ButtonClick(object sender, EventArgs e)
         {
            //MessageBox.Show("ButtonClick!");
+           // if (System.IO.File.Exists(tasking_setup_path))
+            string local_path = @"c:\";
+            if (Directory.Exists(local_path))
+            {
+               textBox1.Text = "true";
+            }
+            else
+            {
+               textBox1.Text = "false";
+            }
         }
 
         private void toolStripButton12_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
