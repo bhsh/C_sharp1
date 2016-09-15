@@ -925,5 +925,15 @@ namespace WindowsFormsApplication3
         {
 
         }
+
+        private void toolStripButton12_ButtonClick(object sender, EventArgs e)
+        {
+           //MessageBox.Show("ButtonClick!");
+        }
+
+        private void toolStripButton12_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+           // MessageBox.Show("DropDownItemClicked");
+        }
     }
 }
