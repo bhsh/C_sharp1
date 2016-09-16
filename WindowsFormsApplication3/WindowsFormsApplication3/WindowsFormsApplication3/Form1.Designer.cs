@@ -953,6 +953,7 @@
             this.toolStripButton24.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton24.Text = "toolStripButton24";
             this.toolStripButton24.ToolTipText = "Help";
+            this.toolStripButton24.Click += new System.EventHandler(this.toolStripButton24_Click);
             // 
             // buildLibraryToolStripMenuItem
             // 
