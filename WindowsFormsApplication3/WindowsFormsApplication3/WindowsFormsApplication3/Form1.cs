@@ -804,7 +804,7 @@ namespace WindowsFormsApplication3
                 // Process line provided in e.Data
                 textBox1.AppendText(e.Data + "\n");
             }
-            statusstrip_info_control(false);
+            //statusstrip_info_control(false);
         }
         /*****************************************************************
         * Description:buildbutton status.
