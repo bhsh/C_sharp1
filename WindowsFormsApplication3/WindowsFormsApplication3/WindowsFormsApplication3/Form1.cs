@@ -1226,5 +1226,12 @@ namespace WindowsFormsApplication3
             Form2 f = new Form2();
             f.Show();
         }
+
+        private void learnAboutMeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //show the help context!
+            Form3 f = new Form3();
+            f.Show();
+        }
     }
 }

@@ -979,6 +979,7 @@
             this.learnAboutMeToolStripMenuItem.Name = "learnAboutMeToolStripMenuItem";
             this.learnAboutMeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.learnAboutMeToolStripMenuItem.Text = "Help Contents";
+            this.learnAboutMeToolStripMenuItem.Click += new System.EventHandler(this.learnAboutMeToolStripMenuItem_Click);
             // 
             // tASKINGToolStripMenuItem
             // 

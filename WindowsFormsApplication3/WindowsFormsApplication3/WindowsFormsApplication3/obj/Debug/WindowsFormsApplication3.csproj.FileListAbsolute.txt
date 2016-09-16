@@ -26,3 +26,4 @@ E:\WorkArea\C_sharp2\WindowsFormsApplication3\WindowsFormsApplication3\WindowsFo
 E:\WorkArea\C_sharp2\WindowsFormsApplication3\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\WindowsFormsApplication3.Properties.Resources.resources
 E:\WorkArea\C_sharp2\WindowsFormsApplication3\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\WindowsFormsApplication3.csproj.GenerateResource.Cache
 E:\WorkArea\C_sharp2\WindowsFormsApplication3\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\WindowsFormsApplication3.Form2.resources
+E:\WorkArea\C_sharp2\WindowsFormsApplication3\WindowsFormsApplication3\WindowsFormsApplication3\obj\Debug\WindowsFormsApplication3.Form3.resources
