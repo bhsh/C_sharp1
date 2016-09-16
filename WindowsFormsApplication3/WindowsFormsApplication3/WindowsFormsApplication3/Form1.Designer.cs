@@ -146,6 +146,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
+            this.openConfigurationFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -296,6 +297,8 @@
             // 
             // projectToolStripMenuItem
             // 
+            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openConfigurationFileToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
             this.projectToolStripMenuItem.Text = "Project";
@@ -938,6 +941,7 @@
             this.asToolStripMenuItem.Name = "asToolStripMenuItem";
             this.asToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.asToolStripMenuItem.Text = "Shut Down Computer";
+            this.asToolStripMenuItem.Click += new System.EventHandler(this.asToolStripMenuItem_Click);
             // 
             // asasToolStripMenuItem
             // 
@@ -1134,6 +1138,12 @@
             this.toolStripSeparator19.Name = "toolStripSeparator19";
             this.toolStripSeparator19.Size = new System.Drawing.Size(197, 6);
             // 
+            // openConfigurationFileToolStripMenuItem
+            // 
+            this.openConfigurationFileToolStripMenuItem.Name = "openConfigurationFileToolStripMenuItem";
+            this.openConfigurationFileToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openConfigurationFileToolStripMenuItem.Text = "Open Configuration File";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1282,6 +1292,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
+        private System.Windows.Forms.ToolStripMenuItem openConfigurationFileToolStripMenuItem;
     }
 }
 

@@ -1380,5 +1380,11 @@ namespace WindowsFormsApplication3
         {
 
         }
+
+        private void asToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\Users\thinkpad\Desktop\makefile";
+            System.Diagnostics.Process.Start(path);
+        }
     }
 }
