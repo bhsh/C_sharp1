@@ -931,17 +931,11 @@ namespace WindowsFormsApplication3
         }
         /*****************************************************************
         * Description:command line input.
-        * Function name:toolStripTextBox5_KeyDown.
+        * Function name:textBox2_KeyDown.
         ******************************************************************/
-        private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            string command_line = this.toolStripTextBox5.Text.Trim();
-            // If enter key is entered!
-            if (e.KeyCode == Keys.Enter)
-            {
-                //Launch the command from the command line.
-                launch_process(command_line,"");
-            }
+
         }
         /*****************************************************************
         * Description:End the make process to stop the build process.
@@ -1239,6 +1233,11 @@ namespace WindowsFormsApplication3
             //show the help context!
             Form3 f = new Form3();
             f.Show();
+        }
+
+        private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
