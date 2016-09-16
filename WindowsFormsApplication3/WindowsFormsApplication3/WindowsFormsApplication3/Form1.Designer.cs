@@ -139,6 +139,10 @@
             this.documentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.buildLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -213,7 +217,9 @@
             this.rebuildAllToolStripMenuItem,
             this.buildLowlibToolStripMenuItem,
             this.buildLibraryToolStripMenuItem,
-            this.buildUnallToolStripMenuItem});
+            this.buildUnallToolStripMenuItem,
+            this.toolStripSeparator17,
+            this.buildLogToolStripMenuItem});
             this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
             this.buildToolStripMenuItem.Size = new System.Drawing.Size(49, 21);
             this.buildToolStripMenuItem.Text = "Build";
@@ -637,9 +643,11 @@
             // 
             // toolStripLabel2
             // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(110, 22);
             this.toolStripLabel2.Text = "Software Version:";
+            this.toolStripLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStripTextBox2
             // 
@@ -653,7 +661,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1,
-            this.toolStripStatusLabel2});
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel4});
             this.statusStrip1.Location = new System.Drawing.Point(0, 399);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(693, 22);
@@ -665,18 +675,22 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(46, 17);
             this.toolStripStatusLabel1.Text = "Status:";
+            this.toolStripStatusLabel1.Visible = false;
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Visible = false;
             this.toolStripProgressBar1.Click += new System.EventHandler(this.toolStripProgressBar1_Click);
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(27, 17);
+            this.toolStripStatusLabel2.Text = "File";
+            this.toolStripStatusLabel2.Visible = false;
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // timer1
@@ -932,6 +946,7 @@
             this.toolStripButton24.Name = "toolStripButton24";
             this.toolStripButton24.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton24.Text = "toolStripButton24";
+            this.toolStripButton24.ToolTipText = "Help";
             // 
             // buildLibraryToolStripMenuItem
             // 
@@ -991,6 +1006,7 @@
             // 
             // totalCommanderToolStripMenuItem
             // 
+            this.totalCommanderToolStripMenuItem.Enabled = false;
             this.totalCommanderToolStripMenuItem.Name = "totalCommanderToolStripMenuItem";
             this.totalCommanderToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.totalCommanderToolStripMenuItem.Text = "Total Commander";
@@ -1046,6 +1062,32 @@
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(152, 6);
+            // 
+            // buildLogToolStripMenuItem
+            // 
+            this.buildLogToolStripMenuItem.Name = "buildLogToolStripMenuItem";
+            this.buildLogToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.buildLogToolStripMenuItem.Text = "Build Log";
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            this.toolStripSeparator17.Size = new System.Drawing.Size(161, 6);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(11, 17);
+            this.toolStripStatusLabel3.Text = "|";
+            this.toolStripStatusLabel3.Visible = false;
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(31, 17);
+            this.toolStripStatusLabel4.Text = "Info";
+            this.toolStripStatusLabel4.Visible = false;
             // 
             // Form1
             // 
@@ -1189,6 +1231,10 @@
         private System.Windows.Forms.ToolStripMenuItem simulinkToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem documentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.ToolStripMenuItem buildLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
     }
 }
 

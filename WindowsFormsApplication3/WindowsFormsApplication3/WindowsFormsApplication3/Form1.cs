@@ -736,9 +736,12 @@ namespace WindowsFormsApplication3
 
                 //update the progress bar and status in phase I
                 update_progress_barstatus(1);
-                
-                //Eable the build buttons
+
+                //Enable the build buttons
                 buildbutton_control(true);
+
+                //End the statusstrip
+                statusstrip_info_control(false);
             }
         }
 
@@ -746,7 +749,7 @@ namespace WindowsFormsApplication3
         * Description: launch a process for the command input.
         * Function name:launch_process.
         ******************************************************************/
-        private void launch_process(string command)
+        private void launch_process(string command1, string command2)
         {
             Process p = new Process(); //Create a local process
             p.StartInfo.FileName = "cmd.exe";  //Set the program name
@@ -762,7 +765,12 @@ namespace WindowsFormsApplication3
             p.ErrorDataReceived += ErrorDataReceived;
             p.Start();    //start the process
 
-            p.StandardInput.WriteLine(command);
+            p.StandardInput.WriteLine(command1);
+            if (command2 != "")
+            {
+                p.StandardInput.WriteLine(command2);
+            }
+
             p.StandardInput.WriteLine("exit");
 
             p.BeginOutputReadLine();
@@ -803,7 +811,26 @@ namespace WindowsFormsApplication3
             toolStripButton7.Enabled = actived_status;
             toolStripButton8.Enabled = actived_status;
             toolStripButton9.Enabled = actived_status;
-            toolStripButton10.Enabled = actived_status;     
+            toolStripButton10.Enabled = actived_status;
+            toolStripButton21.Enabled = actived_status;     
+        }
+
+        /*****************************************************************
+        * Description:buildbutton status.
+        * Function name:buildbutton_control.
+        ******************************************************************/
+        private void statusstrip_info_control(bool actived_status)
+        {
+            toolStripStatusLabel1.Visible = actived_status;
+            toolStripStatusLabel2.Visible = actived_status;
+            toolStripStatusLabel3.Visible = actived_status;
+            toolStripStatusLabel4.Visible = actived_status;
+            toolStripProgressBar1.Visible = actived_status;
+
+            toolStripStatusLabel1.Text = "";
+            toolStripStatusLabel2.Text = "";
+            toolStripStatusLabel4.Text = "";
+            toolStripProgressBar1.Value = 0;
         }
         /*****************************************************************
         * Description:make clean.
@@ -814,8 +841,11 @@ namespace WindowsFormsApplication3
             //rebuild all from the low insight...
 
             textBox1.Text = "";   //clear the info windows first.
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text ="Info:Processing 'Clean...'";
             buildbutton_control(false);  //disable the build buttons
-            launch_process("make clean");  //launch the command process
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar
+            launch_process("make clean","");  //launch the command process
             //timer1.Enabled = true;  //enable timer1 to update the progress and bar  
         }
         /*****************************************************************
@@ -827,9 +857,11 @@ namespace WindowsFormsApplication3
             // The button is used to test the process
             //toolStripProgressBar1.Value = 0;
             textBox1.Text = "";  //clear the info windows first.
-            timer1.Enabled = true;  //enable timer1 to update the progress and bar
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text = "Info:Processing 'Build Project'";       
             buildbutton_control(false); //disable the build buttons
-            launch_process("make all");//launch the command process
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar
+            launch_process("make all","");//launch the command process
         }
         /*****************************************************************
         * Description:make clean all.
@@ -840,9 +872,11 @@ namespace WindowsFormsApplication3
             //rebuild all from the low insight...
 
             textBox1.Text = "";   //clear the info windows first.
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text = "Info:Processing 'Rebuild Project'"; 
             buildbutton_control(false);  //disable the build buttons
-            launch_process("make clean all");  //launch the command process
-            timer1.Enabled = true;  //enable timer1 to update the progress and bar          
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar 
+            launch_process("make clean all","");  //launch the command process                 
         }
 
         /*****************************************************************
@@ -853,8 +887,11 @@ namespace WindowsFormsApplication3
         {
             //build the low library from the low insight...
             textBox1.Text = "";
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text = "Info:Processing 'Build low sources into library'"; 
             buildbutton_control(false);
-            launch_process("make build_lib");
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar 
+            launch_process("make build_lib", "");
         }
 
         /*****************************************************************
@@ -865,9 +902,12 @@ namespace WindowsFormsApplication3
         {
             //build low library for release from the low insight...
             textBox1.Text = "";
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text = "Info:Processing 'Release'"; 
             buildbutton_control(false);
-            launch_process("make clean unall");
-            //launch_process("make clean unall");
+            //launch_process("make clean unall","");
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar 
+            launch_process("make build_lib", "make clean unall");
         }
 
         /*****************************************************************
@@ -881,7 +921,7 @@ namespace WindowsFormsApplication3
             if (e.KeyCode == Keys.Enter)
             {
                 //Launch the command from the command line.
-                launch_process(command_line);
+                launch_process(command_line,"");
             }
         }
         /*****************************************************************
