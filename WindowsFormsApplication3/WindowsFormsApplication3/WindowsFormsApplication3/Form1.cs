@@ -65,6 +65,9 @@ namespace WindowsFormsApplication3
 
         //cfg path
         string cfg_file_path =  @"C:\Users\thinkpad\Desktop\proj.ini";
+ 
+        //Build command
+        string empty_command = "";
 
         /*****************************************************************
         * The End of the Definitions  
@@ -801,6 +804,7 @@ namespace WindowsFormsApplication3
                 // Process line provided in e.Data
                 textBox1.AppendText(e.Data + "\n");
             }
+            statusstrip_info_control(false);
         }
         /*****************************************************************
         * Description:buildbutton status.
@@ -838,14 +842,14 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void toolStripButton21_Click(object sender, EventArgs e)
         {
-            //rebuild all from the low insight...
+            //clean all from the low insight...
 
             textBox1.Text = "";   //clear the info windows first.
             statusstrip_info_control(true);
             toolStripStatusLabel4.Text ="Info:Processing 'Clean...'";
             buildbutton_control(false);  //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar
-            launch_process("make clean","");  //launch the command process
+            launch_process("make clean", empty_command);  //launch the command process
             //timer1.Enabled = true;  //enable timer1 to update the progress and bar  
         }
         /*****************************************************************
@@ -861,7 +865,7 @@ namespace WindowsFormsApplication3
             toolStripStatusLabel4.Text = "Info:Processing 'Build Project'";       
             buildbutton_control(false); //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar
-            launch_process("make all","");//launch the command process
+            launch_process("make all", empty_command);//launch the command process
         }
         /*****************************************************************
         * Description:make clean all.
@@ -876,7 +880,7 @@ namespace WindowsFormsApplication3
             toolStripStatusLabel4.Text = "Info:Processing 'Rebuild Project'"; 
             buildbutton_control(false);  //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
-            launch_process("make clean all","");  //launch the command process                 
+            launch_process("make clean all", empty_command);  //launch the command process                 
         }
 
         /*****************************************************************
@@ -891,7 +895,7 @@ namespace WindowsFormsApplication3
             toolStripStatusLabel4.Text = "Info:Processing 'Build low sources into library'"; 
             buildbutton_control(false);
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
-            launch_process("make build_lib", "");
+            launch_process("make build_lib", empty_command);
         }
 
         /*****************************************************************
@@ -907,7 +911,7 @@ namespace WindowsFormsApplication3
             buildbutton_control(false);
             //launch_process("make clean unall","");
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
-            launch_process("make clean unall", "");
+            launch_process("make clean unall", empty_command);
         }
 
         /*****************************************************************
