@@ -885,6 +885,7 @@
             this.toolStripButton25.Name = "toolStripButton25";
             this.toolStripButton25.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton25.Text = "toolStripButton25";
+            this.toolStripButton25.ToolTipText = "Relese the driver library to the application";
             this.toolStripButton25.Click += new System.EventHandler(this.toolStripButton25_Click);
             // 
             // toolStripButton16
@@ -1008,12 +1009,14 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(73, 22);
             this.toolStripLabel1.Text = "Proj Name:";
+            this.toolStripLabel1.ToolTipText = "The name of the current project";
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(150, 25);
+            this.toolStripTextBox1.ToolTipText = "Input the name,and let it valid by enter key";
             this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
@@ -1036,6 +1039,7 @@
             this.toolStripTextBox2.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
             this.toolStripTextBox2.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox2.ToolTipText = "Input the version,and let it valid by enter key";
             this.toolStripTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox2_KeyDown);
             // 
             // statusStrip1
@@ -1123,6 +1127,7 @@
             // 
             this.toolStripTextBox3.Name = "toolStripTextBox3";
             this.toolStripTextBox3.Size = new System.Drawing.Size(100, 25);
+            this.toolStripTextBox3.ToolTipText = "Input the version,and let it valid by enter key";
             // 
             // Form1
             // 
