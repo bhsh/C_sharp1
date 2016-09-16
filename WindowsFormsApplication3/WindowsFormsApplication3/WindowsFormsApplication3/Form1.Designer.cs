@@ -123,7 +123,6 @@
             this.toolStripButton12 = new System.Windows.Forms.ToolStripSplitButton();
             this.asToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton23 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton24 = new System.Windows.Forms.ToolStripButton();
@@ -146,6 +145,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -717,6 +717,7 @@
             this.toolStripButton19.Size = new System.Drawing.Size(32, 22);
             this.toolStripButton19.Text = "toolStripButton19";
             this.toolStripButton19.ToolTipText = "Total Commander";
+            this.toolStripButton19.ButtonClick += new System.EventHandler(this.toolStripButton19_ButtonClick);
             // 
             // openPathToolStripMenuItem4
             // 
@@ -754,6 +755,7 @@
             this.toolStripButton20.Name = "toolStripButton20";
             this.toolStripButton20.Size = new System.Drawing.Size(32, 22);
             this.toolStripButton20.Text = "Everything";
+            this.toolStripButton20.ButtonClick += new System.EventHandler(this.toolStripButton20_ButtonClick);
             // 
             // openPathToolStripMenuItem5
             // 
@@ -792,6 +794,7 @@
             this.toolStripButton6.Size = new System.Drawing.Size(32, 22);
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.ToolTipText = "INCA 7.1";
+            this.toolStripButton6.ButtonClick += new System.EventHandler(this.toolStripButton6_ButtonClick);
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // openPathToolStripMenuItem6
@@ -912,39 +915,35 @@
             this.toolStripButton11.Name = "toolStripButton11";
             this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton11.Text = "toolStripButton11";
+            this.toolStripButton11.ToolTipText = "Clean Screen";
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click_1);
             // 
             // toolStripButton12
             // 
             this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton12.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.asToolStripMenuItem,
-            this.asasToolStripMenuItem,
-            this.asToolStripMenuItem1});
+            this.toolStripSeparator19,
+            this.asasToolStripMenuItem});
             this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
             this.toolStripButton12.Size = new System.Drawing.Size(32, 22);
-            this.toolStripButton12.Text = "toolStripButton12";
+            this.toolStripButton12.Text = "Computer";
             this.toolStripButton12.ButtonClick += new System.EventHandler(this.toolStripButton12_ButtonClick);
             this.toolStripButton12.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripButton12_DropDownItemClicked);
             // 
             // asToolStripMenuItem
             // 
             this.asToolStripMenuItem.Name = "asToolStripMenuItem";
-            this.asToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.asToolStripMenuItem.Text = "as";
+            this.asToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.asToolStripMenuItem.Text = "Shut Down Computer";
             // 
             // asasToolStripMenuItem
             // 
             this.asasToolStripMenuItem.Name = "asasToolStripMenuItem";
-            this.asasToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.asasToolStripMenuItem.Text = "asas";
-            // 
-            // asToolStripMenuItem1
-            // 
-            this.asToolStripMenuItem1.Name = "asToolStripMenuItem1";
-            this.asToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
-            this.asToolStripMenuItem1.Text = "as";
+            this.asasToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.asasToolStripMenuItem.Text = "Restart Computer";
             // 
             // toolStripButton17
             // 
@@ -1127,7 +1126,13 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(690, 21);
             this.textBox2.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.textBox2, "Command Line");
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox5_KeyDown);
+            // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            this.toolStripSeparator19.Size = new System.Drawing.Size(197, 6);
             // 
             // Form1
             // 
@@ -1198,7 +1203,6 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripButton12;
         private System.Windows.Forms.ToolStripMenuItem asToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asToolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton toolStripButton16;
         private System.Windows.Forms.ToolStripButton toolStripButton17;
         private System.Windows.Forms.ToolStripButton toolStripButton21;
@@ -1277,6 +1281,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
     }
 }
 

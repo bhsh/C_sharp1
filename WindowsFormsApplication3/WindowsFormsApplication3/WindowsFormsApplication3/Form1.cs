@@ -422,6 +422,7 @@ namespace WindowsFormsApplication3
                 if (dr == DialogResult.Yes)
                 {
                     Process.Start(tasking_setup_path);
+                    statusstrip_info_print("Info:The compiler has been opened!");
                 }
                 else if (dr == DialogResult.No)
                 {
@@ -432,6 +433,7 @@ namespace WindowsFormsApplication3
             {
                 //no 
                 Process.Start(tasking_setup_path);
+                statusstrip_info_print("Info:The compiler has been opened!");
             }
         }
 
@@ -476,6 +478,7 @@ namespace WindowsFormsApplication3
                 if (dr == DialogResult.Yes)
                 {
                     Process.Start(matlab_setup_path);
+                    statusstrip_info_print("Info:The MATLAB has been opened!");
                 }
                 else if (dr == DialogResult.No)
                 {
@@ -486,6 +489,7 @@ namespace WindowsFormsApplication3
             {
                 //no 
                 Process.Start(matlab_setup_path);
+                statusstrip_info_print("Info:The MATLAB has been opened!");
             }
         }
         //matlab: open path
@@ -530,6 +534,7 @@ namespace WindowsFormsApplication3
                 if (dr == DialogResult.Yes)
                 {
                     Process.Start(smartgit_setup_path);
+                    statusstrip_info_print("Info:The SmartGit has been opened!");
                 }
                 else if (dr == DialogResult.No)
                 {
@@ -540,6 +545,7 @@ namespace WindowsFormsApplication3
             {
                 //no 
                 Process.Start(smartgit_setup_path);
+                statusstrip_info_print("Info:The SmartGit has been opened!");
             }
         }
         //smartgit: open path
@@ -584,6 +590,7 @@ namespace WindowsFormsApplication3
                 if (dr == DialogResult.Yes)
                 {
                     Process.Start(ude_setup_path);
+                    statusstrip_info_print("Info:The UDE has been opened!");
                 }
                 else if (dr == DialogResult.No)
                 {
@@ -594,6 +601,7 @@ namespace WindowsFormsApplication3
             {
                 //no 
                 Process.Start(ude_setup_path);
+                statusstrip_info_print("Info:The UDE has been opened!");
             }
         }
         /*****************************************************************
@@ -615,6 +623,7 @@ namespace WindowsFormsApplication3
                 if (dr == DialogResult.Yes)
                 {
                     Process.Start(sourceinsight_setup_path);
+                    statusstrip_info_print("Info:The Source Insight has been opened!");
                 }
                 else if (dr == DialogResult.No)
                 {
@@ -625,6 +634,7 @@ namespace WindowsFormsApplication3
             {
                 //no 
                 Process.Start(sourceinsight_setup_path);
+                statusstrip_info_print("Info:The Source Insight has been opened!");
             }
         }
 
@@ -1000,7 +1010,15 @@ namespace WindowsFormsApplication3
         //{
           //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
         //}
-
+        /*****************************************************************
+        * Description:Update the configuration file(.ini)
+        ******************************************************************/
+        private void statusstrip_info_print(string info)
+        {
+            statusstrip_info_control(false);
+            toolStripStatusLabel4.Visible = true;
+            toolStripStatusLabel4.Text = info;        
+        }
         /*****************************************************************
         * 
         * Description:Update the configuration file(.ini)
@@ -1067,25 +1085,19 @@ namespace WindowsFormsApplication3
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
 
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The project name has been changed!";
+                        statusstrip_info_print("Info:The project name has been changed!");
                         MessageBox.Show("The project name has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The project name has been kept unchanged!";
+                        statusstrip_info_print("Info:The project name has been kept unchanged!");
                         MessageBox.Show("The project name has been kept unchanged!");
                     }
                 }
                 else
                 { 
                    //do nothing
-                    statusstrip_info_control(false);
-                    toolStripStatusLabel4.Visible = true;
-                    toolStripStatusLabel4.Text = "Info:The project name has not been changed!";
+                    statusstrip_info_print("Info:The project name has not been changed!");
                     MessageBox.Show("The project name has not been changed!");
                 }
             }
@@ -1152,26 +1164,20 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The version of the application software has been changed!";
+      
+                        statusstrip_info_print("Info:The version of the application software has been changed!");
                         MessageBox.Show("The version of the application software has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The version of the application software has been kept unchanged!";
+                        statusstrip_info_print("Info:The version of the application software has been kept unchanged!");
                         MessageBox.Show("The version of the application software has been kept unchanged!");
-
                     }
                 }
                 else
                 {
                     //do nothing
-                    statusstrip_info_control(false);
-                    toolStripStatusLabel4.Visible = true;
-                    toolStripStatusLabel4.Text = "Info:The version of the application software has not been changed!";
+                    statusstrip_info_print("Info:The version of the application software has not been changed!");
                     MessageBox.Show("The version of the application software has not been changed!");
                 }
             }  
@@ -1240,25 +1246,20 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The the version of the low driver sofware has been changed!";
+
+                        statusstrip_info_print("Info:The the version of the low driver sofware has been changed!");
                         MessageBox.Show("The the version of the low driver sofware has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
-                        statusstrip_info_control(false);
-                        toolStripStatusLabel4.Visible = true;
-                        toolStripStatusLabel4.Text = "Info:The the version of the low driver sofware has been kept unchanged!";
+                        statusstrip_info_print("Info:The the version of the low driver sofware has been kept unchanged!");
                         MessageBox.Show("The the version of the low driver sofware has been kept unchanged!");
                     }
                 }
                 else
                 {
                     //do nothing
-                    statusstrip_info_control(false);
-                    toolStripStatusLabel4.Visible = true;
-                    toolStripStatusLabel4.Text = "Info:The version of the low driver sofware has not been changed!";
+                    statusstrip_info_print("Info:The version of the low driver sofware has not been changed!");
                     MessageBox.Show("The version of the low driver sofware has not been changed!");
                 }
             } 
@@ -1301,6 +1302,7 @@ namespace WindowsFormsApplication3
         private void toolStripButton17_Click(object sender, EventArgs e)
         {
             Process.Start("cmd.exe");
+            statusstrip_info_print("Info:The command line of WINDOWS has been opened!");
         }
 
         //Open The Configuration Directory
@@ -1353,6 +1355,28 @@ namespace WindowsFormsApplication3
         }
 
         private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        //Clean the current screen.
+        private void toolStripButton11_Click_1(object sender, EventArgs e)
+        {
+            textBox1.Text = "";  //clear the info windows first.
+            statusstrip_info_print("Info:The screen has been cleared!");
+        }
+
+        private void toolStripButton19_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton20_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton6_ButtonClick(object sender, EventArgs e)
         {
 
         }
