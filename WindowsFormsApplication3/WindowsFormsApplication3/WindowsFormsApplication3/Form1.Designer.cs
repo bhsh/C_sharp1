@@ -144,6 +144,8 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripButton25 = new System.Windows.Forms.ToolStripButton();
+            this.welcomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -185,7 +187,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -250,6 +252,8 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.welcomeToolStripMenuItem,
+            this.toolStripSeparator18,
             this.learnAboutMeToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
@@ -973,13 +977,13 @@
             // 
             this.learnAboutMeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("learnAboutMeToolStripMenuItem.Image")));
             this.learnAboutMeToolStripMenuItem.Name = "learnAboutMeToolStripMenuItem";
-            this.learnAboutMeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.learnAboutMeToolStripMenuItem.Text = "Learn about me";
+            this.learnAboutMeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.learnAboutMeToolStripMenuItem.Text = "Help Contents";
             // 
             // tASKINGToolStripMenuItem
             // 
             this.tASKINGToolStripMenuItem.Name = "tASKINGToolStripMenuItem";
-            this.tASKINGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tASKINGToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.tASKINGToolStripMenuItem.Text = "TASKING";
             // 
             // matlabToolStripMenuItem
@@ -1100,6 +1104,18 @@
             this.toolStripButton25.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton25.Text = "toolStripButton25";
             this.toolStripButton25.Click += new System.EventHandler(this.toolStripButton25_Click);
+            // 
+            // welcomeToolStripMenuItem
+            // 
+            this.welcomeToolStripMenuItem.Name = "welcomeToolStripMenuItem";
+            this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.welcomeToolStripMenuItem.Text = "Welcome";
+            this.welcomeToolStripMenuItem.Click += new System.EventHandler(this.welcomeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            this.toolStripSeparator18.Size = new System.Drawing.Size(155, 6);
             // 
             // Form1
             // 
@@ -1248,6 +1264,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripButton toolStripButton25;
+        private System.Windows.Forms.ToolStripMenuItem welcomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
     }
 }
 

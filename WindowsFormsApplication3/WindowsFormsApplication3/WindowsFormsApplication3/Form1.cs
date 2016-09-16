@@ -1218,5 +1218,13 @@ namespace WindowsFormsApplication3
             string path = @"..\08_Documents";
             System.Diagnostics.Process.Start(path);
         }
+
+        //Welcome is entered,a new window will be shown!
+        private void welcomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {   
+            //show the welcome context!
+            Form2 f = new Form2();
+            f.Show();
+        }
     }
 }
