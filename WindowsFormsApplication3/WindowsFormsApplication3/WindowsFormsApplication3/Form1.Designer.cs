@@ -1018,7 +1018,6 @@
             this.toolStripTextBox1.Size = new System.Drawing.Size(150, 25);
             this.toolStripTextBox1.ToolTipText = "Input the name,and let it valid by enter key";
             this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStripSeparator5
             // 

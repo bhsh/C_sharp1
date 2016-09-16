@@ -996,11 +996,6 @@ namespace WindowsFormsApplication3
             this.Close();
         }
 
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //private void toolStripTextBox3_Click(object sender, EventArgs e)
         //{
           //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
@@ -1071,16 +1066,26 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
+
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The project name has been changed!";
                         MessageBox.Show("The project name has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The project name has been kept unchanged!";
                         MessageBox.Show("The project name has been kept unchanged!");
                     }
                 }
                 else
                 { 
                    //do nothing
+                    statusstrip_info_control(false);
+                    toolStripStatusLabel4.Visible = true;
+                    toolStripStatusLabel4.Text = "Info:The project name has not been changed!";
                     MessageBox.Show("The project name has not been changed!");
                 }
             }
@@ -1147,16 +1152,26 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The version of the application software has been changed!";
                         MessageBox.Show("The version of the application software has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The version of the application software has been kept unchanged!";
                         MessageBox.Show("The version of the application software has been kept unchanged!");
+
                     }
                 }
                 else
                 {
                     //do nothing
+                    statusstrip_info_control(false);
+                    toolStripStatusLabel4.Visible = true;
+                    toolStripStatusLabel4.Text = "Info:The version of the application software has not been changed!";
                     MessageBox.Show("The version of the application software has not been changed!");
                 }
             }  
@@ -1225,16 +1240,25 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The the version of the low driver sofware has been changed!";
                         MessageBox.Show("The the version of the low driver sofware has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
+                        statusstrip_info_control(false);
+                        toolStripStatusLabel4.Visible = true;
+                        toolStripStatusLabel4.Text = "Info:The the version of the low driver sofware has been kept unchanged!";
                         MessageBox.Show("The the version of the low driver sofware has been kept unchanged!");
                     }
                 }
                 else
                 {
                     //do nothing
+                    statusstrip_info_control(false);
+                    toolStripStatusLabel4.Visible = true;
+                    toolStripStatusLabel4.Text = "Info:The version of the low driver sofware has not been changed!";
                     MessageBox.Show("The version of the low driver sofware has not been changed!");
                 }
             } 
