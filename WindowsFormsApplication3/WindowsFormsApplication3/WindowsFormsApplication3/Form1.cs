@@ -1125,12 +1125,11 @@ namespace WindowsFormsApplication3
                 if (temp_1 != temp_2) // toolbox is updated!
                 {
                     DialogResult dr;
-                    dr = MessageBox.Show("Do you really want to change the software version?", "Notice", MessageBoxButtons.YesNo,
+                    dr = MessageBox.Show("Do you really want to change the version of the application software ?", "Notice", MessageBoxButtons.YesNo,
                              MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     if (dr == DialogResult.Yes)
                     {
-                        string path = @"C:\Users\thinkpad\Desktop\proj.ini";
-                        StreamReader sr = new StreamReader(path, Encoding.Default);
+                        StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
                         String line;
                         string temp;
                         while ((line = sr.ReadLine()) != null)
@@ -1148,22 +1147,101 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
-                        MessageBox.Show("The software version has been changed!");
+                        MessageBox.Show("The version of the application software has been changed!");
                     }
                     else if (dr == DialogResult.No)
                     {
-                        MessageBox.Show("The software version has been kept unchanged!");
+                        MessageBox.Show("The version of the application software has been kept unchanged!");
                     }
                 }
                 else
                 {
                     //do nothing
-                    MessageBox.Show("The software versione has not been changed!");
+                    MessageBox.Show("The version of the application software has not been changed!");
                 }
             }  
         }
         /*****************************************************************
         * The End of the toolStripTextBox2
+        ******************************************************************/
+
+        /*****************************************************************
+        * The low software version
+        ******************************************************************/
+        private void Get_last_cfg_low_sw_ver()
+        {
+            //Get the last cfg_project_name
+            StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                //Get the project name
+                Match Low_SW_Version_Result = Regex.Match(line, Low_SW_Version_Pattern);
+                if (Low_SW_Version_Result.Success == true)
+                {
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();  //remove the useless space
+                    cfg_low_sw_ver  = resultString[1];
+                }
+            }
+            sr.Close();
+        }
+        private void toolStripTextBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            string out_into_file = null;
+
+            //Update the software version
+            if (e.KeyCode == Keys.Enter)
+            {
+                Get_last_cfg_low_sw_ver();
+
+                //check if the toolbox is changed!
+                string temp_1 = cfg_low_sw_ver.Trim();
+                string temp_2 = toolStripTextBox3.Text.Trim();
+
+                if (temp_1 != temp_2) // toolbox is updated!
+                {
+                    DialogResult dr;
+                    dr = MessageBox.Show("Do you really want to change the version of the low driver sofware?", "Notice", MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (dr == DialogResult.Yes)
+                    {
+                        StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
+                        String line;
+                        string temp;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            Match Low_SW_Version_result = Regex.Match(line, Low_SW_Version_Pattern);
+                            if (Low_SW_Version_result.Success == true)
+                            {
+                                temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                            }
+                            else
+                            {
+                                temp = line;
+                            }
+                            out_into_file = out_into_file + temp + "\r\n";
+                        }
+                        sr.Close();
+                        Write_File(cfg_file_path, out_into_file);
+                        MessageBox.Show("The the version of the low driver sofware has been changed!");
+                    }
+                    else if (dr == DialogResult.No)
+                    {
+                        MessageBox.Show("The the version of the low driver sofware has been kept unchanged!");
+                    }
+                }
+                else
+                {
+                    //do nothing
+                    MessageBox.Show("The version of the low driver sofware has not been changed!");
+                }
+            } 
+        }
+
+        /*****************************************************************
+        * The End of the low software version
         ******************************************************************/
 
         private void toolStripButton1_ButtonClick(object sender, EventArgs e)
