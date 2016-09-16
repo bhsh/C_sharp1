@@ -903,13 +903,28 @@ namespace WindowsFormsApplication3
             //build low library for release from the low insight...
             textBox1.Text = "";
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text = "Info:Processing 'Release'"; 
+            toolStripStatusLabel4.Text = "Info:Processing 'Build Unall'"; 
+            buildbutton_control(false);
+            //launch_process("make clean unall","");
+            timer1.Enabled = true;  //enable timer1 to update the progress and bar 
+            launch_process("make clean unall", "");
+        }
+
+        /*****************************************************************
+        * Description:make build_lib;make clean;make unall.
+        * Function name:toolStripButton25_Click.
+        ******************************************************************/
+        private void toolStripButton25_Click(object sender, EventArgs e)
+        {
+            //build low library for release from the low insight...
+            textBox1.Text = "";
+            statusstrip_info_control(true);
+            toolStripStatusLabel4.Text = "Info:Processing 'Release'";
             buildbutton_control(false);
             //launch_process("make clean unall","");
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
             launch_process("make build_lib", "make clean unall");
         }
-
         /*****************************************************************
         * Description:command line input.
         * Function name:toolStripTextBox5_KeyDown.
@@ -1199,6 +1214,5 @@ namespace WindowsFormsApplication3
             string path = @"..\08_Documents";
             System.Diagnostics.Process.Start(path);
         }
-
     }
 }

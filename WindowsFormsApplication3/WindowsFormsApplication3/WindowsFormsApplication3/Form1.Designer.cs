@@ -143,6 +143,7 @@
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripButton25 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -277,6 +278,7 @@
             this.toolStripButton8,
             this.toolStripButton9,
             this.toolStripButton10,
+            this.toolStripButton25,
             this.toolStripButton16,
             this.toolStripSeparator8,
             this.toolStripButton11,
@@ -1089,6 +1091,16 @@
             this.toolStripStatusLabel4.Text = "Info";
             this.toolStripStatusLabel4.Visible = false;
             // 
+            // toolStripButton25
+            // 
+            this.toolStripButton25.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton25.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton25.Image")));
+            this.toolStripButton25.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton25.Name = "toolStripButton25";
+            this.toolStripButton25.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton25.Text = "toolStripButton25";
+            this.toolStripButton25.Click += new System.EventHandler(this.toolStripButton25_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1235,6 +1247,7 @@
         private System.Windows.Forms.ToolStripMenuItem buildLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripButton toolStripButton25;
     }
 }
 
