@@ -812,11 +812,14 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void buildbutton_control(bool actived_status)
         {
-            toolStripButton7.Enabled = actived_status;
-            toolStripButton8.Enabled = actived_status;
-            toolStripButton9.Enabled = actived_status;
+            toolStripButton7.Enabled  = actived_status;
+            toolStripButton8.Enabled  = actived_status;
+            toolStripButton9.Enabled  = actived_status;
             toolStripButton10.Enabled = actived_status;
-            toolStripButton21.Enabled = actived_status;     
+            toolStripButton21.Enabled = actived_status;
+            textBox2.Enabled          = actived_status;
+            toolStripTextBox1.Enabled = actived_status;
+            toolStripTextBox2.Enabled = actived_status;
         }
 
         /*****************************************************************
