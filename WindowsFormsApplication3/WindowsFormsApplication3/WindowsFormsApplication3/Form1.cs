@@ -47,7 +47,8 @@ namespace WindowsFormsApplication3
 
         string cfg_compiler_path        = null;
         string cfg_project_name         = null;
-        string cfg_project_ver          = null;
+        string cfg_app_sw_ver           = null;
+        string cfg_low_sw_ver           = null;
         string my_output                = null;
 
         //suffix path
@@ -61,7 +62,8 @@ namespace WindowsFormsApplication3
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
         string Project_Name_Pattern     = "project_Name";
-        string Software_Version_Pattern = "Software_Version";
+        string App_SW_Version_Pattern   = "App_SW_Version";
+        string Low_SW_Version_Pattern   = "Low_SW_Version";
 
         //cfg path
         string cfg_file_path =  @"C:\Users\thinkpad\Desktop\proj.ini";
@@ -176,14 +178,24 @@ namespace WindowsFormsApplication3
                 }
 
                 //Get the software version
-                Match Software_Version_Result = Regex.Match(line, Software_Version_Pattern);
-                if (Software_Version_Result.Success == true)
+                Match App_SW_Version_Result = Regex.Match(line, App_SW_Version_Pattern);
+                if (App_SW_Version_Result.Success == true)
                 {
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();//remove the useless space
                     this.toolStripTextBox2.Text = resultString[1];
-                    cfg_project_ver = resultString[1];
+                    cfg_app_sw_ver = resultString[1];
+                }
+
+                Match Low_SW_Version_Result = Regex.Match(line, Low_SW_Version_Pattern);
+                if (Low_SW_Version_Result.Success == true)
+                {
+                    string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+
+                    resultString[1] = resultString[1].Trim();//remove the useless space
+                    this.toolStripTextBox3.Text = resultString[1];
+                    cfg_low_sw_ver = resultString[1];
                 }
                 my_output = my_output + line + "\r\n";
             }
@@ -1075,9 +1087,9 @@ namespace WindowsFormsApplication3
         }
 
         /*****************************************************************
-        * Description:Update the projet name from the toolStripTextBox2
+        * Description:Update the app sw ver from the toolStripTextBox2
         ******************************************************************/
-        private void Get_last_cfg_software_ver()
+        private void Get_last_cfg_app_sw_ver()
         {  
             //Get the last cfg_project_name
             StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
@@ -1085,13 +1097,13 @@ namespace WindowsFormsApplication3
             while ((line = sr.ReadLine()) != null)
             {
                 //Get the project name
-                Match Software_Version_Result = Regex.Match(line, Software_Version_Pattern);
-                if (Software_Version_Result.Success == true)
+                Match App_SW_Version_Result = Regex.Match(line, App_SW_Version_Pattern);
+                if (App_SW_Version_Result.Success == true)
                 {
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();  //remove the useless space
-                    cfg_project_ver = resultString[1];
+                    cfg_app_sw_ver  = resultString[1];
                 }
             }
             sr.Close();
@@ -1104,10 +1116,10 @@ namespace WindowsFormsApplication3
             //Update the software version
             if (e.KeyCode == Keys.Enter)
             {
-                Get_last_cfg_software_ver();
+                Get_last_cfg_app_sw_ver();
 
                 //check if the toolbox is changed!
-                string temp_1 = cfg_project_ver.Trim();
+                string temp_1 = cfg_app_sw_ver.Trim();
                 string temp_2 = toolStripTextBox2.Text.Trim();
 
                 if (temp_1 != temp_2) // toolbox is updated!
@@ -1123,10 +1135,10 @@ namespace WindowsFormsApplication3
                         string temp;
                         while ((line = sr.ReadLine()) != null)
                         {
-                            Match software_version_result = Regex.Match(line, Software_Version_Pattern);
-                            if (software_version_result.Success == true)
+                            Match App_SW_Version_result = Regex.Match(line, App_SW_Version_Pattern);
+                            if (App_SW_Version_result.Success == true)
                             {
-                                temp = line.Replace(cfg_project_ver, toolStripTextBox2.Text);
+                                temp = line.Replace(cfg_app_sw_ver, toolStripTextBox2.Text);
                             }
                             else
                             {
