@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*****************************************************************
+* Description:The C sharp application is created to manager the
+*             software platform 
+* Author: YP 
+* Time: 17/09/2017 
+******************************************************************/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//added
+//added classes
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
@@ -58,6 +64,7 @@ namespace WindowsFormsApplication3
         string inca_suffix_path         = @"\INCA.exe";
         string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
         string sourceinsight_suffix_path= @"Insight3.exe";
+        string everything_suffix_path   = @"\Everything.exe";
 
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
@@ -70,6 +77,14 @@ namespace WindowsFormsApplication3
  
         //Build command
         string empty_command = "";
+
+        //background search
+        //Because the paths of everything,inca and totalcommand can not be found in the
+        //register table of window, a background thread should be started to search the
+        //paths in all the directories of WINDOWS logicDrivers.
+        string bkgd_search_everything_dir   = @"Everything";
+        string bkgd_search_inca_dir         = @"ETAS\INCA7.1";
+        string bkgd_search_totalcommand_dir = @"totalcmd";
 
         //Old definition: public static string[] Setup_SW_Name = new string[]
         public static string[] Setup_SW_Name = new string[]{ "Matlab", "SmartGit", "UDE", "INCA", "TASKING", "Source Insight","Total Commander", "Everything"};
@@ -432,6 +447,9 @@ namespace WindowsFormsApplication3
             Parse_Project_Cfg_File(); // Parse the confiuration file
 
             //Check_compiler_path(); //Update the compiler path
+
+            //start the backwork1 for the paths search of everything,inca and total commander
+            backgroundWorker1.RunWorkerAsync();
         }
 
         /*****************************************************************
@@ -1435,6 +1453,123 @@ namespace WindowsFormsApplication3
             //show the help context!
             Form4 f = new Form4();
             f.Show();
+        }
+
+
+        /*****************************************************************
+        *
+        * Background Tasking used to search the paths of everything total commander and inca
+        * 
+        ******************************************************************/
+        int i = 10;
+        string my_test;
+        string my_test_midd;
+
+        int everything_search_count;
+        int inca_search_count;
+        int totalcmd_search_count;
+
+        string[] everything_search_path_array = new string[30];
+        string[] inca_search_path_array       = new string[30];
+        string[] totalcmd_search_path_array   = new string[30];
+        string[] temp_search_path_array       = new string[30];
+
+        int everything_search_array_length;
+        int inca_search_array_length;
+        int totalcmd_search_array_length;
+        int temp_search_array_length;
+        int index_counter;
+
+        int FindDirectory(String dirname)
+        {
+            String[] logicDrivers = Environment.GetLogicalDrives();
+            int count = 0;
+            for (int i = 0; i < logicDrivers.Length; i++)
+            {
+                List<String> dirlist = new List<string>();
+                getDirs(logicDrivers[i], dirname, dirlist);
+                String[] dirs = dirlist.ToArray();
+                for (int j = 0; j < dirs.Length; j++)
+                {                  
+                    Console.WriteLine(dirs[j]);
+                    temp_search_path_array[count] = dirs[j];
+                    count++;
+                    //this.textBox1.AppendText(dirs[j] + "\n");
+                }
+            }
+            return count;
+        }
+
+        void getDirs(String dirpath, String dirname, List<String> dirlist)
+        {
+            try
+            {
+                dirlist.AddRange(Directory.GetDirectories(dirpath, dirname, SearchOption.TopDirectoryOnly));
+                String[] dirs = Directory.GetDirectories(dirpath);
+                for (int i = 0; i < dirs.Length; i++)
+                {
+                    getDirs(dirs[i], dirname, dirlist);
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        //background task intended to deal with the path search.
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {      
+            //@Everything
+            //string bkgd_search_everything_dir = @"Everything";
+
+            //reset the index counter to 0;
+            everything_search_count = FindDirectory(bkgd_search_everything_dir);
+            if (everything_search_count > 0)
+            {
+                Array.Copy(temp_search_path_array, 0, everything_search_path_array, 0, everything_search_count);
+            }
+           
+  
+            //string bkgd_search_inca_dir = @"ETAS\INCA7.1";
+            //inca_search_count = FindDirectory(bkgd_search_inca_dir);
+
+            //string bkgd_search_totalcommand_dir = @"totalcmd";
+            //totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
+        }
+
+        //Report the info to main thread.
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {  
+            //Everything
+            int index;
+
+            if (everything_search_count > 0)
+            {
+                for (index = 0; index < everything_search_count; index++)
+                {
+                    string temp_everything_setup_path;
+                    // Org_everything_setup_path =;everything_setup_path
+                    temp_everything_setup_path = everything_search_path_array[index] + everything_suffix_path;
+                    if (System.IO.File.Exists(temp_everything_setup_path))
+                    {
+                        toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
+                        break; // jump out of the for loop.
+                    }
+                    else
+                    {
+                        toolStripButton20.Enabled = false;
+                    }
+                }
+            }
+
+            MessageBox.Show("异步执行完毕");
+            //Console.WriteLine("xiyanpeng_length: {0}", everything_search_count);
+            //foreach(string element in everything_search_path_array)
+            //{
+            //    Console.WriteLine("xiyanpeng: {0}", element);
+            //}
+ 
         }
     }
 }
