@@ -743,7 +743,29 @@ namespace WindowsFormsApplication3
                 statusstrip_info_print("Info:The Everything has been opened!");
             }
         }
-
+        //everything: open path
+        private void openPath_everything_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_everything_setup_path);
+        }
+        //everything: copy path
+        private void copyPath_everything_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_everything_setup_path); //copy target into Clipboard
+        }
+        //everything: end process
+        private void endprocess_everything_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "Everything")
+                {
+                    item.Kill();
+                }
+            }
+        }
         /*****************************************************************
         * Everything button end
         ******************************************************************/
@@ -1578,14 +1600,13 @@ namespace WindowsFormsApplication3
                 for (index = 0; index < everything_search_count; index++)
                 {
                     string temp_everything_setup_path;
-                    // Org_everything_setup_path =;everything_setup_path
+
                     temp_everything_setup_path = everything_search_path_array[index] + everything_suffix_path;
                     if (System.IO.File.Exists(temp_everything_setup_path))
-                    {
-                        toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
+                    {                       
                         Org_everything_setup_path = everything_search_path_array[index]; //Update path
                         everything_setup_path = temp_everything_setup_path; //Update path
-
+                        toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
                         break; // jump out of the for loop.
                     }
                     else
