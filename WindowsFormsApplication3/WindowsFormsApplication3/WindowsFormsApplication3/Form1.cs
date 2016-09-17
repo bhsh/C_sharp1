@@ -466,7 +466,7 @@ namespace WindowsFormsApplication3
             {
                 //yes 
                 DialogResult dr;
-                dr = MessageBox.Show(" The TASKING is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                dr = MessageBox.Show(" The TASKING is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                 {
@@ -522,7 +522,7 @@ namespace WindowsFormsApplication3
             {
                 //yes 
                 DialogResult dr;
-                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                dr = MessageBox.Show(" The MATLAB is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                 {
@@ -578,7 +578,7 @@ namespace WindowsFormsApplication3
             {
                 //yes 
                 DialogResult dr;
-                dr = MessageBox.Show(" The SmartGit is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                dr = MessageBox.Show(" The SmartGit is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                 {
@@ -634,7 +634,7 @@ namespace WindowsFormsApplication3
             {
                 //yes 
                 DialogResult dr;
-                dr = MessageBox.Show(" The UDE is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                dr = MessageBox.Show(" The UDE is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                 {
@@ -667,7 +667,7 @@ namespace WindowsFormsApplication3
             {
                 //yes 
                 DialogResult dr;
-                dr = MessageBox.Show(" The Insight3 is running now!\n Do you want to open anothor one?", "Notice", MessageBoxButtons.YesNo,
+                dr = MessageBox.Show(" The Insight3 is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                 {
@@ -712,6 +712,40 @@ namespace WindowsFormsApplication3
         }
         /*****************************************************************
         * The Source Insight button end
+        ******************************************************************/
+
+        /*****************************************************************
+        * Everything button
+        ******************************************************************/
+        private void toolStripButton20_ButtonClick(object sender, EventArgs e)
+        {
+            //everything
+            if (System.Diagnostics.Process.GetProcessesByName("Everything").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The Everything is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(everything_setup_path);
+                    statusstrip_info_print("Info:The Everything has been opened!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(everything_setup_path);
+                statusstrip_info_print("Info:The Everything has been opened!");
+            }
+        }
+
+        /*****************************************************************
+        * Everything button end
         ******************************************************************/
 
         public void Write_File(string path,string info_stream)
@@ -1420,11 +1454,6 @@ namespace WindowsFormsApplication3
 
         }
 
-        private void toolStripButton20_ButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripButton6_ButtonClick(object sender, EventArgs e)
         {
 
@@ -1554,6 +1583,9 @@ namespace WindowsFormsApplication3
                     if (System.IO.File.Exists(temp_everything_setup_path))
                     {
                         toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
+                        Org_everything_setup_path = everything_search_path_array[index]; //Update path
+                        everything_setup_path = temp_everything_setup_path; //Update path
+
                         break; // jump out of the for loop.
                     }
                     else
