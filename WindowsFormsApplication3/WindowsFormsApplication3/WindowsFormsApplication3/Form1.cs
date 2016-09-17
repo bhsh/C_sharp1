@@ -27,29 +27,29 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
-        string tasking_setup_path       = null;
-        string matlab_setup_path        = null;
-        string smartgit_setup_path      = null;
-        string ude_setup_path           = null;
-        string inca_setup_path          = null;
-        string sourceinsight_setup_path = null;
-        string everything_setup_path    = null;
-        string totalcommander_setup_path= null;
+        string tasking_setup_path       = "";
+        string matlab_setup_path        = "";
+        string smartgit_setup_path      = "";
+        string ude_setup_path           = "";
+        string inca_setup_path          = "";
+        string sourceinsight_setup_path = "";
+        string everything_setup_path    = "";
+        string totalcommander_setup_path= "";
 
-        string Org_tasking_setup_path        = null;
-        string Org_matlab_setup_path         = null;
-        string Org_smartgit_setup_path       = null;
-        string Org_ude_setup_path            = null;
-        string Org_inca_setup_path           = null;
-        string Org_sourceinsight_setup_path  = null;
-        string Org_everything_setup_path     = null;
-        string Org_totalcommander_setup_path = null;
+        string Org_tasking_setup_path        = "";
+        string Org_matlab_setup_path         = "";
+        string Org_smartgit_setup_path       = "";
+        string Org_ude_setup_path            = "";
+        string Org_inca_setup_path           = "";
+        string Org_sourceinsight_setup_path  = "";
+        string Org_everything_setup_path     = "";
+        string Org_totalcommander_setup_path = "";
 
-        string cfg_compiler_path        = null;
-        string cfg_project_name         = null;
-        string cfg_app_sw_ver           = null;
-        string cfg_low_sw_ver           = null;
-        string my_output                = null;
+        string cfg_compiler_path        = "";
+        string cfg_project_name         = "";
+        string cfg_app_sw_ver           = "";
+        string cfg_low_sw_ver           = "";
+        string my_output                = "";
 
         //suffix path
         string matlab_suffix_path       = @"\bin\matlab.exe";
@@ -71,9 +71,10 @@ namespace WindowsFormsApplication3
         //Build command
         string empty_command = "";
 
-        public static string[] Setup_SW_Name = new string[8];
-        public static string[] Setup_SW_Path = new string[8];
-
+        //Old definition: public static string[] Setup_SW_Name = new string[]
+        public static string[] Setup_SW_Name = new string[]{ "Matlab", "SmartGit", "UDE", "INCA", "TASKING", "Source Insight","Total Commander", "Everything"};
+        public static string[] Setup_SW_Path = new string[] { "", "", "", "", "", "", "", "", "", "" };
+        string Not_Detected_Result = "Not be detected";
         /*****************************************************************
         * The End of the Definitions  
         ******************************************************************/
@@ -222,6 +223,7 @@ namespace WindowsFormsApplication3
         {
             string str = Getinstalledsoftware(); //Get the list of all the setup softwares
             string[] sArr = str.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries); //Store the list into array
+            int index;
             //Console.WriteLine("SystemDirectory: {0}", sArr[0]);
 
             //Search the list array for the avaliable setup path
@@ -284,6 +286,14 @@ namespace WindowsFormsApplication3
 
                     Setup_SW_Name[5] = string_local_sourceinsight[0].Trim();
                     Setup_SW_Path[5] = string_local_sourceinsight[1].Trim();
+                }
+
+                for(index = 0;index < Setup_SW_Name.Length;index++)
+                {
+                    if (Setup_SW_Path[index] == "")
+                   {
+                       Setup_SW_Path[index] = Not_Detected_Result;
+                   }                    
                 }
             } 
       
