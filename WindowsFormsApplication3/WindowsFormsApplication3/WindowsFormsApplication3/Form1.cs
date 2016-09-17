@@ -65,6 +65,7 @@ namespace WindowsFormsApplication3
         string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
         string sourceinsight_suffix_path= @"Insight3.exe";
         string everything_suffix_path   = @"\Everything.exe";
+        string totalcmd_suffix_path     = @"\TOTALCMD.EXE";
 
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
@@ -712,6 +713,62 @@ namespace WindowsFormsApplication3
         }
         /*****************************************************************
         * The Source Insight button end
+        ******************************************************************/
+
+        /*****************************************************************
+        * Total Commander button
+        ******************************************************************/
+        private void toolStripButton19_ButtonClick(object sender, EventArgs e)
+        {
+            //total commander
+            if (System.Diagnostics.Process.GetProcessesByName("TOTALCMD").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The totalcmd is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process.Start(totalcommander_setup_path);
+                    statusstrip_info_print("Info:The totalcmd has been opened!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                //no 
+                Process.Start(totalcommander_setup_path);
+                statusstrip_info_print("Info:The totalcmd has been opened!");
+            }
+        }
+        //totalcmd: open path
+        private void openPath_totalcmd_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_totalcommander_setup_path);
+        }
+        //totalcmd: copy path
+        private void copyPath_totalcmd_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_totalcommander_setup_path); //copy target into Clipboard
+        }
+        //totalcmd: end process
+        private void endprocess_totalcmd_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "TOTALCMD")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * Total Commander end
         ******************************************************************/
 
         /*****************************************************************
@@ -1471,11 +1528,6 @@ namespace WindowsFormsApplication3
             statusstrip_info_print("Info:The screen has been cleared!");
         }
 
-        private void toolStripButton19_ButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripButton6_ButtonClick(object sender, EventArgs e)
         {
 
@@ -1573,30 +1625,32 @@ namespace WindowsFormsApplication3
         {      
             //@Everything
             //string bkgd_search_everything_dir = @"Everything";
-
-            //reset the index counter to 0;
             everything_search_count = FindDirectory(bkgd_search_everything_dir);
             if (everything_search_count > 0)
             {
                 Array.Copy(temp_search_path_array, 0, everything_search_path_array, 0, everything_search_count);
             }
-           
-  
+
+            //@Everything
             //string bkgd_search_inca_dir = @"ETAS\INCA7.1";
             //inca_search_count = FindDirectory(bkgd_search_inca_dir);
 
+            //@Totalcommander
             //string bkgd_search_totalcommand_dir = @"totalcmd";
-            //totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
+            totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
+            if (totalcmd_search_count > 0)
+            {
+                Array.Copy(temp_search_path_array, 0, totalcmd_search_path_array, 0, totalcmd_search_count);
+            }
         }
 
         //Report the info to main thread.
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {  
+        {   
             //Everything
-            int index;
-
             if (everything_search_count > 0)
             {
+                int index;
                 for (index = 0; index < everything_search_count; index++)
                 {
                     string temp_everything_setup_path;
@@ -1616,7 +1670,29 @@ namespace WindowsFormsApplication3
                 }
             }
 
-            MessageBox.Show("异步执行完毕");
+            //Totalcommander
+            if (totalcmd_search_count > 0)
+            {
+                int index;
+                for (index = 0; index < totalcmd_search_count; index++)
+                {
+                    string temp_totalcmd_setup_path;
+
+                    temp_totalcmd_setup_path = totalcmd_search_path_array[index] + totalcmd_suffix_path;
+                    if (System.IO.File.Exists(temp_totalcmd_setup_path))
+                    {
+                        Org_totalcommander_setup_path = totalcmd_search_path_array[index]; //Update path
+                        totalcommander_setup_path = temp_totalcmd_setup_path; //Update path
+                        toolStripButton19.Enabled = true; //The button is enabled because of the the valid totalcmd path is found!
+                        break; // jump out of the for loop.
+                    }
+                    else
+                    {
+                        toolStripButton19.Enabled = false;
+                    }
+                }
+            }
+            //MessageBox.Show("异步执行完毕");
             //Console.WriteLine("xiyanpeng_length: {0}", everything_search_count);
             //foreach(string element in everything_search_path_array)
             //{

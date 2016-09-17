@@ -753,14 +753,16 @@
             // openPathToolStripMenuItem4
             // 
             this.openPathToolStripMenuItem4.Name = "openPathToolStripMenuItem4";
-            this.openPathToolStripMenuItem4.Size = new System.Drawing.Size(147, 22);
+            this.openPathToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.openPathToolStripMenuItem4.Text = "Open Path";
+            this.openPathToolStripMenuItem4.Click += new System.EventHandler(this.openPath_totalcmd_Click);
             // 
             // copyPathToolStripMenuItem3
             // 
             this.copyPathToolStripMenuItem3.Name = "copyPathToolStripMenuItem3";
-            this.copyPathToolStripMenuItem3.Size = new System.Drawing.Size(147, 22);
+            this.copyPathToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.copyPathToolStripMenuItem3.Text = "Copy Path";
+            this.copyPathToolStripMenuItem3.Click += new System.EventHandler(this.copyPath_totalcmd_Click);
             // 
             // toolStripSeparator11
             // 
@@ -770,8 +772,9 @@
             // endProcessToolStripMenuItem4
             // 
             this.endProcessToolStripMenuItem4.Name = "endProcessToolStripMenuItem4";
-            this.endProcessToolStripMenuItem4.Size = new System.Drawing.Size(147, 22);
+            this.endProcessToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.endProcessToolStripMenuItem4.Text = "End Process";
+            this.endProcessToolStripMenuItem4.Click += new System.EventHandler(this.endprocess_totalcmd_Click);
             // 
             // toolStripButton20
             // 
@@ -791,14 +794,14 @@
             // openPathToolStripMenuItem5
             // 
             this.openPathToolStripMenuItem5.Name = "openPathToolStripMenuItem5";
-            this.openPathToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.openPathToolStripMenuItem5.Size = new System.Drawing.Size(147, 22);
             this.openPathToolStripMenuItem5.Text = "Open Path";
             this.openPathToolStripMenuItem5.Click += new System.EventHandler(this.openPath_everything_Click);
             // 
             // copyPathToolStripMenuItem4
             // 
             this.copyPathToolStripMenuItem4.Name = "copyPathToolStripMenuItem4";
-            this.copyPathToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.copyPathToolStripMenuItem4.Size = new System.Drawing.Size(147, 22);
             this.copyPathToolStripMenuItem4.Text = "Copy Path";
             this.copyPathToolStripMenuItem4.Click += new System.EventHandler(this.copyPath_everything_Click);
             // 
@@ -810,7 +813,7 @@
             // endProcessToolStripMenuItem5
             // 
             this.endProcessToolStripMenuItem5.Name = "endProcessToolStripMenuItem5";
-            this.endProcessToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.endProcessToolStripMenuItem5.Size = new System.Drawing.Size(147, 22);
             this.endProcessToolStripMenuItem5.Text = "End Process";
             this.endProcessToolStripMenuItem5.Click += new System.EventHandler(this.endprocess_everything_Click);
             // 
