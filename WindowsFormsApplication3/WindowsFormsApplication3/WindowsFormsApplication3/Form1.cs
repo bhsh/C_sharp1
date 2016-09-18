@@ -1911,7 +1911,7 @@ namespace WindowsFormsApplication3
                 string str = System.IO.Path.GetFileName(element);
                //*****************************************************************
                //Update listview
-               if (Regex.IsMatch(str, input_pattern))
+                if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
                {
                    this.listView1.BeginUpdate();
                    ListViewItem lvi = new ListViewItem();
