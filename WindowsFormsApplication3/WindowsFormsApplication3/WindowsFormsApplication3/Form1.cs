@@ -1952,7 +1952,19 @@ namespace WindowsFormsApplication3
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            MessageBox.Show("selected"); 
+            //MessageBox.Show("selected"); 
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //listView1.ContextMenuStrip = null;
+                //contextMenuStrip2.Show(listView1, e.Location);
+                contextMenuStrip1.Show(listView1, e.Location);
+                //MessageBox.Show("MouseButton Right Clicked");
+
+            }
         }
     }
 }
