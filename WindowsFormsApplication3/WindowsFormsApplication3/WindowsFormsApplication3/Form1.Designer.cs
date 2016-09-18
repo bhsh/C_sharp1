@@ -1314,6 +1314,7 @@
             this.copyFullNameToolStripMenuItem.Name = "copyFullNameToolStripMenuItem";
             this.copyFullNameToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.copyFullNameToolStripMenuItem.Text = "Copy Full Name to Clipboard";
+            this.copyFullNameToolStripMenuItem.Click += new System.EventHandler(this.copyFullNameToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 

@@ -2014,5 +2014,12 @@ namespace WindowsFormsApplication3
             ProcessStartInfo pfi = new ProcessStartInfo("Explorer.exe", args);
             System.Diagnostics.Process.Start(pfi);
         }
+
+        //copy file full name into Clipboard
+        private void copyFullNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, listView1.SelectedItems[0].SubItems[1].Text); //copy target into Clipboard
+        }
     }
 }
