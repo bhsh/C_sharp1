@@ -1642,10 +1642,6 @@ namespace WindowsFormsApplication3
         * Background Tasking used to search the paths of everything total commander and inca
         * 
         ******************************************************************/
-        int i = 10;
-        string my_test;
-        string my_test_midd;
-
         int everything_search_count;
         int inca_search_count;
         int totalcmd_search_count;
@@ -1654,12 +1650,6 @@ namespace WindowsFormsApplication3
         string[] inca_search_path_array       = new string[30];
         string[] totalcmd_search_path_array   = new string[30];
         string[] temp_search_path_array       = new string[30];
-
-        int everything_search_array_length;
-        int inca_search_array_length;
-        int totalcmd_search_array_length;
-        int temp_search_array_length;
-        int index_counter;
 
         int FindDirectory(String dirname)
         {
@@ -1702,6 +1692,7 @@ namespace WindowsFormsApplication3
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {      
             //@Everything
+            //backgroundWorker1.ReportProgress(0);
             //string bkgd_search_everything_dir = @"Everything";
             everything_search_count = FindDirectory(bkgd_search_everything_dir);
             if (everything_search_count > 0)
@@ -1710,6 +1701,7 @@ namespace WindowsFormsApplication3
             }
 
             //@INCA
+            //backgroundWorker1.ReportProgress(1);
             //string bkgd_search_inca_dir = @"ETAS\INCA7.1";
             inca_search_count = FindDirectory(bkgd_search_inca_dir);
             if (inca_search_count > 0)
@@ -1718,12 +1710,14 @@ namespace WindowsFormsApplication3
             }
 
             //@Totalcommander
+            //backgroundWorker1.ReportProgress(2);
             //string bkgd_search_totalcommand_dir = @"totalcmd";
             totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
             if (totalcmd_search_count > 0)
             {
                 Array.Copy(temp_search_path_array, 0, totalcmd_search_path_array, 0, totalcmd_search_count);
             }
+            //backgroundWorker1.ReportProgress(3);
         }
 
         //Report the info to main thread.
@@ -1804,6 +1798,27 @@ namespace WindowsFormsApplication3
             //    Console.WriteLine("xiyanpeng: {0}", element);
             //}
  
+        } 
+        //The progress report thread is processed by the main.
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            switch (e.ProgressPercentage)
+            {
+                case 0:
+                    statusstrip_info_print("Info: Searching WINDOWS for Everything...");
+                    break;
+                case 1:
+                    statusstrip_info_print("Info: Searching WINDOWS for INCA...");
+                    break;
+                case 2:
+                    statusstrip_info_print("Info: Searching WINDOWS for totalcmd");
+                    break;
+                case 3:
+                    statusstrip_info_print("Info: Everything, INCA and totalcmd have be detected in the PC!");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
