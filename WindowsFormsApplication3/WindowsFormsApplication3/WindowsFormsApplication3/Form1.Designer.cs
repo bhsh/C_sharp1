@@ -156,6 +156,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -1184,6 +1188,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(690, 318);
             this.tabControl1.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.tabControl1, "Search");
             // 
             // tabPage1
             // 
@@ -1225,11 +1230,17 @@
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(673, 253);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // textBox3
             // 
@@ -1237,6 +1248,23 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(673, 21);
             this.textBox3.TabIndex = 1;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Path";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Size";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Date Modified";
+            this.columnHeader4.Width = 159;
             // 
             // Form1
             // 
@@ -1402,6 +1430,10 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 
