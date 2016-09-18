@@ -1944,5 +1944,15 @@ namespace WindowsFormsApplication3
                //*****************************************************************
             }      
         }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+           //MessageBox.Show("selected"); 
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            MessageBox.Show("selected"); 
+        }
     }
 }
