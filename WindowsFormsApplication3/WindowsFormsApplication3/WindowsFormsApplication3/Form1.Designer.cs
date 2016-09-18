@@ -131,7 +131,6 @@
             this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton23 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton24 = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -151,10 +150,19 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -837,14 +845,14 @@
             // openPathToolStripMenuItem6
             // 
             this.openPathToolStripMenuItem6.Name = "openPathToolStripMenuItem6";
-            this.openPathToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.openPathToolStripMenuItem6.Size = new System.Drawing.Size(147, 22);
             this.openPathToolStripMenuItem6.Text = "Open Path";
             this.openPathToolStripMenuItem6.Click += new System.EventHandler(this.openPath_inca_Click);
             // 
             // copyPathToolStripMenuItem5
             // 
             this.copyPathToolStripMenuItem5.Name = "copyPathToolStripMenuItem5";
-            this.copyPathToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.copyPathToolStripMenuItem5.Size = new System.Drawing.Size(147, 22);
             this.copyPathToolStripMenuItem5.Text = "Copy Path";
             this.copyPathToolStripMenuItem5.Click += new System.EventHandler(this.copyPath_inca_Click);
             // 
@@ -856,7 +864,7 @@
             // endProcessToolStripMenuItem6
             // 
             this.endProcessToolStripMenuItem6.Name = "endProcessToolStripMenuItem6";
-            this.endProcessToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.endProcessToolStripMenuItem6.Size = new System.Drawing.Size(147, 22);
             this.endProcessToolStripMenuItem6.Text = "End Process";
             this.endProcessToolStripMenuItem6.Click += new System.EventHandler(this.endprocess_inca_Click);
             // 
@@ -1018,20 +1026,6 @@
             this.toolStripButton24.ToolTipText = "Help";
             this.toolStripButton24.Click += new System.EventHandler(this.toolStripButton24_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(2, 105);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(690, 291);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1163,9 +1157,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(2, 78);
+            this.textBox2.Location = new System.Drawing.Point(6, 6);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(690, 21);
+            this.textBox2.Size = new System.Drawing.Size(673, 21);
             this.textBox2.TabIndex = 7;
             this.toolTip1.SetToolTip(this.textBox2, "Command Line");
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox5_KeyDown);
@@ -1181,15 +1175,77 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(2, 78);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(690, 318);
+            this.tabControl1.TabIndex = 8;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(682, 292);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Cmd Console";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.listView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(682, 292);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "List";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(6, 33);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(673, 253);
+            this.textBox1.TabIndex = 9;
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(6, 33);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(673, 253);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(6, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(673, 21);
+            this.textBox3.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 421);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1208,6 +1264,11 @@
             this.toolStrip2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1222,7 +1283,6 @@
         private System.Windows.Forms.ToolStripMenuItem buildToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -1336,6 +1396,12 @@
         private System.Windows.Forms.ToolStripMenuItem setupListToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 
