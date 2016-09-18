@@ -1901,7 +1901,7 @@ namespace WindowsFormsApplication3
             ///MessageBox.Show("changed");  test ok
 
             //clear the listview
-            //this.listView1.Items.Clear();
+            this.listView1.Items.Clear();
 
             //Get the pattern input from textbox input
             string input_pattern = textBox3.Text.Trim();
