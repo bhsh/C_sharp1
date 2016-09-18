@@ -753,14 +753,14 @@
             // openPathToolStripMenuItem4
             // 
             this.openPathToolStripMenuItem4.Name = "openPathToolStripMenuItem4";
-            this.openPathToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.openPathToolStripMenuItem4.Size = new System.Drawing.Size(147, 22);
             this.openPathToolStripMenuItem4.Text = "Open Path";
             this.openPathToolStripMenuItem4.Click += new System.EventHandler(this.openPath_totalcmd_Click);
             // 
             // copyPathToolStripMenuItem3
             // 
             this.copyPathToolStripMenuItem3.Name = "copyPathToolStripMenuItem3";
-            this.copyPathToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.copyPathToolStripMenuItem3.Size = new System.Drawing.Size(147, 22);
             this.copyPathToolStripMenuItem3.Text = "Copy Path";
             this.copyPathToolStripMenuItem3.Click += new System.EventHandler(this.copyPath_totalcmd_Click);
             // 
@@ -772,7 +772,7 @@
             // endProcessToolStripMenuItem4
             // 
             this.endProcessToolStripMenuItem4.Name = "endProcessToolStripMenuItem4";
-            this.endProcessToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.endProcessToolStripMenuItem4.Size = new System.Drawing.Size(147, 22);
             this.endProcessToolStripMenuItem4.Text = "End Process";
             this.endProcessToolStripMenuItem4.Click += new System.EventHandler(this.endprocess_totalcmd_Click);
             // 
@@ -837,14 +837,16 @@
             // openPathToolStripMenuItem6
             // 
             this.openPathToolStripMenuItem6.Name = "openPathToolStripMenuItem6";
-            this.openPathToolStripMenuItem6.Size = new System.Drawing.Size(147, 22);
+            this.openPathToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
             this.openPathToolStripMenuItem6.Text = "Open Path";
+            this.openPathToolStripMenuItem6.Click += new System.EventHandler(this.openPath_inca_Click);
             // 
             // copyPathToolStripMenuItem5
             // 
             this.copyPathToolStripMenuItem5.Name = "copyPathToolStripMenuItem5";
-            this.copyPathToolStripMenuItem5.Size = new System.Drawing.Size(147, 22);
+            this.copyPathToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.copyPathToolStripMenuItem5.Text = "Copy Path";
+            this.copyPathToolStripMenuItem5.Click += new System.EventHandler(this.copyPath_inca_Click);
             // 
             // toolStripSeparator13
             // 
@@ -854,8 +856,9 @@
             // endProcessToolStripMenuItem6
             // 
             this.endProcessToolStripMenuItem6.Name = "endProcessToolStripMenuItem6";
-            this.endProcessToolStripMenuItem6.Size = new System.Drawing.Size(147, 22);
+            this.endProcessToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
             this.endProcessToolStripMenuItem6.Text = "End Process";
+            this.endProcessToolStripMenuItem6.Click += new System.EventHandler(this.endprocess_inca_Click);
             // 
             // toolStripSeparator2
             // 

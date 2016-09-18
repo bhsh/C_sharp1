@@ -61,11 +61,13 @@ namespace WindowsFormsApplication3
         string matlab_suffix_path       = @"\bin\matlab.exe";
         string smartgit_suffix_path     = @"bin\smartgit.exe";
         string ude_suffix_path          = @"\UdeDesktop.exe";
-        string inca_suffix_path         = @"\INCA.exe";
+        string inca_suffix_path         = @"\Inca.exe";
         string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
         string sourceinsight_suffix_path= @"Insight3.exe";
         string everything_suffix_path   = @"\Everything.exe";
         string totalcmd_suffix_path     = @"\TOTALCMD.EXE";
+
+        string inca_arguments           = @"-ietas.icx";
 
         //.ini cfg file 
         string Compiler_Path_Pattern    = "Compiler_Path";
@@ -361,16 +363,6 @@ namespace WindowsFormsApplication3
             else
             {
                 toolStripButton1.Enabled = false;
-            }
-
-            //totalcommander:check if the path exsits
-            if (System.IO.File.Exists(totalcommander_setup_path))
-            {
-                toolStripButton19.Enabled = true;
-            }
-            else
-            {
-                toolStripButton19.Enabled = false;
             }
 
             //totalcommander:check if the path exsits
@@ -826,6 +818,96 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Everything button end
         ******************************************************************/
+        /*****************************************************************
+        * inca button
+        ******************************************************************/
+        private void toolStripButton6_ButtonClick(object sender, EventArgs e)
+        {
+            //inca
+            if (System.Diagnostics.Process.GetProcessesByName("Inca").ToList().Count > 0)
+            {
+                //yes 
+                DialogResult dr;
+                dr = MessageBox.Show(" The INCA is running now!\n Do you want to open another one?", "Notice", MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                {
+                    Process p = new Process(); //Create a local process
+                    p.StartInfo.FileName = "cmd.exe";  //Set the program name
+                    p.StartInfo.UseShellExecute = false;    //Disable the shell to be started!
+                    p.StartInfo.RedirectStandardInput = true;  //Set the redirect input
+                    p.StartInfo.RedirectStandardOutput = true; //Set the redirect output  
+                    p.StartInfo.RedirectStandardError = true;  //Set the redirect error      
+                    p.StartInfo.CreateNoWindow = true;  //Don't show the process in window.
+
+                    p.Start();    //start the process
+
+                    //p.StandardInput.WriteLine(@"cd /d C:\ETAS\INCA7.1");
+                    p.StandardInput.WriteLine("cd" + "/d"+ Org_inca_setup_path);
+
+                    //p.StandardInput.WriteLine(@"C:\ETAS\INCA7.1\Inca.exe -ietas.icx");
+                    p.StandardInput.WriteLine(inca_setup_path + " " + inca_arguments);
+
+                    p.Close(); //Close the local process
+
+                    statusstrip_info_print("Info:The INCA has been opened!");
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //do nothing!
+                }
+            }
+            else
+            {
+                Process p = new Process(); //Create a local process
+                p.StartInfo.FileName = "cmd.exe";  //Set the program name
+                p.StartInfo.UseShellExecute = false;    //Disable the shell to be started!
+                p.StartInfo.RedirectStandardInput = true;  //Set the redirect input
+                p.StartInfo.RedirectStandardOutput = true; //Set the redirect output  
+                p.StartInfo.RedirectStandardError = true;  //Set the redirect error      
+                p.StartInfo.CreateNoWindow = true;  //Don't show the process in window.
+
+                p.Start();    //start the process
+
+                //p.StandardInput.WriteLine(@"cd /d C:\ETAS\INCA7.1");
+                p.StandardInput.WriteLine("cd" + "/d" + Org_inca_setup_path);
+
+                //p.StartInfo.Verb = "runas";
+                //p.StandardInput.WriteLine(@"C:\ETAS\INCA7.1\Inca.exe -ietas.icx");
+                p.StandardInput.WriteLine(inca_setup_path + " " +inca_arguments);
+
+                p.Close(); //Close the local process
+
+                statusstrip_info_print("Info:The INCA has been opened!" + inca_setup_path + inca_arguments);
+            }
+        }
+
+        //inca: open path
+        private void openPath_inca_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Org_inca_setup_path);
+        }
+        //inca: copy path
+        private void copyPath_inca_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();//clear Clipboard 
+            Clipboard.SetData(DataFormats.Text, Org_inca_setup_path); //copy target into Clipboard
+        }
+        //inca: end process
+        private void endprocess_inca_Click(object sender, EventArgs e)
+        {
+            Process[] ps = Process.GetProcesses();
+            foreach (Process item in ps)
+            {
+                if (item.ProcessName == "Inca")
+                {
+                    item.Kill();
+                }
+            }
+        }
+        /*****************************************************************
+        * inca button end
+        ******************************************************************/
 
         public void Write_File(string path,string info_stream)
         {
@@ -1053,6 +1135,7 @@ namespace WindowsFormsApplication3
             buildbutton_control(false); //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar
             launch_process("make all", empty_command);//launch the command process
+            //launch_process(@"cd /d C:\ETAS\INCA7.1",@"C:\ETAS\INCA7.1\Inca.exe -ietas.icx");//launch the command process
         }
         /*****************************************************************
         * Description:make clean all.
@@ -1528,11 +1611,6 @@ namespace WindowsFormsApplication3
             statusstrip_info_print("Info:The screen has been cleared!");
         }
 
-        private void toolStripButton6_ButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void asToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\thinkpad\Desktop\makefile";
@@ -1631,9 +1709,13 @@ namespace WindowsFormsApplication3
                 Array.Copy(temp_search_path_array, 0, everything_search_path_array, 0, everything_search_count);
             }
 
-            //@Everything
+            //@INCA
             //string bkgd_search_inca_dir = @"ETAS\INCA7.1";
-            //inca_search_count = FindDirectory(bkgd_search_inca_dir);
+            inca_search_count = FindDirectory(bkgd_search_inca_dir);
+            if (inca_search_count > 0)
+            {
+                Array.Copy(temp_search_path_array, 0, inca_search_path_array, 0, inca_search_count);
+            }
 
             //@Totalcommander
             //string bkgd_search_totalcommand_dir = @"totalcmd";
@@ -1666,6 +1748,29 @@ namespace WindowsFormsApplication3
                     else
                     {
                         toolStripButton20.Enabled = false;
+                    }
+                }
+            }
+
+            //inca
+            if (inca_search_count > 0)
+            {
+                int index;
+                for (index = 0; index < inca_search_count; index++)
+                {
+                    string temp_inca_setup_path;
+
+                    temp_inca_setup_path = inca_search_path_array[index] + inca_suffix_path;
+                    if (System.IO.File.Exists(temp_inca_setup_path))
+                    {
+                        Org_inca_setup_path = inca_search_path_array[index]; //Update path
+                        inca_setup_path = temp_inca_setup_path; //Update path
+                        toolStripButton6.Enabled = true; //The button is enabled because of the the valid inca path is found!
+                        break; // jump out of the for loop.
+                    }
+                    else
+                    {
+                        toolStripButton6.Enabled = false;
                     }
                 }
             }
