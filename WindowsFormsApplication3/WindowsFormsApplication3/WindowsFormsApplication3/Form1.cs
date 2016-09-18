@@ -1959,9 +1959,21 @@ namespace WindowsFormsApplication3
         {
             if (e.Button == MouseButtons.Right)
             {
+                int selectCount = listView1.SelectedItems.Count; //SelectedItems.Count就是：取得值，表示SelectedItems集合的物件数目。 
+                if (selectCount > 0)//若selectCount大於0，说明用户有选中某列。
+                {
+                    //txtName.Text =  listView1.SelectedItems[0].SubItems[0].Text;
+                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
+                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
+                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
+                    //txtAge.Text  =  listView1.SelectedItems[0].SubItems[1].Text;
+                    //txtSex.Text  =  listView1.SelectedItems[0].SubItems[2].Text;
+                    contextMenuStrip1.Show(listView1, e.Location);
+                }
+
                 //listView1.ContextMenuStrip = null;
                 //contextMenuStrip2.Show(listView1, e.Location);
-                contextMenuStrip1.Show(listView1, e.Location);
+               
                 //MessageBox.Show("MouseButton Right Clicked");
 
             }
