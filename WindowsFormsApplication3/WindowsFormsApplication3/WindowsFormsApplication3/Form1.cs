@@ -442,7 +442,7 @@ namespace WindowsFormsApplication3
             //Check_compiler_path(); //Update the compiler path
 
             //start the backwork1 for the paths search of everything,inca and total commander
-            backgroundWorker1.RunWorkerAsync();
+            //backgroundWorker1.RunWorkerAsync();
         }
 
         /*****************************************************************
@@ -1609,6 +1609,29 @@ namespace WindowsFormsApplication3
         {
             textBox1.Text = "";  //clear the info windows first.
             statusstrip_info_print("Info:The screen has been cleared!");
+
+            initialize_file_list();
+            return;
+            //test code
+            String path = @"E:\WorkArea\K245ECU";
+
+            //第一种方法
+            //var files = Directory.GetFiles(path, "*.*");
+            //var files = Directory.GetFiles(path);
+
+            //var files = Directory.GetDirectories(path);
+            var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            foreach (var file in files)
+            {
+                //Console.WriteLine(System.IO.Path.GetFileName(file));
+                Console.WriteLine(file);
+            }
+            Console.WriteLine(files.Length);
+
+
+            //string[] fileNames = Directory.GetFiles(path);
+            //string[] directories = Directory.GetDirectories(path); 
+            //test code
         }
 
         private void asToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1819,6 +1842,56 @@ namespace WindowsFormsApplication3
                 default:
                     break;
             }
+        }
+
+        /*****************************************************************
+        *
+        * Background Tasking used to search the paths of everything total commander and inca
+        * 
+        ******************************************************************/
+        string[] FILE_NAME_LIST;
+        string[] FILE_PATH_LIST;
+        int      FILE_LIST_SIZE;
+
+        //the function is called in background.
+        private void initialize_file_list()
+        {
+            String path = @"E:\WorkArea\K245ECU\01_Mak";
+            int i = 0;
+
+            FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            //FILE_NAME_LIST = FILE_PATH_LIST;
+
+
+            //*****************************************************************
+            //Update listview
+            while (i < FILE_PATH_LIST.Length)
+            {
+                this.listView1.BeginUpdate();
+                ListViewItem lvi = new ListViewItem();
+                FileInfo f = new FileInfo(FILE_PATH_LIST[i]);
+
+                lvi.ImageIndex = i;   
+                lvi.Text = System.IO.Path.GetFileName(FILE_PATH_LIST[i]);
+
+                lvi.SubItems.Add(FILE_PATH_LIST[i]);
+                lvi.SubItems.Add(f.Length.ToString());
+                lvi.SubItems.Add(f.LastWriteTime.ToString());
+     
+                this.listView1.Items.Add(lvi);
+                this.listView1.EndUpdate(); 
+                //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
+                i++;
+            }
+
+            //Update listview end
+            //*****************************************************************
+
+            Console.WriteLine(FILE_PATH_LIST.Length);
+            
+            //string[] fileNames = Directory.GetFiles(path);
+            //string[] directories = Directory.GetDirectories(path); 
+            //test code      
         }
     }
 }

@@ -1253,19 +1253,22 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 170;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Path";
+            this.columnHeader2.Width = 300;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Size";
+            this.columnHeader3.Width = 50;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Date Modified";
-            this.columnHeader4.Width = 159;
+            this.columnHeader4.Width = 150;
             // 
             // Form1
             // 
