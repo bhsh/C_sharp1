@@ -1955,19 +1955,24 @@ namespace WindowsFormsApplication3
             //MessageBox.Show("selected"); 
         }
 
+        int selectCount = 0;
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                int selectCount = listView1.SelectedItems.Count; //SelectedItems.Count就是：取得值，表示SelectedItems集合的物件数目。 
-                if (selectCount > 0)//若selectCount大於0，说明用户有选中某列。
-                {
+                selectCount = listView1.SelectedItems.Count; //SelectedItems.Count
+                if (selectCount > 0)//if selectcount >0 ,there is item selected!
+                {              
+                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
+                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
+                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
+                   // Console.WriteLine("xiyanpeng: {0}", selectCount);
+
                     //txtName.Text =  listView1.SelectedItems[0].SubItems[0].Text;
-                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
-                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
-                    Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
                     //txtAge.Text  =  listView1.SelectedItems[0].SubItems[1].Text;
                     //txtSex.Text  =  listView1.SelectedItems[0].SubItems[2].Text;
+
+                    //show menu strip in listview
                     contextMenuStrip1.Show(listView1, e.Location);
                 }
 
@@ -1977,6 +1982,37 @@ namespace WindowsFormsApplication3
                 //MessageBox.Show("MouseButton Right Clicked");
 
             }
+        }
+
+        /*****************************************************************
+        *
+        * Context menu strip
+        * 
+        ******************************************************************/
+        //open file
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
+            //Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
+            //Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
+
+            //Console.WriteLine("xiyanpeng: {0}", info.Parent.FullName);
+            //Console.WriteLine("xiyanpeng: {0}", selectCount);
+
+            Process.Start(listView1.SelectedItems[0].SubItems[1].Text);
+        }
+
+        //open path
+        private void openPathToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            //DirectoryInfo info  = new DirectoryInfo(listView1.SelectedItems[0].SubItems[1].Text);
+            //Console.WriteLine("xiyanpeng: {0}", info.Parent.FullName);
+
+            string fileToSelect = listView1.SelectedItems[0].SubItems[1].Text;
+            string args         = string.Format("/Select, {0}", fileToSelect);
+
+            ProcessStartInfo pfi = new ProcessStartInfo("Explorer.exe", args);
+            System.Diagnostics.Process.Start(pfi);
         }
     }
 }
