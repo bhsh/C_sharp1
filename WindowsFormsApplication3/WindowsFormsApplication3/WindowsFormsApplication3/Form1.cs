@@ -1903,48 +1903,7 @@ namespace WindowsFormsApplication3
         //when the search changed update the listview
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            int i = 0;
-            ///MessageBox.Show("changed");  test ok
-
-            //clear the listview
-            this.listView1.Items.Clear();
-
-            //Get the pattern input from textbox input
-            string input_pattern = textBox3.Text.Trim();
-
-            ImageList imgLst = new ImageList(); // define icon list
-            this.listView1.BeginUpdate();
-            foreach (string element in FILE_PATH_LIST)
-            {
-                string str = System.IO.Path.GetFileName(element);
-               //*****************************************************************
-               //Update listview
-                if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
-               {
-                   //this.listView1.BeginUpdate();
-                   ListViewItem lvi = new ListViewItem();
-                   FileInfo f = new FileInfo(element);
-
-                   System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
-                   imgLst.Images.Add(fileIcon);
-                   listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
-
-                   lvi.ImageIndex = i;
-                   lvi.Text = System.IO.Path.GetFileName(element);
-
-                   lvi.SubItems.Add(element);
-                   lvi.SubItems.Add(f.Length.ToString());
-                   lvi.SubItems.Add(f.LastWriteTime.ToString());
-
-                   this.listView1.Items.Add(lvi);
-                   //this.listView1.EndUpdate();
-                   //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
-                   i++;             
-               }
-                this.listView1.EndUpdate();
-               //Update listview end
-               //*****************************************************************
-            }      
+     
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
@@ -2035,6 +1994,56 @@ namespace WindowsFormsApplication3
                 //show menu strip in listview
                 selectCount = 0;
                 Process.Start(listView1.SelectedItems[0].SubItems[1].Text);
+            }
+        }
+
+        private void textBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Update the software version
+            if (e.KeyCode == Keys.Enter)
+            {
+                int i = 0;
+                ///MessageBox.Show("changed");  test ok
+
+                //clear the listview
+                this.listView1.Items.Clear();
+
+                //Get the pattern input from textbox input
+                string input_pattern = textBox3.Text.Trim();
+
+                ImageList imgLst = new ImageList(); // define icon list
+                this.listView1.BeginUpdate();
+                foreach (string element in FILE_PATH_LIST)
+                {
+                    string str = System.IO.Path.GetFileName(element);
+                    //*****************************************************************
+                    //Update listview
+                    if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
+                    {
+                        //this.listView1.BeginUpdate();
+                        ListViewItem lvi = new ListViewItem();
+                        FileInfo f = new FileInfo(element);
+
+                        System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
+                        imgLst.Images.Add(fileIcon);
+                        listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+
+                        lvi.ImageIndex = i;
+                        lvi.Text = System.IO.Path.GetFileName(element);
+
+                        lvi.SubItems.Add(element);
+                        lvi.SubItems.Add(f.Length.ToString());
+                        lvi.SubItems.Add(f.LastWriteTime.ToString());
+
+                        this.listView1.Items.Add(lvi);
+                        //this.listView1.EndUpdate();
+                        //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
+                        i++;
+                    }
+                    this.listView1.EndUpdate();
+                    //Update listview end
+                    //*****************************************************************
+                } 
             }
         }
     }

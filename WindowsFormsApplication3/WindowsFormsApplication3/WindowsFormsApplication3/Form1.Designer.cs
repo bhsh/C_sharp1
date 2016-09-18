@@ -1263,6 +1263,7 @@
             this.textBox3.Size = new System.Drawing.Size(673, 23);
             this.textBox3.TabIndex = 1;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
             // columnHeader1
             // 
