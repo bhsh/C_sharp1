@@ -1883,7 +1883,7 @@ namespace WindowsFormsApplication3
                 //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
                 i++;
             }
-
+            //this.listView1.Items.Clear();
             //Update listview end
             //*****************************************************************
 
@@ -1892,6 +1892,46 @@ namespace WindowsFormsApplication3
             //string[] fileNames = Directory.GetFiles(path);
             //string[] directories = Directory.GetDirectories(path); 
             //test code      
+        }
+
+        //when the search changed update the listview
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            ///MessageBox.Show("changed");  test ok
+
+            //clear the listview
+            //this.listView1.Items.Clear();
+
+            //Get the pattern input from textbox input
+            string input_pattern = textBox3.Text.Trim();
+
+            foreach (string element in FILE_PATH_LIST)
+            {
+                string str = System.IO.Path.GetFileName(element);
+               //*****************************************************************
+               //Update listview
+               if (Regex.IsMatch(str, input_pattern))
+               {
+                   this.listView1.BeginUpdate();
+                   ListViewItem lvi = new ListViewItem();
+                   FileInfo f = new FileInfo(element);
+
+                   lvi.ImageIndex = i;
+                   lvi.Text = System.IO.Path.GetFileName(element);
+
+                   lvi.SubItems.Add(element);
+                   lvi.SubItems.Add(f.Length.ToString());
+                   lvi.SubItems.Add(f.LastWriteTime.ToString());
+
+                   this.listView1.Items.Add(lvi);
+                   this.listView1.EndUpdate();
+                   //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
+                   i++;             
+               }
+               //Update listview end
+               //*****************************************************************
+            }      
         }
     }
 }
