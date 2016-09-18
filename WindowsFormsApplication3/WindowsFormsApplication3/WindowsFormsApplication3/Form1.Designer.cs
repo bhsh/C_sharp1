@@ -1163,7 +1163,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Location = new System.Drawing.Point(6, 6);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(673, 21);
+            this.textBox2.Size = new System.Drawing.Size(673, 23);
             this.textBox2.TabIndex = 7;
             this.toolTip1.SetToolTip(this.textBox2, "Command Line");
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox5_KeyDown);
@@ -1183,6 +1183,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(2, 78);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1195,10 +1196,10 @@
             this.tabPage1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(682, 292);
+            this.tabPage1.Size = new System.Drawing.Size(682, 288);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cmd Console";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1207,10 +1208,10 @@
             // 
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.listView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(682, 292);
+            this.tabPage2.Size = new System.Drawing.Size(682, 288);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "List";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1225,7 +1226,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(673, 253);
+            this.textBox1.Size = new System.Drawing.Size(673, 252);
             this.textBox1.TabIndex = 9;
             // 
             // listView1
@@ -1237,7 +1238,7 @@
             this.columnHeader4});
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(673, 253);
+            this.listView1.Size = new System.Drawing.Size(673, 252);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1246,7 +1247,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(6, 6);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(673, 21);
+            this.textBox3.Size = new System.Drawing.Size(673, 23);
             this.textBox3.TabIndex = 1;
             // 
             // columnHeader1
