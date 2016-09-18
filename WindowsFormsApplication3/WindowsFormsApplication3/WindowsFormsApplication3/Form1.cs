@@ -1856,7 +1856,8 @@ namespace WindowsFormsApplication3
         //the function is called in background.
         private void initialize_file_list()
         {
-            String path = @"E:\WorkArea\K245ECU\01_Mak";
+           // String path = @"E:\WorkArea\K245ECU\01_Mak";
+            String path = @"E:\WorkArea\K245ECU";
             int i = 0;
 
             FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
@@ -1912,7 +1913,7 @@ namespace WindowsFormsApplication3
             string input_pattern = textBox3.Text.Trim();
 
             ImageList imgLst = new ImageList(); // define icon list
-
+            this.listView1.BeginUpdate();
             foreach (string element in FILE_PATH_LIST)
             {
                 string str = System.IO.Path.GetFileName(element);
@@ -1920,7 +1921,7 @@ namespace WindowsFormsApplication3
                //Update listview
                 if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
                {
-                   this.listView1.BeginUpdate();
+                   //this.listView1.BeginUpdate();
                    ListViewItem lvi = new ListViewItem();
                    FileInfo f = new FileInfo(element);
 
@@ -1936,10 +1937,11 @@ namespace WindowsFormsApplication3
                    lvi.SubItems.Add(f.LastWriteTime.ToString());
 
                    this.listView1.Items.Add(lvi);
-                   this.listView1.EndUpdate();
+                   //this.listView1.EndUpdate();
                    //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
                    i++;             
                }
+                this.listView1.EndUpdate();
                //Update listview end
                //*****************************************************************
             }      
@@ -1973,6 +1975,7 @@ namespace WindowsFormsApplication3
                     //txtSex.Text  =  listView1.SelectedItems[0].SubItems[2].Text;
 
                     //show menu strip in listview
+                    selectCount = 0;
                     contextMenuStrip1.Show(listView1, e.Location);
                 }
 
@@ -2004,7 +2007,7 @@ namespace WindowsFormsApplication3
 
         //open path
         private void openPathToolStripMenuItem7_Click(object sender, EventArgs e)
-        {
+        {           
             //DirectoryInfo info  = new DirectoryInfo(listView1.SelectedItems[0].SubItems[1].Text);
             //Console.WriteLine("xiyanpeng: {0}", info.Parent.FullName);
 
@@ -2020,6 +2023,19 @@ namespace WindowsFormsApplication3
         {
             Clipboard.Clear();//clear Clipboard 
             Clipboard.SetData(DataFormats.Text, listView1.SelectedItems[0].SubItems[1].Text); //copy target into Clipboard
+        }
+
+        //double click open
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            selectCount = listView1.SelectedItems.Count; //SelectedItems.Count
+            if (selectCount > 0)//if selectcount >0 ,there is item selected!
+            {
+                //show menu strip in listview
+                selectCount = 0;
+                Process.Start(listView1.SelectedItems[0].SubItems[1].Text);
+            }
         }
     }
 }
