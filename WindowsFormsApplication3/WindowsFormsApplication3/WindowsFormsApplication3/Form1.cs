@@ -1862,7 +1862,7 @@ namespace WindowsFormsApplication3
             FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
             //FILE_NAME_LIST = FILE_PATH_LIST;
 
-
+            ImageList imgLst = new ImageList(); // define icon list
             //*****************************************************************
             //Update listview
             while (i < FILE_PATH_LIST.Length)
@@ -1870,6 +1870,11 @@ namespace WindowsFormsApplication3
                 this.listView1.BeginUpdate();
                 ListViewItem lvi = new ListViewItem();
                 FileInfo f = new FileInfo(FILE_PATH_LIST[i]);
+
+                //add icon
+                System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(FILE_PATH_LIST[i]); 
+                imgLst.Images.Add(fileIcon);
+                listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
                 lvi.ImageIndex = i;   
                 lvi.Text = System.IO.Path.GetFileName(FILE_PATH_LIST[i]);
@@ -1906,6 +1911,8 @@ namespace WindowsFormsApplication3
             //Get the pattern input from textbox input
             string input_pattern = textBox3.Text.Trim();
 
+            ImageList imgLst = new ImageList(); // define icon list
+
             foreach (string element in FILE_PATH_LIST)
             {
                 string str = System.IO.Path.GetFileName(element);
@@ -1916,6 +1923,10 @@ namespace WindowsFormsApplication3
                    this.listView1.BeginUpdate();
                    ListViewItem lvi = new ListViewItem();
                    FileInfo f = new FileInfo(element);
+
+                   System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
+                   imgLst.Images.Add(fileIcon);
+                   listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
                    lvi.ImageIndex = i;
                    lvi.Text = System.IO.Path.GetFileName(element);
