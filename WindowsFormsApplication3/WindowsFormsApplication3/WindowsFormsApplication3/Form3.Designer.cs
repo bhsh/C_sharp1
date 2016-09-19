@@ -89,7 +89,7 @@
             this.label2.Font = new System.Drawing.Font("Georgia", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(123, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(399, 14);
+            this.label2.Size = new System.Drawing.Size(326, 14);
             this.label2.TabIndex = 9;
             this.label2.Text = "Before the application is started，you must make sure the following ";
             // 
@@ -151,6 +151,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Help";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

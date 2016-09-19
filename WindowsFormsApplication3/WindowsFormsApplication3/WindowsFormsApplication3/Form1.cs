@@ -1645,13 +1645,54 @@ namespace WindowsFormsApplication3
         }
 
         //shortcuts
+        /*****************************************************************
+        *
+        * shortcuts
+        * 
+        ******************************************************************/
         private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {   
+        {
             //File exit
-            if (e.KeyCode == Keys.Q && e.Control)
+            if (e.KeyCode == Keys.Q && e.Control) //CTRL + Q
             {
-                //dakai_Click(null, null); //执行单击dakai按钮的单击事件
-                exitToolStripMenuItem_Click(null,null);
+                //dakai_Click(null, null); 
+                exitToolStripMenuItem_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F4) //F4: clean
+            {
+                toolStripButton21_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F5) //F5: build project
+            {
+                toolStripButton7_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F6) //F6: Rebuild Project  
+            {
+                toolStripButton8_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F7) //F7: clean
+            {
+                toolStripButton9_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F8) //F8: Build Unall 
+            {
+                toolStripButton10_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F9) //F9: Kill Build
+            {
+                toolStripButton25_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.H && e.Control)
+            {
+                learnAboutMeToolStripMenuItem_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.W && e.Control)
+            {
+                welcomeToolStripMenuItem_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.J && e.Control)
+            {
+                setupListToolStripMenuItem_Click(null, null);
             }
         }
 
