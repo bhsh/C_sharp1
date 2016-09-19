@@ -441,8 +441,12 @@ namespace WindowsFormsApplication3
 
             //Check_compiler_path(); //Update the compiler path
 
+            initialize_file_list(); // Init the file list
+
             //start the backwork1 for the paths search of everything,inca and total commander
             backgroundWorker1.RunWorkerAsync();
+
+            
         }
 
         /*****************************************************************
@@ -1713,7 +1717,7 @@ namespace WindowsFormsApplication3
 
         //background task intended to deal with the path search.
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {      
+        {
             //@Everything
             //backgroundWorker1.ReportProgress(0);
             //string bkgd_search_everything_dir = @"Everything";
@@ -1859,8 +1863,8 @@ namespace WindowsFormsApplication3
         private void initialize_file_list()
         {
             // String path = @"E:\WorkArea\K245ECU\01_Mak";
-            //String path = @"E:\ECU\WorkArea\K245\00_Codefiles";
             String path = @"E:\ECU\WorkArea\K245";
+            //String path = @"E:\ECU\WorkArea\K245";
             int i = 0;
 
             FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
@@ -1869,29 +1873,32 @@ namespace WindowsFormsApplication3
             ImageList imgLst = new ImageList(); // define icon list
             //*****************************************************************
             //Update listview
+            this.listView1.BeginUpdate();
             while (i < FILE_PATH_LIST.Length)
             {
-                this.listView1.BeginUpdate();
+                
                 ListViewItem lvi = new ListViewItem();
                 FileInfo f = new FileInfo(FILE_PATH_LIST[i]);
 
                 //add icon
-                System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(FILE_PATH_LIST[i]); 
-                imgLst.Images.Add(fileIcon);
-                listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+           //     System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(FILE_PATH_LIST[i]); 
+           //     imgLst.Images.Add(fileIcon);
+           //     listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
-                lvi.ImageIndex = i;   
+           //     lvi.ImageIndex = i;   
                 lvi.Text = System.IO.Path.GetFileName(FILE_PATH_LIST[i]);
 
                 lvi.SubItems.Add(FILE_PATH_LIST[i]);
-                lvi.SubItems.Add(f.Length.ToString());
+                //     lvi.SubItems.Add(f.Length.ToString());
+                lvi.SubItems.Add("");
                 lvi.SubItems.Add(f.LastWriteTime.ToString());
      
                 this.listView1.Items.Add(lvi);
-                this.listView1.EndUpdate(); 
+                
                 //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
                 i++;
             }
+            this.listView1.EndUpdate();
             //this.listView1.Items.Clear();
             //Update listview end
             //*****************************************************************
@@ -2028,15 +2035,16 @@ namespace WindowsFormsApplication3
                         ListViewItem lvi = new ListViewItem();
                         FileInfo f = new FileInfo(element);
 
-                        System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
-                        imgLst.Images.Add(fileIcon);
-                        listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+                        //System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
+                        //imgLst.Images.Add(fileIcon);
+                        //listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
-                        lvi.ImageIndex = i;
+                        //lvi.ImageIndex = i;
                         lvi.Text = System.IO.Path.GetFileName(element);
 
                         lvi.SubItems.Add(element);
-                        lvi.SubItems.Add(f.Length.ToString());
+                        //lvi.SubItems.Add(f.Length.ToString
+                        lvi.SubItems.Add("");
                         lvi.SubItems.Add(f.LastWriteTime.ToString());
 
                         this.listView1.Items.Add(lvi);
