@@ -1087,9 +1087,12 @@ namespace WindowsFormsApplication3
             toolStripButton9.Enabled  = actived_status;
             toolStripButton10.Enabled = actived_status;
             toolStripButton21.Enabled = actived_status;
+            toolStripButton25.Enabled = actived_status;
             textBox2.Enabled          = actived_status;
             toolStripTextBox1.Enabled = actived_status;
             toolStripTextBox2.Enabled = actived_status;
+            toolStripTextBox3.Enabled = actived_status;
+
         }
 
         /*****************************************************************
@@ -1614,23 +1617,23 @@ namespace WindowsFormsApplication3
             textBox1.Text = "";  //clear the info windows first.
             statusstrip_info_print("Info:The screen has been cleared!");
 
-            initialize_file_list();
+            //initialize_file_list();
             return;
             //test code
-            String path = @"E:\ECU\WorkArea\K245";
+            //String path = @"E:\ECU\WorkArea\K245";
 
             //第一种方法
             //var files = Directory.GetFiles(path, "*.*");
             //var files = Directory.GetFiles(path);
 
             //var files = Directory.GetDirectories(path);
-            var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
+            //var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            //foreach (var file in files)
+            //{
                 //Console.WriteLine(System.IO.Path.GetFileName(file));
-                Console.WriteLine(file);
-            }
-            Console.WriteLine(files.Length);
+            //   Console.WriteLine(file);
+            //}
+            //Console.WriteLine(files.Length);
 
 
             //string[] fileNames = Directory.GetFiles(path);
