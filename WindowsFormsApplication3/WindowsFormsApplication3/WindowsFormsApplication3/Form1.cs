@@ -442,7 +442,7 @@ namespace WindowsFormsApplication3
             //Check_compiler_path(); //Update the compiler path
 
             //start the backwork1 for the paths search of everything,inca and total commander
-            //backgroundWorker1.RunWorkerAsync();
+            backgroundWorker1.RunWorkerAsync();
         }
 
         /*****************************************************************
@@ -1741,6 +1741,8 @@ namespace WindowsFormsApplication3
                 Array.Copy(temp_search_path_array, 0, totalcmd_search_path_array, 0, totalcmd_search_count);
             }
             //backgroundWorker1.ReportProgress(3);
+
+
         }
 
         //Report the info to main thread.
