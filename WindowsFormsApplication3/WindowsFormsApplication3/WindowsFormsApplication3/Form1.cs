@@ -76,7 +76,7 @@ namespace WindowsFormsApplication3
         string Low_SW_Version_Pattern   = "Low_SW_Version";
 
         //cfg path
-        string cfg_file_path =  @"C:\Users\thinkpad\Desktop\proj.ini";
+        string cfg_file_path = @"C:\Users\bai\Desktop\proj.ini";
  
         //Build command
         string empty_command = "";
@@ -223,7 +223,7 @@ namespace WindowsFormsApplication3
             }
             sr.Close(); // close the stream and the input file is released.
 
-            Write_File(@"C:\Users\thinkpad\Desktop\my2.ini", my_output);
+            Write_File(@"C:\Users\bai\Desktop\my2.ini", my_output);
         }
         /*****************************************************************
         * Check the current directory  
@@ -1613,7 +1613,7 @@ namespace WindowsFormsApplication3
             initialize_file_list();
             return;
             //test code
-            String path = @"E:\WorkArea\K245ECU";
+            String path = @"E:\ECU\WorkArea\K245";
 
             //第一种方法
             //var files = Directory.GetFiles(path, "*.*");
@@ -1857,7 +1857,7 @@ namespace WindowsFormsApplication3
         private void initialize_file_list()
         {
            // String path = @"E:\WorkArea\K245ECU\01_Mak";
-            String path = @"E:\WorkArea\K245ECU";
+            String path = @"E:\ECU\WorkArea\K245\00_Codefiles\00_Low_Driver";
             int i = 0;
 
             FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
