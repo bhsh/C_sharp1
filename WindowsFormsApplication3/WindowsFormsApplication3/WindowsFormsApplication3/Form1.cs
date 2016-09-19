@@ -1856,8 +1856,9 @@ namespace WindowsFormsApplication3
         //the function is called in background.
         private void initialize_file_list()
         {
-           // String path = @"E:\WorkArea\K245ECU\01_Mak";
-            String path = @"E:\ECU\WorkArea\K245\00_Codefiles";
+            // String path = @"E:\WorkArea\K245ECU\01_Mak";
+            //String path = @"E:\ECU\WorkArea\K245\00_Codefiles";
+            String path = @"E:\ECU\WorkArea\K245";
             int i = 0;
 
             FILE_PATH_LIST = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
@@ -2018,7 +2019,8 @@ namespace WindowsFormsApplication3
                     string str = System.IO.Path.GetFileName(element);
                     //*****************************************************************
                     //Update listview
-                    if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
+                    if(str.IndexOf(input_pattern, StringComparison.OrdinalIgnoreCase) >= 0)
+                    //if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
                     {
                         //this.listView1.BeginUpdate();
                         ListViewItem lvi = new ListViewItem();
@@ -2043,7 +2045,40 @@ namespace WindowsFormsApplication3
                     this.listView1.EndUpdate();
                     //Update listview end
                     //*****************************************************************
-                } 
+                }
+
+                //backup
+               // foreach (string element in FILE_PATH_LIST)
+               // {
+               //     string str = System.IO.Path.GetFileName(element);
+                    //*****************************************************************
+                    //Update listview
+              //      if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
+              //      {
+                        //this.listView1.BeginUpdate();
+              //          ListViewItem lvi = new ListViewItem();
+              //          FileInfo f = new FileInfo(element);
+
+              //          System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
+              //          imgLst.Images.Add(fileIcon);
+              //          listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+
+              //          lvi.ImageIndex = i;
+              //          lvi.Text = System.IO.Path.GetFileName(element);
+
+              //          lvi.SubItems.Add(element);
+              //          lvi.SubItems.Add(f.Length.ToString());
+              //          lvi.SubItems.Add(f.LastWriteTime.ToString());
+
+              //          this.listView1.Items.Add(lvi);
+                        //this.listView1.EndUpdate();
+              //         //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
+              //           i++;
+              //      }
+              //      this.listView1.EndUpdate();
+                    //Update listview end
+                    //*****************************************************************
+             //   }
             }
         }
     }
