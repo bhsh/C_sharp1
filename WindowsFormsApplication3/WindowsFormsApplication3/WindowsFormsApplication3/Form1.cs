@@ -33,51 +33,51 @@ namespace WindowsFormsApplication3
         /*****************************************************************
         * Description:Global Variables in the Form1 class
         ******************************************************************/
-        string tasking_setup_path       = "";
-        string matlab_setup_path        = "";
-        string smartgit_setup_path      = "";
-        string ude_setup_path           = "";
-        string inca_setup_path          = "";
+        string tasking_setup_path = "";
+        string matlab_setup_path = "";
+        string smartgit_setup_path = "";
+        string ude_setup_path = "";
+        string inca_setup_path = "";
         string sourceinsight_setup_path = "";
-        string everything_setup_path    = "";
-        string totalcommander_setup_path= "";
+        string everything_setup_path = "";
+        string totalcommander_setup_path = "";
 
-        string Org_tasking_setup_path        = "";
-        string Org_matlab_setup_path         = "";
-        string Org_smartgit_setup_path       = "";
-        string Org_ude_setup_path            = "";
-        string Org_inca_setup_path           = "";
-        string Org_sourceinsight_setup_path  = "";
-        string Org_everything_setup_path     = "";
+        string Org_tasking_setup_path = "";
+        string Org_matlab_setup_path = "";
+        string Org_smartgit_setup_path = "";
+        string Org_ude_setup_path = "";
+        string Org_inca_setup_path = "";
+        string Org_sourceinsight_setup_path = "";
+        string Org_everything_setup_path = "";
         string Org_totalcommander_setup_path = "";
 
-        string cfg_compiler_path        = "";
-        string cfg_project_name         = "";
-        string cfg_app_sw_ver           = "";
-        string cfg_low_sw_ver           = "";
-        string my_output                = "";
+        string cfg_compiler_path = "";
+        string cfg_project_name = "";
+        string cfg_app_sw_ver = "";
+        string cfg_low_sw_ver = "";
+        string my_output = "";
 
         //suffix path
-        string matlab_suffix_path       = @"\bin\matlab.exe";
-        string smartgit_suffix_path     = @"bin\smartgit.exe";
-        string ude_suffix_path          = @"\UdeDesktop.exe";
-        string inca_suffix_path         = @"\Inca.exe";
-        string tasking_suffix_path      = @"\ctc\eclipse\eclipse.exe";
-        string sourceinsight_suffix_path= @"Insight3.exe";
-        string everything_suffix_path   = @"\Everything.exe";
-        string totalcmd_suffix_path     = @"\TOTALCMD.EXE";
+        string matlab_suffix_path = @"\bin\matlab.exe";
+        string smartgit_suffix_path = @"bin\smartgit.exe";
+        string ude_suffix_path = @"\UdeDesktop.exe";
+        string inca_suffix_path = @"\Inca.exe";
+        string tasking_suffix_path = @"\ctc\eclipse\eclipse.exe";
+        string sourceinsight_suffix_path = @"Insight3.exe";
+        string everything_suffix_path = @"\Everything.exe";
+        string totalcmd_suffix_path = @"\TOTALCMD.EXE";
 
-        string inca_arguments           = @"-ietas.icx";
+        string inca_arguments = @"-ietas.icx";
 
         //.ini cfg file 
-        string Compiler_Path_Pattern    = "Compiler_Path";
-        string Project_Name_Pattern     = "project_Name";
-        string App_SW_Version_Pattern   = "App_SW_Version";
-        string Low_SW_Version_Pattern   = "Low_SW_Version";
+        string Compiler_Path_Pattern = "Compiler_Path";
+        string Project_Name_Pattern = "project_Name";
+        string App_SW_Version_Pattern = "App_SW_Version";
+        string Low_SW_Version_Pattern = "Low_SW_Version";
 
         //cfg path
         string cfg_file_path = @"C:\Users\bai\Desktop\proj.ini";
- 
+
         //Build command
         string empty_command = "";
 
@@ -85,12 +85,12 @@ namespace WindowsFormsApplication3
         //Because the paths of everything,inca and totalcommand can not be found in the
         //register table of window, a background thread should be started to search the
         //paths in all the directories of WINDOWS logicDrivers.
-        string bkgd_search_everything_dir   = @"Everything";
-        string bkgd_search_inca_dir         = @"ETAS\INCA7.1";
+        string bkgd_search_everything_dir = @"Everything";
+        string bkgd_search_inca_dir = @"ETAS\INCA7.1";
         string bkgd_search_totalcommand_dir = @"totalcmd";
 
         //Old definition: public static string[] Setup_SW_Name = new string[]
-        public static string[] Setup_SW_Name = new string[]{ "Matlab", "SmartGit", "UDE", "INCA", "TASKING", "Source Insight","Total Commander", "Everything"};
+        public static string[] Setup_SW_Name = new string[] { "Matlab", "SmartGit", "UDE", "INCA", "TASKING", "Source Insight", "Total Commander", "Everything" };
         public static string[] Setup_SW_Path = new string[] { "", "", "", "", "", "", "", "", "", "" };
         string Not_Detected_Result = "Not be detected";
         /*****************************************************************
@@ -292,7 +292,7 @@ namespace WindowsFormsApplication3
 
                     Setup_SW_Name[4] = string_local_tasking[0].Trim();
                     Setup_SW_Path[4] = string_local_tasking[1].Trim();
-                    
+
                     //test code
                     //this.toolStripTextBox4.Text = string_local_tasking[1];
                 }
@@ -306,15 +306,15 @@ namespace WindowsFormsApplication3
                     Setup_SW_Path[5] = string_local_sourceinsight[1].Trim();
                 }
 
-                for(index = 0;index < Setup_SW_Name.Length;index++)
+                for (index = 0; index < Setup_SW_Name.Length; index++)
                 {
                     if (Setup_SW_Path[index] == "")
-                   {
-                       Setup_SW_Path[index] = Not_Detected_Result;
-                   }                    
+                    {
+                        Setup_SW_Path[index] = Not_Detected_Result;
+                    }
                 }
-            } 
-      
+            }
+
             //matlab:check if the path exsits
             if (System.IO.File.Exists(matlab_setup_path))
             {
@@ -400,18 +400,18 @@ namespace WindowsFormsApplication3
         * Compare the real compiler path with configuration file(.ini)  
         ******************************************************************/
         private void Check_compiler_path()
-        {  
+        {
             string temp_1 = tasking_setup_path.Trim();
             string temp_2 = cfg_compiler_path.Trim();
 
             if (temp_1 != temp_2)
-            {   
+            {
                 DialogResult dr;
                 dr = MessageBox.Show(" The compiler path found in your computer is different from\n the configuration file(proj.ini)!\n\n\n Do you want to update the configuration file(proj.ini) with the compiler path found?", "Notice", MessageBoxButtons.YesNo,
                          MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 
                 if (dr == DialogResult.Yes)
-                {   
+                {
                     cfg_compiler_path = tasking_setup_path;
                     //update the cfg file(.ini) with the newest path.
                     MessageBox.Show("The configuration file(proj.ini) has been updated!");
@@ -419,13 +419,13 @@ namespace WindowsFormsApplication3
                 else if (dr == DialogResult.No)
                 {
                     //do nothing!
-                }    
+                }
             }
             else
-            { 
-               //do nothing ,and keep unchanged
+            {
+                //do nothing ,and keep unchanged
             }
-           
+
 
         }
         /*****************************************************************
@@ -436,7 +436,7 @@ namespace WindowsFormsApplication3
             Check_Dir(); //Check if the current dir is located in \01_Mak
 
             Get_tools_paths();  //Get the paths of tools from the register tables
-            
+
             Parse_Project_Cfg_File(); // Parse the confiuration file
 
             //Check_compiler_path(); //Update the compiler path
@@ -446,7 +446,7 @@ namespace WindowsFormsApplication3
             //start the backwork1 for the paths search of everything,inca and total commander
             backgroundWorker1.RunWorkerAsync();
 
-            
+
         }
 
         /*****************************************************************
@@ -457,7 +457,7 @@ namespace WindowsFormsApplication3
         * The compiler button 
         ******************************************************************/
         private void toolStripButton1_Click(object sender, EventArgs e)
-        {  
+        {
             //tasking
             if (System.Diagnostics.Process.GetProcessesByName("eclipse").ToList().Count > 0)
             {
@@ -847,7 +847,7 @@ namespace WindowsFormsApplication3
                     p.Start();    //start the process
 
                     //p.StandardInput.WriteLine(@"cd /d C:\ETAS\INCA7.1");
-                    p.StandardInput.WriteLine("cd" + "/d"+ Org_inca_setup_path);
+                    p.StandardInput.WriteLine("cd" + "/d" + Org_inca_setup_path);
 
                     //p.StandardInput.WriteLine(@"C:\ETAS\INCA7.1\Inca.exe -ietas.icx");
                     p.StandardInput.WriteLine(inca_setup_path + " " + inca_arguments);
@@ -878,7 +878,7 @@ namespace WindowsFormsApplication3
 
                 //p.StartInfo.Verb = "runas";
                 //p.StandardInput.WriteLine(@"C:\ETAS\INCA7.1\Inca.exe -ietas.icx");
-                p.StandardInput.WriteLine(inca_setup_path + " " +inca_arguments);
+                p.StandardInput.WriteLine(inca_setup_path + " " + inca_arguments);
 
                 p.Close(); //Close the local process
 
@@ -913,7 +913,7 @@ namespace WindowsFormsApplication3
         * inca button end
         ******************************************************************/
 
-        public void Write_File(string path,string info_stream)
+        public void Write_File(string path, string info_stream)
         {
             FileStream fs = new FileStream(path, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
@@ -926,7 +926,7 @@ namespace WindowsFormsApplication3
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-        
+
         }
 
         //Open The Project Directory
@@ -951,7 +951,7 @@ namespace WindowsFormsApplication3
         {
 
         }
-  
+
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             //INCA 7.1
@@ -978,12 +978,12 @@ namespace WindowsFormsApplication3
             int ofileCount = Directory.GetFiles(@"..\05_Object_Files\", "*.o", SearchOption.AllDirectories).Length;
 
             if (progress_phase == 0)
-            {               
+            {
                 progress = 95 * ofileCount / cfileCount;
             }
             else
             {
-                progress = 100;     
+                progress = 100;
             }
 
             toolStripProgressBar1.Value = progress;
@@ -998,7 +998,7 @@ namespace WindowsFormsApplication3
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (System.Diagnostics.Process.GetProcessesByName("make").ToList().Count > 0)
-            {   
+            {
                 //update the progress bar and status in phase I
                 update_progress_barstatus(0);
             }
@@ -1082,13 +1082,13 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void buildbutton_control(bool actived_status)
         {
-            toolStripButton7.Enabled  = actived_status;
-            toolStripButton8.Enabled  = actived_status;
-            toolStripButton9.Enabled  = actived_status;
+            toolStripButton7.Enabled = actived_status;
+            toolStripButton8.Enabled = actived_status;
+            toolStripButton9.Enabled = actived_status;
             toolStripButton10.Enabled = actived_status;
             toolStripButton21.Enabled = actived_status;
             toolStripButton25.Enabled = actived_status;
-            textBox2.Enabled          = actived_status;
+            textBox2.Enabled = actived_status;
             toolStripTextBox1.Enabled = actived_status;
             toolStripTextBox2.Enabled = actived_status;
             toolStripTextBox3.Enabled = actived_status;
@@ -1122,7 +1122,7 @@ namespace WindowsFormsApplication3
 
             textBox1.Text = "";   //clear the info windows first.
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text ="Info:Processing 'Clean...'";
+            toolStripStatusLabel4.Text = "Info:Processing 'Clean...'";
             buildbutton_control(false);  //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar
             launch_process("make clean", empty_command);  //launch the command process
@@ -1138,7 +1138,7 @@ namespace WindowsFormsApplication3
             //toolStripProgressBar1.Value = 0;
             textBox1.Text = "";  //clear the info windows first.
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text = "Info:Processing 'Build Project'";       
+            toolStripStatusLabel4.Text = "Info:Processing 'Build Project'";
             buildbutton_control(false); //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar
             launch_process("make all", empty_command);//launch the command process
@@ -1149,12 +1149,12 @@ namespace WindowsFormsApplication3
         * Function name:toolStripButton8_Click.
         ******************************************************************/
         private void toolStripButton8_Click(object sender, EventArgs e)
-        {   
+        {
             //rebuild all from the low insight...
 
             textBox1.Text = "";   //clear the info windows first.
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text = "Info:Processing 'Rebuild Project'"; 
+            toolStripStatusLabel4.Text = "Info:Processing 'Rebuild Project'";
             buildbutton_control(false);  //disable the build buttons
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
             launch_process("make clean all", empty_command);  //launch the command process                 
@@ -1169,7 +1169,7 @@ namespace WindowsFormsApplication3
             //build the low library from the low insight...
             textBox1.Text = "";
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text = "Info:Processing 'Build low sources into library'"; 
+            toolStripStatusLabel4.Text = "Info:Processing 'Build low sources into library'";
             buildbutton_control(false);
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
             launch_process("make build_lib", empty_command);
@@ -1184,7 +1184,7 @@ namespace WindowsFormsApplication3
             //build low library for release from the low insight...
             textBox1.Text = "";
             statusstrip_info_control(true);
-            toolStripStatusLabel4.Text = "Info:Processing 'Build Unall'"; 
+            toolStripStatusLabel4.Text = "Info:Processing 'Build Unall'";
             buildbutton_control(false);
             //launch_process("make clean unall","");
             timer1.Enabled = true;  //enable timer1 to update the progress and bar 
@@ -1260,7 +1260,7 @@ namespace WindowsFormsApplication3
 
         //private void toolStripTextBox3_Click(object sender, EventArgs e)
         //{
-          //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
+        //  System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
         //}
         /*****************************************************************
         * Description:Update the configuration file(.ini)
@@ -1269,7 +1269,7 @@ namespace WindowsFormsApplication3
         {
             statusstrip_info_control(false);
             toolStripStatusLabel4.Visible = true;
-            toolStripStatusLabel4.Text = info;        
+            toolStripStatusLabel4.Text = info;
         }
         /*****************************************************************
         * 
@@ -1299,8 +1299,8 @@ namespace WindowsFormsApplication3
         * Description:Update the projet name from the TextBox1_KeyDown
         ******************************************************************/
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {  
-            string  out_into_file = null;
+        {
+            string out_into_file = null;
 
             //Update the project name if the input is changed and enter key is entered!
             if (e.KeyCode == Keys.Enter)
@@ -1347,8 +1347,8 @@ namespace WindowsFormsApplication3
                     }
                 }
                 else
-                { 
-                   //do nothing
+                {
+                    //do nothing
                     statusstrip_info_print("Info:The project name has not been changed!");
                     MessageBox.Show("The project name has not been changed!");
                 }
@@ -1359,7 +1359,7 @@ namespace WindowsFormsApplication3
         * Description:Update the app sw ver from the toolStripTextBox2
         ******************************************************************/
         private void Get_last_cfg_app_sw_ver()
-        {  
+        {
             //Get the last cfg_project_name
             StreamReader sr = new StreamReader(cfg_file_path, Encoding.Default);
             String line;
@@ -1372,7 +1372,7 @@ namespace WindowsFormsApplication3
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();  //remove the useless space
-                    cfg_app_sw_ver  = resultString[1];
+                    cfg_app_sw_ver = resultString[1];
                 }
             }
             sr.Close();
@@ -1416,7 +1416,7 @@ namespace WindowsFormsApplication3
                         }
                         sr.Close();
                         Write_File(cfg_file_path, out_into_file);
-      
+
                         statusstrip_info_print("Info:The version of the application software has been changed!");
                         MessageBox.Show("The version of the application software has been changed!");
                     }
@@ -1432,7 +1432,7 @@ namespace WindowsFormsApplication3
                     statusstrip_info_print("Info:The version of the application software has not been changed!");
                     MessageBox.Show("The version of the application software has not been changed!");
                 }
-            }  
+            }
         }
         /*****************************************************************
         * The End of the toolStripTextBox2
@@ -1455,7 +1455,7 @@ namespace WindowsFormsApplication3
                     string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
 
                     resultString[1] = resultString[1].Trim();  //remove the useless space
-                    cfg_low_sw_ver  = resultString[1];
+                    cfg_low_sw_ver = resultString[1];
                 }
             }
             sr.Close();
@@ -1514,7 +1514,7 @@ namespace WindowsFormsApplication3
                     statusstrip_info_print("Info:The version of the low driver sofware has not been changed!");
                     MessageBox.Show("The version of the low driver sofware has not been changed!");
                 }
-            } 
+            }
         }
 
         /*****************************************************************
@@ -1528,22 +1528,22 @@ namespace WindowsFormsApplication3
 
         private void toolStripButton12_ButtonClick(object sender, EventArgs e)
         {
-           //MessageBox.Show("ButtonClick!");
-           // if (System.IO.File.Exists(tasking_setup_path))
+            //MessageBox.Show("ButtonClick!");
+            // if (System.IO.File.Exists(tasking_setup_path))
             string local_path = @"c:\";
             if (Directory.Exists(local_path))
             {
-               textBox1.Text = "true";
+                textBox1.Text = "true";
             }
             else
             {
-               textBox1.Text = "false";
+                textBox1.Text = "false";
             }
         }
 
         private void toolStripButton12_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-           // MessageBox.Show("DropDownItemClicked");
+            // MessageBox.Show("DropDownItemClicked");
         }
 
         private void toolStripTextBox4_Click(object sender, EventArgs e)
@@ -1586,7 +1586,7 @@ namespace WindowsFormsApplication3
 
         //Welcome is entered,a new window will be shown!
         private void welcomeToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
+        {
             //show the welcome context!
             Form2 f = new Form2();
             f.Show();
@@ -1617,6 +1617,7 @@ namespace WindowsFormsApplication3
             textBox1.Text = "";  //clear the info windows first.
             statusstrip_info_print("Info:The screen has been cleared!");
 
+            everytool_cfg_file_read(@"C:\Users\bai\Desktop\Everytool.ini");
             //initialize_file_list();
             return;
             //test code
@@ -1630,7 +1631,7 @@ namespace WindowsFormsApplication3
             //var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
             //foreach (var file in files)
             //{
-                //Console.WriteLine(System.IO.Path.GetFileName(file));
+            //Console.WriteLine(System.IO.Path.GetFileName(file));
             //   Console.WriteLine(file);
             //}
             //Console.WriteLine(files.Length);
@@ -1677,9 +1678,9 @@ namespace WindowsFormsApplication3
         int totalcmd_search_count;
 
         string[] everything_search_path_array = new string[30];
-        string[] inca_search_path_array       = new string[30];
-        string[] totalcmd_search_path_array   = new string[30];
-        string[] temp_search_path_array       = new string[30];
+        string[] inca_search_path_array = new string[30];
+        string[] totalcmd_search_path_array = new string[30];
+        string[] temp_search_path_array = new string[30];
 
         int FindDirectory(String dirname)
         {
@@ -1691,7 +1692,7 @@ namespace WindowsFormsApplication3
                 getDirs(logicDrivers[i], dirname, dirlist);
                 String[] dirs = dirlist.ToArray();
                 for (int j = 0; j < dirs.Length; j++)
-                {                  
+                {
                     Console.WriteLine(dirs[j]);
                     temp_search_path_array[count] = dirs[j];
                     count++;
@@ -1754,7 +1755,7 @@ namespace WindowsFormsApplication3
 
         //Report the info to main thread.
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {   
+        {
             //Everything
             if (everything_search_count > 0)
             {
@@ -1765,7 +1766,7 @@ namespace WindowsFormsApplication3
 
                     temp_everything_setup_path = everything_search_path_array[index] + everything_suffix_path;
                     if (System.IO.File.Exists(temp_everything_setup_path))
-                    {                       
+                    {
                         Org_everything_setup_path = everything_search_path_array[index]; //Update path
                         everything_setup_path = temp_everything_setup_path; //Update path
                         toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
@@ -1829,8 +1830,8 @@ namespace WindowsFormsApplication3
             //{
             //    Console.WriteLine("xiyanpeng: {0}", element);
             //}
- 
-        } 
+
+        }
         //The progress report thread is processed by the main.
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -1860,7 +1861,7 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         string[] FILE_NAME_LIST;
         string[] FILE_PATH_LIST;
-        int      FILE_LIST_SIZE;
+        int FILE_LIST_SIZE;
 
         //the function is called in background.
         private void initialize_file_list()
@@ -1879,25 +1880,25 @@ namespace WindowsFormsApplication3
             this.listView1.BeginUpdate();
             while (i < FILE_PATH_LIST.Length)
             {
-                
+
                 ListViewItem lvi = new ListViewItem();
                 FileInfo f = new FileInfo(FILE_PATH_LIST[i]);
 
                 //add icon
-           //     System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(FILE_PATH_LIST[i]); 
-           //     imgLst.Images.Add(fileIcon);
-           //     listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+                //     System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(FILE_PATH_LIST[i]); 
+                //     imgLst.Images.Add(fileIcon);
+                //     listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
-           //     lvi.ImageIndex = i;   
+                //     lvi.ImageIndex = i;   
                 lvi.Text = System.IO.Path.GetFileName(FILE_PATH_LIST[i]);
 
                 lvi.SubItems.Add(FILE_PATH_LIST[i]);
                 //     lvi.SubItems.Add(f.Length.ToString());
                 lvi.SubItems.Add("");
                 lvi.SubItems.Add(f.LastWriteTime.ToString());
-     
+
                 this.listView1.Items.Add(lvi);
-                
+
                 //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
                 i++;
             }
@@ -1907,7 +1908,7 @@ namespace WindowsFormsApplication3
             //*****************************************************************
 
             Console.WriteLine(FILE_PATH_LIST.Length);
-            
+
             //string[] fileNames = Directory.GetFiles(path);
             //string[] directories = Directory.GetDirectories(path); 
             //test code      
@@ -1916,12 +1917,12 @@ namespace WindowsFormsApplication3
         //when the search changed update the listview
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-     
+
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-           //MessageBox.Show("selected"); 
+            //MessageBox.Show("selected"); 
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -1936,11 +1937,11 @@ namespace WindowsFormsApplication3
             {
                 selectCount = listView1.SelectedItems.Count; //SelectedItems.Count
                 if (selectCount > 0)//if selectcount >0 ,there is item selected!
-                {              
-                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
-                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
-                   // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
-                   // Console.WriteLine("xiyanpeng: {0}", selectCount);
+                {
+                    // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[0].Text);
+                    // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[1].Text);
+                    // Console.WriteLine("xiyanpeng: {0}", listView1.SelectedItems[0].SubItems[2].Text);
+                    // Console.WriteLine("xiyanpeng: {0}", selectCount);
 
                     //txtName.Text =  listView1.SelectedItems[0].SubItems[0].Text;
                     //txtAge.Text  =  listView1.SelectedItems[0].SubItems[1].Text;
@@ -1953,7 +1954,7 @@ namespace WindowsFormsApplication3
 
                 //listView1.ContextMenuStrip = null;
                 //contextMenuStrip2.Show(listView1, e.Location);
-               
+
                 //MessageBox.Show("MouseButton Right Clicked");
 
             }
@@ -1979,12 +1980,12 @@ namespace WindowsFormsApplication3
 
         //open path
         private void openPathToolStripMenuItem7_Click(object sender, EventArgs e)
-        {           
+        {
             //DirectoryInfo info  = new DirectoryInfo(listView1.SelectedItems[0].SubItems[1].Text);
             //Console.WriteLine("xiyanpeng: {0}", info.Parent.FullName);
 
             string fileToSelect = listView1.SelectedItems[0].SubItems[1].Text;
-            string args         = string.Format("/Select, {0}", fileToSelect);
+            string args = string.Format("/Select, {0}", fileToSelect);
 
             ProcessStartInfo pfi = new ProcessStartInfo("Explorer.exe", args);
             System.Diagnostics.Process.Start(pfi);
@@ -2031,7 +2032,7 @@ namespace WindowsFormsApplication3
                     string str = System.IO.Path.GetFileName(element);
                     //*****************************************************************
                     //Update listview
-                    if(str.IndexOf(input_pattern, StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (str.IndexOf(input_pattern, StringComparison.OrdinalIgnoreCase) >= 0)
                     //if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
                     {
                         //this.listView1.BeginUpdate();
@@ -2061,37 +2062,37 @@ namespace WindowsFormsApplication3
                 }
 
                 //backup
-               // foreach (string element in FILE_PATH_LIST)
-               // {
-               //     string str = System.IO.Path.GetFileName(element);
-                    //*****************************************************************
-                    //Update listview
-              //      if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
-              //      {
-                        //this.listView1.BeginUpdate();
-              //          ListViewItem lvi = new ListViewItem();
-              //          FileInfo f = new FileInfo(element);
+                // foreach (string element in FILE_PATH_LIST)
+                // {
+                //     string str = System.IO.Path.GetFileName(element);
+                //*****************************************************************
+                //Update listview
+                //      if (Regex.IsMatch(str, input_pattern, RegexOptions.IgnoreCase))
+                //      {
+                //this.listView1.BeginUpdate();
+                //          ListViewItem lvi = new ListViewItem();
+                //          FileInfo f = new FileInfo(element);
 
-              //          System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
-              //          imgLst.Images.Add(fileIcon);
-              //          listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
+                //          System.Drawing.Icon fileIcon = System.Drawing.Icon.ExtractAssociatedIcon(element);
+                //          imgLst.Images.Add(fileIcon);
+                //          listView1.SmallImageList = imgLst;//小图标模式下 显示这个图标
 
-              //          lvi.ImageIndex = i;
-              //          lvi.Text = System.IO.Path.GetFileName(element);
+                //          lvi.ImageIndex = i;
+                //          lvi.Text = System.IO.Path.GetFileName(element);
 
-              //          lvi.SubItems.Add(element);
-              //          lvi.SubItems.Add(f.Length.ToString());
-              //          lvi.SubItems.Add(f.LastWriteTime.ToString());
+                //          lvi.SubItems.Add(element);
+                //          lvi.SubItems.Add(f.Length.ToString());
+                //          lvi.SubItems.Add(f.LastWriteTime.ToString());
 
-              //          this.listView1.Items.Add(lvi);
-                        //this.listView1.EndUpdate();
-              //         //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
-              //           i++;
-              //      }
-              //      this.listView1.EndUpdate();
-                    //Update listview end
-                    //*****************************************************************
-             //   }
+                //          this.listView1.Items.Add(lvi);
+                //this.listView1.EndUpdate();
+                //         //listView1.Items[listView1.Items.Count - 1].EnsureVisible();
+                //           i++;
+                //      }
+                //      this.listView1.EndUpdate();
+                //Update listview end
+                //*****************************************************************
+                //   }
             }
         }
 
@@ -2131,7 +2132,7 @@ namespace WindowsFormsApplication3
 
         private void smartGitToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-           if (smartGitToolStripMenuItem.Checked == true)
+            if (smartGitToolStripMenuItem.Checked == true)
             {
                 toolStripButton3.Visible = true;
             }
@@ -2154,8 +2155,8 @@ namespace WindowsFormsApplication3
         }
 
         private void sourceInsightToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {          
-             if (sourceInsightToolStripMenuItem.Checked == true)
+        {
+            if (sourceInsightToolStripMenuItem.Checked == true)
             {
                 toolStripButton18.Visible = true;
             }
@@ -2200,5 +2201,157 @@ namespace WindowsFormsApplication3
                 toolStripButton6.Visible = false;
             }
         }
+
+
+        /*****************************************************************
+        *
+        * Everytool cfg file 
+        * 
+        ******************************************************************/
+        string[] cfg_attribute = new string[16]
+        {
+          "compiler_visible",           //cfg option
+          "matlab_visible",             //cfg option
+          "ude_visible",                //cfg option
+          "smartgit_visible",           //cfg option
+          "everything_visible",         //cfg option  
+          "inca_visible",               //cfg option
+          "totalcmd_visible",           //cfg option
+          "source_insight_visible",     //cfg option
+          "compiler_path",      //cfg tool
+          "matlab_path",        //cfg tool
+          "ude_path",           //cfg tool 
+          "smartgit_path",      //cfg tool
+          "everything",         //cfg tool
+          "inca_path",          //cfg tool 
+          "totalcmd_path",      //cfg tool
+          "source_insight_path" //cfg tool
+        };
+        string[] cfg_value = new string[16]; //store the value of cfg attributes
+
+        private void everytool_cfg_file_read(string cfg_path)
+        {
+            //check if the file exits
+            if (System.IO.File.Exists(cfg_path) == false)
+            {
+                //create the file with the current file configuration or create it after all paths have
+                //be detected1
+            }
+            else
+            {
+                StreamReader sr = new StreamReader(cfg_path, Encoding.Default);
+                String line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.IndexOf(cfg_attribute[0]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[0] = resultString[1].Trim();
+
+                        Console.WriteLine(resultString[0]);
+                    }
+                    else if (line.IndexOf(cfg_attribute[1]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[1] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[2]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[2] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[3]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[3] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[4]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[4] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[5]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[5] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[6]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[6] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[7]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[7] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[8]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[8] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[9]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[9] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[10]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[10] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[11]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[11] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[12]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[12] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[13]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[13] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[14]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[14] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[15]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[15] = resultString[1].Trim();
+                    }
+                }
+                sr.Close();
+
+                int index;
+                for (index = 0; index < cfg_value.Length; index++)
+                {
+                    Console.WriteLine(cfg_attribute[index]);
+                    Console.WriteLine(cfg_value[index]);
+                }
+                //valid or invalid the visible options
+
+                //check if the paths valid 
+                //yes use the path
+                //no search the new one 
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
