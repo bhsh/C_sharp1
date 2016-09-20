@@ -1741,105 +1741,126 @@ namespace WindowsFormsApplication3
             //@Everything
             //backgroundWorker1.ReportProgress(0);
             //string bkgd_search_everything_dir = @"Everything";
-            everything_search_count = FindDirectory(bkgd_search_everything_dir);
-            if (everything_search_count > 0)
+            if (everything_cfgfile_detected == false)
             {
-                Array.Copy(temp_search_path_array, 0, everything_search_path_array, 0, everything_search_count);
+                everything_search_count = FindDirectory(bkgd_search_everything_dir);
+                if (everything_search_count > 0)
+                {
+                    Array.Copy(temp_search_path_array, 0, everything_search_path_array, 0, everything_search_count);
+                }
+
             }
+
 
             //@INCA
             //backgroundWorker1.ReportProgress(1);
             //string bkgd_search_inca_dir = @"ETAS\INCA7.1";
-            inca_search_count = FindDirectory(bkgd_search_inca_dir);
-            if (inca_search_count > 0)
+            if (inca_cfgfile_detected == false)
             {
-                Array.Copy(temp_search_path_array, 0, inca_search_path_array, 0, inca_search_count);
+                inca_search_count = FindDirectory(bkgd_search_inca_dir);
+                if (inca_search_count > 0)
+                {
+                    Array.Copy(temp_search_path_array, 0, inca_search_path_array, 0, inca_search_count);
+                }
             }
+
 
             //@Totalcommander
             //backgroundWorker1.ReportProgress(2);
             //string bkgd_search_totalcommand_dir = @"totalcmd";
-            totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
-            if (totalcmd_search_count > 0)
+            if (totalcmd_cfgfile_detected == false)
             {
-                Array.Copy(temp_search_path_array, 0, totalcmd_search_path_array, 0, totalcmd_search_count);
+                totalcmd_search_count = FindDirectory(bkgd_search_totalcommand_dir);
+                if (totalcmd_search_count > 0)
+                {
+                    Array.Copy(temp_search_path_array, 0, totalcmd_search_path_array, 0, totalcmd_search_count);
+                }
             }
             //backgroundWorker1.ReportProgress(3);
-
-
         }
 
         //Report the info to main thread.
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //Everything
-            if (everything_search_count > 0)
+            if (everything_cfgfile_detected == false)
             {
-                int index;
-                for (index = 0; index < everything_search_count; index++)
+                if (everything_search_count > 0)
                 {
-                    string temp_everything_setup_path;
+                    int index;
+                    for (index = 0; index < everything_search_count; index++)
+                    {
+                        string temp_everything_setup_path;
 
-                    temp_everything_setup_path = everything_search_path_array[index] + everything_suffix_path;
-                    if (System.IO.File.Exists(temp_everything_setup_path))
-                    {
-                        Org_everything_setup_path = everything_search_path_array[index]; //Update path
-                        everything_setup_path = temp_everything_setup_path; //Update path
-                        toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
-                        break; // jump out of the for loop.
-                    }
-                    else
-                    {
-                        toolStripButton20.Enabled = false;
+                        temp_everything_setup_path = everything_search_path_array[index] + everything_suffix_path;
+                        if (System.IO.File.Exists(temp_everything_setup_path))
+                        {
+                            Org_everything_setup_path = everything_search_path_array[index]; //Update path
+                            everything_setup_path = temp_everything_setup_path; //Update path
+                            toolStripButton20.Enabled = true; //The button is enabled because of the the valid everything path is found!
+                            break; // jump out of the for loop.
+                        }
+                        else
+                        {
+                            toolStripButton20.Enabled = false;
+                        }
                     }
                 }
             }
 
             //inca
-            if (inca_search_count > 0)
+            if (inca_cfgfile_detected == false)
             {
-                int index;
-                for (index = 0; index < inca_search_count; index++)
+                if (inca_search_count > 0)
                 {
-                    string temp_inca_setup_path;
+                    int index;
+                    for (index = 0; index < inca_search_count; index++)
+                    {
+                        string temp_inca_setup_path;
 
-                    temp_inca_setup_path = inca_search_path_array[index] + inca_suffix_path;
-                    if (System.IO.File.Exists(temp_inca_setup_path))
-                    {
-                        Org_inca_setup_path = inca_search_path_array[index]; //Update path
-                        inca_setup_path = temp_inca_setup_path; //Update path
-                        toolStripButton6.Enabled = true; //The button is enabled because of the the valid inca path is found!
-                        break; // jump out of the for loop.
-                    }
-                    else
-                    {
-                        toolStripButton6.Enabled = false;
+                        temp_inca_setup_path = inca_search_path_array[index] + inca_suffix_path;
+                        if (System.IO.File.Exists(temp_inca_setup_path))
+                        {
+                            Org_inca_setup_path = inca_search_path_array[index]; //Update path
+                            inca_setup_path = temp_inca_setup_path; //Update path
+                            toolStripButton6.Enabled = true; //The button is enabled because of the the valid inca path is found!
+                            break; // jump out of the for loop.
+                        }
+                        else
+                        {
+                            toolStripButton6.Enabled = false;
+                        }
                     }
                 }
             }
+
 
             //Totalcommander
-            if (totalcmd_search_count > 0)
+            if (totalcmd_cfgfile_detected == false)
             {
-                int index;
-                for (index = 0; index < totalcmd_search_count; index++)
+                if (totalcmd_search_count > 0)
                 {
-                    string temp_totalcmd_setup_path;
+                    int index;
+                    for (index = 0; index < totalcmd_search_count; index++)
+                    {
+                        string temp_totalcmd_setup_path;
 
-                    temp_totalcmd_setup_path = totalcmd_search_path_array[index] + totalcmd_suffix_path;
-                    if (System.IO.File.Exists(temp_totalcmd_setup_path))
-                    {
-                        Org_totalcommander_setup_path = totalcmd_search_path_array[index]; //Update path
-                        totalcommander_setup_path = temp_totalcmd_setup_path; //Update path
-                        toolStripButton19.Enabled = true; //The button is enabled because of the the valid totalcmd path is found!
-                        break; // jump out of the for loop.
-                    }
-                    else
-                    {
-                        toolStripButton19.Enabled = false;
+                        temp_totalcmd_setup_path = totalcmd_search_path_array[index] + totalcmd_suffix_path;
+                        if (System.IO.File.Exists(temp_totalcmd_setup_path))
+                        {
+                            Org_totalcommander_setup_path = totalcmd_search_path_array[index]; //Update path
+                            totalcommander_setup_path = temp_totalcmd_setup_path; //Update path
+                            toolStripButton19.Enabled = true; //The button is enabled because of the the valid totalcmd path is found!
+                            break; // jump out of the for loop.
+                        }
+                        else
+                        {
+                            toolStripButton19.Enabled = false;
+                        }
                     }
                 }
             }
+ 
             //MessageBox.Show("异步执行完毕");
             //Console.WriteLine("xiyanpeng_length: {0}", everything_search_count);
             //foreach(string element in everything_search_path_array)
