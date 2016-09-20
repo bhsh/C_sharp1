@@ -435,6 +435,8 @@ namespace WindowsFormsApplication3
         {
             Check_Dir(); //Check if the current dir is located in \01_Mak
 
+            everytool_cfg_file_read(@"C:\Users\bai\Desktop\Everytool.ini");
+
             Get_tools_paths();  //Get the paths of tools from the register tables
 
             Parse_Project_Cfg_File(); // Parse the confiuration file
@@ -2218,16 +2220,24 @@ namespace WindowsFormsApplication3
           "inca_visible",               //cfg option
           "totalcmd_visible",           //cfg option
           "source_insight_visible",     //cfg option
-          "compiler_path",      //cfg tool
-          "matlab_path",        //cfg tool
-          "ude_path",           //cfg tool 
-          "smartgit_path",      //cfg tool
-          "everything",         //cfg tool
-          "inca_path",          //cfg tool 
-          "totalcmd_path",      //cfg tool
-          "source_insight_path" //cfg tool
+          "compiler_path",              //cfg tool
+          "matlab_path",                //cfg tool
+          "ude_path",                   //cfg tool 
+          "smartgit_path",              //cfg tool
+          "everything",                 //cfg tool
+          "inca_path",                  //cfg tool 
+          "totalcmd_path",              //cfg tool
+          "source_insight_path"         //cfg tool
         };
         string[] cfg_value = new string[16]; //store the value of cfg attributes
+        bool tasking_cfgfile_detected = false;
+        bool matlab_cfgfile_detected = false;
+        bool ude_cfgfile_detected = false;
+        bool smartgit_cfgfile_detected = false;
+        bool everything_cfgfile_detected = false;
+        bool inca_cfgfile_detected = false;
+        bool totalcmd_cfgfile_detected = false;
+        bool sourceinsight_cfgfile_detected = false;
 
         private void everytool_cfg_file_read(string cfg_path)
         {
@@ -2330,28 +2340,188 @@ namespace WindowsFormsApplication3
                 sr.Close();
 
                 int index;
-                for (index = 0; index < cfg_value.Length; index++)
+
+                //for (index = 0; index < cfg_value.Length; index++)
+                for (index = 0; index < 8; index++)
                 {
                     Console.WriteLine(cfg_attribute[index]);
                     Console.WriteLine(cfg_value[index]);
                 }
-                //valid or invalid the visible options
 
-                //check if the paths valid 
+
+                //valid or invalid the visible options
+                //check index 0 - 7 update the check options of tools
+                //tasking
+                if (cfg_value[0] == "1")
+                {
+                    tASKINGToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[0] == "0")
+                {
+                    tASKINGToolStripMenuItem.Checked = false;
+                }
+
+                //matlab
+                if (cfg_value[1] == "1")
+                {
+                    matlabToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[1] == "0")
+                {
+                    matlabToolStripMenuItem.Checked = false;
+                }
+                //ude
+                if (cfg_value[2] == "1")
+                {
+                    uDEToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[2] == "0")
+                {
+                    uDEToolStripMenuItem.Checked = false;
+                }
+                //smartgit
+                if (cfg_value[3] == "1")
+                {
+                    smartGitToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[3] == "0")
+                {
+                    smartGitToolStripMenuItem.Checked = false;
+                }
+
+                if (cfg_value[4] == "1")
+                {
+                    everythingToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[4] == "0")
+                {
+                    everythingToolStripMenuItem.Checked = false;
+                }
+
+                if (cfg_value[5] == "1")
+                {
+                    iNCAToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[5] == "0")
+                {
+                    iNCAToolStripMenuItem.Checked = false;
+                }
+
+                if (cfg_value[6] == "1")
+                {
+                    totalCommanderToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[6] == "0")
+                {
+                    totalCommanderToolStripMenuItem.Checked = false;
+                }
+                if (cfg_value[7] == "1")
+                {
+                    sourceInsightToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[7] == "0")
+                {
+                    sourceInsightToolStripMenuItem.Checked = false;
+                }
+
+                //check if the paths valid
+                //tasking 
+                string temp_path;
+                //taskling
+                temp_path = cfg_value[8] + tasking_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    tasking_setup_path = temp_path;
+                    tasking_cfgfile_detected = true;
+                }
+                else
+                {
+                    tasking_cfgfile_detected = false;
+                }
+                
+                //matlab
+                temp_path = cfg_value[9] + matlab_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    matlab_setup_path = temp_path;
+                    matlab_cfgfile_detected = true;
+                }
+                else
+                {
+                    matlab_cfgfile_detected = false;
+                }
+
+                //ude
+                temp_path = cfg_value[10] + ude_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    ude_setup_path = temp_path;
+                    ude_cfgfile_detected = true;
+                }
+                else
+                {
+                    ude_cfgfile_detected = false;
+                }
+
+                temp_path = cfg_value[11] + smartgit_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    smartgit_setup_path = temp_path;
+                    smartgit_cfgfile_detected = true;
+                }
+                else
+                {
+                    smartgit_cfgfile_detected = false;
+                }
+
+                temp_path = cfg_value[12] + everything_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    everything_setup_path = temp_path;
+                    everything_cfgfile_detected = true;
+                }
+                else
+                {
+                    everything_cfgfile_detected = false;
+                }
+
+                temp_path = cfg_value[13] + inca_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    inca_setup_path = temp_path;
+                    inca_cfgfile_detected = true;
+                }
+                else
+                {
+                    inca_cfgfile_detected = false;
+                }
+
+                temp_path = cfg_value[14] + totalcmd_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    totalcommander_setup_path = temp_path;
+                    totalcmd_cfgfile_detected = true;
+                }
+                else
+                {
+                    totalcmd_cfgfile_detected = false;
+                }
+
+                temp_path = cfg_value[15] + sourceinsight_suffix_path;
+                if (System.IO.File.Exists(temp_path))
+                {
+                    sourceinsight_setup_path = temp_path;
+                    sourceinsight_cfgfile_detected = true;
+                }
+                else
+                {
+                    sourceinsight_cfgfile_detected = false;
+                }
                 //yes use the path
                 //no search the new one 
             }
 
         }
-
-
-
-
-
-
-
-
-
 
     }
 }
