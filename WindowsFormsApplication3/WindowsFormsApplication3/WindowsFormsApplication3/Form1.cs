@@ -250,30 +250,39 @@ namespace WindowsFormsApplication3
                 Console.WriteLine("SystemDirectory: {0}", element);
                 if (Matlab_GetNum(element) == true)  ///<search the matlab 2013a for use>
                 {
-                    string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_matlab_setup_path = string_local_matlab[1];
-                    matlab_setup_path = Org_matlab_setup_path + matlab_suffix_path;
+                    if (matlab_cfgfile_detected == false)
+                    { 
+                        string[] string_local_matlab = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        Org_matlab_setup_path = string_local_matlab[1];
+                        matlab_setup_path = Org_matlab_setup_path + matlab_suffix_path;
 
-                    Setup_SW_Name[0] = string_local_matlab[0].Trim();
-                    Setup_SW_Path[0] = string_local_matlab[1].Trim();
+                        Setup_SW_Name[0] = string_local_matlab[0].Trim();
+                        Setup_SW_Path[0] = string_local_matlab[1].Trim();
+                    }
                 }
                 else if (SmartGit_GetNum(element) == true)  ///<search the smartgit for use>
                 {
-                    string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_smartgit_setup_path = string_local_SmartGit[1];
-                    smartgit_setup_path = Org_smartgit_setup_path + smartgit_suffix_path;
+                    if (smartgit_cfgfile_detected == false)
+                    {
+                        string[] string_local_SmartGit = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        Org_smartgit_setup_path = string_local_SmartGit[1];
+                        smartgit_setup_path = Org_smartgit_setup_path + smartgit_suffix_path;
 
-                    Setup_SW_Name[1] = string_local_SmartGit[0].Trim();
-                    Setup_SW_Path[1] = string_local_SmartGit[1].Trim();
+                        Setup_SW_Name[1] = string_local_SmartGit[0].Trim();
+                        Setup_SW_Path[1] = string_local_SmartGit[1].Trim();
+                    }
                 }
                 else if (Ude_GetNum(element) == true) ///<search the ude for use>
                 {
-                    string[] string_local_ude = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_ude_setup_path = string_local_ude[1];
-                    ude_setup_path = Org_ude_setup_path + ude_suffix_path;
+                    if (ude_cfgfile_detected == false)
+                    {
+                        string[] string_local_ude = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        Org_ude_setup_path = string_local_ude[1];
+                        ude_setup_path = Org_ude_setup_path + ude_suffix_path;
 
-                    Setup_SW_Name[2] = string_local_ude[0].Trim();
-                    Setup_SW_Path[2] = string_local_ude[1].Trim();
+                        Setup_SW_Name[2] = string_local_ude[0].Trim();
+                        Setup_SW_Path[2] = string_local_ude[1].Trim();
+                    }
                 }
                 else if (INCA_GetNum(element) == true) ///<search the inca for use>
                 {
@@ -286,24 +295,29 @@ namespace WindowsFormsApplication3
                 }
                 else if (TASKING_GetNum(element) == true) ///<search the tasking for use>
                 {
-                    string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_tasking_setup_path = string_local_tasking[1];
-                    tasking_setup_path = Org_tasking_setup_path + tasking_suffix_path;
+                    if(tasking_cfgfile_detected == false)
+                    {
+                        string[] string_local_tasking = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        Org_tasking_setup_path = string_local_tasking[1];
+                        tasking_setup_path = Org_tasking_setup_path + tasking_suffix_path;
 
-                    Setup_SW_Name[4] = string_local_tasking[0].Trim();
-                    Setup_SW_Path[4] = string_local_tasking[1].Trim();
-
+                        Setup_SW_Name[4] = string_local_tasking[0].Trim();
+                        Setup_SW_Path[4] = string_local_tasking[1].Trim();
+                    }
                     //test code
                     //this.toolStripTextBox4.Text = string_local_tasking[1];
                 }
                 else if (SourceInsight_GetNum(element) == true) ///<search the sourceinsight for use>
                 {
-                    string[] string_local_sourceinsight = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                    Org_sourceinsight_setup_path = string_local_sourceinsight[1];
-                    sourceinsight_setup_path = Org_sourceinsight_setup_path + sourceinsight_suffix_path;
+                    if(sourceinsight_cfgfile_detected == false)
+                    {
+                        string[] string_local_sourceinsight = element.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        Org_sourceinsight_setup_path = string_local_sourceinsight[1];
+                        sourceinsight_setup_path = Org_sourceinsight_setup_path + sourceinsight_suffix_path;
 
-                    Setup_SW_Name[5] = string_local_sourceinsight[0].Trim();
-                    Setup_SW_Path[5] = string_local_sourceinsight[1].Trim();
+                        Setup_SW_Name[5] = string_local_sourceinsight[0].Trim();
+                        Setup_SW_Path[5] = string_local_sourceinsight[1].Trim();
+                    }
                 }
 
                 for (index = 0; index < Setup_SW_Name.Length; index++)
