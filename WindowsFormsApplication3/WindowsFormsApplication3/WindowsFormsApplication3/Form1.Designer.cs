@@ -337,6 +337,7 @@
             this.tASKINGToolStripMenuItem.Name = "tASKINGToolStripMenuItem";
             this.tASKINGToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.tASKINGToolStripMenuItem.Text = "TASKING";
+            this.tASKINGToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tASKINGToolStripMenuItem_CheckedChanged);
             // 
             // matlabToolStripMenuItem
             // 
@@ -353,6 +354,7 @@
             this.matlabToolStripMenuItem.Name = "matlabToolStripMenuItem";
             this.matlabToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.matlabToolStripMenuItem.Text = "Matlab";
+            this.matlabToolStripMenuItem.CheckedChanged += new System.EventHandler(this.matlabToolStripMenuItem_CheckedChanged);
             // 
             // smartGitToolStripMenuItem
             // 
@@ -369,6 +371,7 @@
             this.smartGitToolStripMenuItem.Name = "smartGitToolStripMenuItem";
             this.smartGitToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.smartGitToolStripMenuItem.Text = "SmartGit";
+            this.smartGitToolStripMenuItem.CheckedChanged += new System.EventHandler(this.smartGitToolStripMenuItem_CheckedChanged);
             // 
             // uDEToolStripMenuItem
             // 
@@ -385,6 +388,7 @@
             this.uDEToolStripMenuItem.Name = "uDEToolStripMenuItem";
             this.uDEToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.uDEToolStripMenuItem.Text = "UDE";
+            this.uDEToolStripMenuItem.CheckedChanged += new System.EventHandler(this.uDEToolStripMenuItem_CheckedChanged);
             // 
             // sourceInsightToolStripMenuItem
             // 
@@ -401,6 +405,7 @@
             this.sourceInsightToolStripMenuItem.Name = "sourceInsightToolStripMenuItem";
             this.sourceInsightToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.sourceInsightToolStripMenuItem.Text = "Source Insight";
+            this.sourceInsightToolStripMenuItem.CheckedChanged += new System.EventHandler(this.sourceInsightToolStripMenuItem_CheckedChanged);
             // 
             // totalCommanderToolStripMenuItem
             // 
@@ -418,6 +423,7 @@
             this.totalCommanderToolStripMenuItem.Name = "totalCommanderToolStripMenuItem";
             this.totalCommanderToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.totalCommanderToolStripMenuItem.Text = "Total Commander";
+            this.totalCommanderToolStripMenuItem.CheckedChanged += new System.EventHandler(this.totalCommanderToolStripMenuItem_CheckedChanged);
             // 
             // everythingToolStripMenuItem
             // 
@@ -434,6 +440,7 @@
             this.everythingToolStripMenuItem.Name = "everythingToolStripMenuItem";
             this.everythingToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.everythingToolStripMenuItem.Text = "Everything";
+            this.everythingToolStripMenuItem.CheckedChanged += new System.EventHandler(this.everythingToolStripMenuItem_CheckedChanged);
             // 
             // iNCAToolStripMenuItem
             // 
@@ -450,6 +457,7 @@
             this.iNCAToolStripMenuItem.Name = "iNCAToolStripMenuItem";
             this.iNCAToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.iNCAToolStripMenuItem.Text = "INCA";
+            this.iNCAToolStripMenuItem.CheckedChanged += new System.EventHandler(this.iNCAToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator20
             // 

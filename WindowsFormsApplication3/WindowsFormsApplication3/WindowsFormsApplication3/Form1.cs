@@ -2099,5 +2099,106 @@ namespace WindowsFormsApplication3
         {
 
         }
+
+        /*****************************************************************
+        *
+        * Tool Check
+        * 
+        ******************************************************************/
+        private void tASKINGToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tASKINGToolStripMenuItem.Checked == true)
+            {
+                toolStripButton1.Visible = true;
+            }
+            else
+            {
+                toolStripButton1.Visible = false;
+            }
+        }
+
+        private void matlabToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (matlabToolStripMenuItem.Checked == true)
+            {
+                toolStripButton2.Visible = true;
+            }
+            else
+            {
+                toolStripButton2.Visible = false;
+            }
+        }
+
+        private void smartGitToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+           if (smartGitToolStripMenuItem.Checked == true)
+            {
+                toolStripButton3.Visible = true;
+            }
+            else
+            {
+                toolStripButton3.Visible = false;
+            }
+        }
+
+        private void uDEToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uDEToolStripMenuItem.Checked == true)
+            {
+                toolStripButton5.Visible = true;
+            }
+            else
+            {
+                toolStripButton5.Visible = false;
+            }
+        }
+
+        private void sourceInsightToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {          
+             if (sourceInsightToolStripMenuItem.Checked == true)
+            {
+                toolStripButton18.Visible = true;
+            }
+            else
+            {
+                toolStripButton18.Visible = false;
+            }
+        }
+
+        private void totalCommanderToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (totalCommanderToolStripMenuItem.Checked == true)
+            {
+                toolStripButton19.Visible = true;
+            }
+            else
+            {
+                toolStripButton19.Visible = false;
+            }
+        }
+
+        private void everythingToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (everythingToolStripMenuItem.Checked == true)
+            {
+                toolStripButton20.Visible = true;
+            }
+            else
+            {
+                toolStripButton20.Visible = false;
+            }
+        }
+
+        private void iNCAToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (iNCAToolStripMenuItem.Checked == true)
+            {
+                toolStripButton6.Visible = true;
+            }
+            else
+            {
+                toolStripButton6.Visible = false;
+            }
+        }
     }
 }
