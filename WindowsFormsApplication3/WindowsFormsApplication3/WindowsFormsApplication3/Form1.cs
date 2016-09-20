@@ -1860,15 +1860,247 @@ namespace WindowsFormsApplication3
                     }
                 }
             }
- 
+
             //MessageBox.Show("异步执行完毕");
             //Console.WriteLine("xiyanpeng_length: {0}", everything_search_count);
             //foreach(string element in everything_search_path_array)
             //{
             //    Console.WriteLine("xiyanpeng: {0}", element);
             //}
+            update_cfg_file_everytool();
 
         }
+
+        // Update the cfg file of everytool
+        private void update_cfg_file_everytool()
+        {
+            //bool tasking_cfgfile_detected = false;
+            //bool matlab_cfgfile_detected = false;
+            //bool ude_cfgfile_detected = false;
+            //bool smartgit_cfgfile_detected = false;
+            //bool everything_cfgfile_detected = false;
+            //bool inca_cfgfile_detected = false;
+            //bool totalcmd_cfgfile_detected = false;
+            //bool sourceinsight_cfgfile_detected = false;
+
+            //string Org_tasking_setup_path = "";
+            //string Org_matlab_setup_path = "";
+            //string Org_smartgit_setup_path = "";
+            //string Org_ude_setup_path = "";
+            //string Org_inca_setup_path = "";
+            //string Org_sourceinsight_setup_path = "";
+            //string Org_everything_setup_path = "";
+            //string Org_totalcommander_setup_path = "";
+
+            //tasking
+            if (tasking_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[8]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[8] + "=" + Org_tasking_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //matlab
+            if (matlab_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[9]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[9] + "=" + Org_matlab_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //ude
+            if (ude_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[10]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[10] + "=" + Org_ude_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //smartgit
+            if (smartgit_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[11]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[11] + "=" + Org_smartgit_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //everything
+            if (everything_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[12]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[12] + "=" + Org_everything_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //inca
+            if (inca_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[13]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[13] + "=" + Org_inca_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //totalcmd
+            if (totalcmd_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[14]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[14] + "=" + Org_totalcommander_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+
+            //source insight
+            if (sourceinsight_cfgfile_detected == false)
+            {
+                //read the configured file
+                string out_info = "";
+                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                String line;
+                string temp;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Match result = Regex.Match(line, cfg_attribute[15]);
+                    if (result.Success == true)
+                    {
+                        //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                        temp = cfg_attribute[15] + "=" + Org_sourceinsight_setup_path;
+                    }
+                    else
+                    {
+                        temp = line;
+                    }
+                    out_info = out_info + temp + "\r\n";
+                }
+                sr.Close();
+                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+            }
+        }
+
         //The progress report thread is processed by the main.
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
