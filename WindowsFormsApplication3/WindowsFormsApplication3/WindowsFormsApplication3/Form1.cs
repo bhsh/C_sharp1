@@ -85,7 +85,7 @@ namespace WindowsFormsApplication3
         //Because the paths of everything,inca and totalcommand can not be found in the
         //register table of window, a background thread should be started to search the
         //paths in all the directories of WINDOWS logicDrivers.
-        string bkgd_search_everything_dir = @"Everything";
+        string bkgd_search_everything_dir = @"Everything64";
         string bkgd_search_inca_dir = @"ETAS\INCA7.1";
         string bkgd_search_totalcommand_dir = @"totalcmd";
 
