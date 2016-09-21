@@ -481,6 +481,8 @@ namespace WindowsFormsApplication3
 
             initialize_file_list(); // Init the file list
 
+            update_form_size();
+
             //start the backwork1 for the paths search of everything,inca and total commander
             backgroundWorker1.RunWorkerAsync();
 
@@ -2540,7 +2542,7 @@ namespace WindowsFormsApplication3
         * Everytool cfg file 
         * 
         ******************************************************************/
-        string[] cfg_attribute = new string[16]
+        string[] cfg_attribute = new string[18]
         {
           "compiler_visible",           //cfg option
           "matlab_visible",             //cfg option
@@ -2557,9 +2559,11 @@ namespace WindowsFormsApplication3
           "everything",                 //cfg tool
           "inca_path",                  //cfg tool 
           "totalcmd_path",              //cfg tool
-          "source_insight_path"         //cfg tool
+          "source_insight_path",        //cfg tool
+          "size_height",
+          "size_width"
         };
-        string[] cfg_value = new string[16]; //store the value of cfg attributes
+        string[] cfg_value = new string[18]; //store the value of cfg attributes
         bool tasking_cfgfile_detected = false;
         bool matlab_cfgfile_detected = false;
         bool ude_cfgfile_detected = false;
@@ -2666,13 +2670,23 @@ namespace WindowsFormsApplication3
                         string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
                         cfg_value[15] = resultString[1].Trim();
                     }
+                    else if (line.IndexOf(cfg_attribute[16]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[16] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[17]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[17] = resultString[1].Trim();
+                    }
                 }
                 sr.Close();
 
                 int index;
 
                 //for (index = 0; index < cfg_value.Length; index++)
-                for (index = 0; index < 8; index++)
+                for (index = 0; index < 18; index++)
                 {
                     Console.WriteLine(cfg_attribute[index]);
                     Console.WriteLine(cfg_value[index]);
@@ -2850,9 +2864,45 @@ namespace WindowsFormsApplication3
                 }
                 //yes use the path
                 //no search the new one 
-            }
 
+                //Height
+                if (cfg_value[16] != "")
+                {
+                    form_size_height = Convert.ToInt32(cfg_value[16]);
+                }
+                else
+                {
+
+                }
+
+                //Width
+                if (cfg_value[17] != "")
+                {
+                    form_size_width = Convert.ToInt32(cfg_value[17]);
+                }
+                else
+                {
+
+                }              
+            }
         }
 
+        int form_size_height = 600;
+        int form_size_width  = 600;
+        private void update_form_size()
+        {
+            this.Size = new Size(form_size_width,form_size_height);
+        }
+
+        //update the size of the windows
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            //MessageBox.Show("changed!");
+            //get the latest
+            form_size_height = this.Size.Height;
+            form_size_width  = this.Size.Width;
+            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[16], form_size_height.ToString());
+            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[17], form_size_width.ToString());
+        }
     }
 }
