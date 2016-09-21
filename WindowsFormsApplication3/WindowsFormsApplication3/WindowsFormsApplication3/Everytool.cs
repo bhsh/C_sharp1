@@ -2397,15 +2397,42 @@ namespace WindowsFormsApplication3
         * Tool Check
         * 
         ******************************************************************/
+        private void update_everytool_cfg_file(string cfg_path,string attri, string value)
+        {
+            //read the configured file
+            string out_info = "";
+            StreamReader sr = new StreamReader(cfg_path, Encoding.Default);
+            String line;
+            string temp;
+            while ((line = sr.ReadLine()) != null)
+            {
+                Match result = Regex.Match(line, attri);
+                if (result.Success == true)
+                {
+                    //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                    temp = attri + "=" + value;
+                }
+                else
+                {
+                    temp = line;
+                }
+                out_info = out_info + temp + "\r\n";
+            }
+            sr.Close();
+            Write_File(cfg_path, out_info);
+        }
         private void tASKINGToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             if (tASKINGToolStripMenuItem.Checked == true)
             {
                 toolStripButton1.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[0], "1");
+
             }
             else
             {
                 toolStripButton1.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[0], "0");
             }
         }
 
@@ -2414,10 +2441,12 @@ namespace WindowsFormsApplication3
             if (matlabToolStripMenuItem.Checked == true)
             {
                 toolStripButton2.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[1], "1");
             }
             else
             {
                 toolStripButton2.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[1], "0");
             }
         }
 
@@ -2426,10 +2455,12 @@ namespace WindowsFormsApplication3
             if (smartGitToolStripMenuItem.Checked == true)
             {
                 toolStripButton3.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[3], "1");
             }
             else
             {
                 toolStripButton3.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[3], "0");
             }
         }
 
@@ -2438,10 +2469,12 @@ namespace WindowsFormsApplication3
             if (uDEToolStripMenuItem.Checked == true)
             {
                 toolStripButton5.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[2], "1");
             }
             else
             {
                 toolStripButton5.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[2], "0");
             }
         }
 
@@ -2450,10 +2483,12 @@ namespace WindowsFormsApplication3
             if (sourceInsightToolStripMenuItem.Checked == true)
             {
                 toolStripButton18.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[7], "1");
             }
             else
             {
                 toolStripButton18.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[7], "0");
             }
         }
 
@@ -2462,10 +2497,12 @@ namespace WindowsFormsApplication3
             if (totalCommanderToolStripMenuItem.Checked == true)
             {
                 toolStripButton19.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[6], "1");
             }
             else
             {
                 toolStripButton19.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[6], "1");
             }
         }
 
@@ -2474,10 +2511,12 @@ namespace WindowsFormsApplication3
             if (everythingToolStripMenuItem.Checked == true)
             {
                 toolStripButton20.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[4], "1");
             }
             else
             {
                 toolStripButton20.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[4], "0");
             }
         }
 
@@ -2486,10 +2525,12 @@ namespace WindowsFormsApplication3
             if (iNCAToolStripMenuItem.Checked == true)
             {
                 toolStripButton6.Visible = true;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[5], "1");
             }
             else
             {
                 toolStripButton6.Visible = false;
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[5], "0");
             }
         }
 
