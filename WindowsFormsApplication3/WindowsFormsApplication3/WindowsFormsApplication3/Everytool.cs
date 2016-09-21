@@ -2542,7 +2542,7 @@ namespace WindowsFormsApplication3
         * Everytool cfg file 
         * 
         ******************************************************************/
-        string[] cfg_attribute = new string[18]
+        string[] cfg_attribute = new string[20]
         {
           "compiler_visible",           //cfg option
           "matlab_visible",             //cfg option
@@ -2561,9 +2561,11 @@ namespace WindowsFormsApplication3
           "totalcmd_path",              //cfg tool
           "source_insight_path",        //cfg tool
           "size_height",
-          "size_width"
+          "size_width",
+          "location_x",
+          "location_y"
         };
-        string[] cfg_value = new string[18]; //store the value of cfg attributes
+        string[] cfg_value = new string[20]; //store the value of cfg attributes
         bool tasking_cfgfile_detected = false;
         bool matlab_cfgfile_detected = false;
         bool ude_cfgfile_detected = false;
@@ -2680,13 +2682,23 @@ namespace WindowsFormsApplication3
                         string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
                         cfg_value[17] = resultString[1].Trim();
                     }
+                    else if (line.IndexOf(cfg_attribute[18]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[18] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[19]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[19] = resultString[1].Trim();
+                    }
                 }
                 sr.Close();
 
                 int index;
 
                 //for (index = 0; index < cfg_value.Length; index++)
-                for (index = 0; index < 18; index++)
+                for (index = 0; index < 20; index++)
                 {
                     Console.WriteLine(cfg_attribute[index]);
                     Console.WriteLine(cfg_value[index]);
@@ -2883,7 +2895,26 @@ namespace WindowsFormsApplication3
                 else
                 {
 
-                }              
+                }
+
+                if (cfg_value[18] != "")
+                {
+                    form_x = Convert.ToInt32(cfg_value[18]);
+                }
+                else
+                {
+
+                }
+
+                //Width
+                if (cfg_value[19] != "")
+                {
+                    form_y = Convert.ToInt32(cfg_value[19]);
+                }
+                else
+                {
+
+                }
             }
         }
 
@@ -2894,6 +2925,7 @@ namespace WindowsFormsApplication3
         private void update_form_size()
         {
             this.Size = new Size(form_size_width,form_size_height);
+            this.Location = new System.Drawing.Point(form_x, form_y);
         }
 
         //update the size of the windows
@@ -2909,7 +2941,11 @@ namespace WindowsFormsApplication3
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show("changed!");
+            //MessageBox.Show("changed!");
+            form_x = this.Location.X;
+            form_y = this.Location.Y;
+            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[18], form_x.ToString());
+            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[19], form_y.ToString());
         }
     }
 }
