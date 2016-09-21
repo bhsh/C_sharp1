@@ -2889,6 +2889,8 @@ namespace WindowsFormsApplication3
 
         int form_size_height = 600;
         int form_size_width  = 600;
+        int form_x = 600;
+        int form_y = 600;
         private void update_form_size()
         {
             this.Size = new Size(form_size_width,form_size_height);
@@ -2903,6 +2905,11 @@ namespace WindowsFormsApplication3
             form_size_width  = this.Size.Width;
             update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[16], form_size_height.ToString());
             update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[17], form_size_width.ToString());
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show("changed!");
         }
     }
 }
