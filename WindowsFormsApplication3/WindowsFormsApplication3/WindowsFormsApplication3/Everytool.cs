@@ -415,7 +415,7 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Check_compiler_path()
         {
-            string temp_1 = tasking_setup_path.Trim();
+            string temp_1 = Org_tasking_setup_path.Trim();  //Org_tasking_setup_path
             string temp_2 = cfg_compiler_path.Trim();
 
             if (temp_1 != temp_2)
@@ -426,8 +426,32 @@ namespace WindowsFormsApplication3
 
                 if (dr == DialogResult.Yes)
                 {
-                    cfg_compiler_path = tasking_setup_path;
+                    cfg_compiler_path = Org_tasking_setup_path;
+
                     //update the cfg file(.ini) with the newest path.
+
+                    //read the configured file
+                    string out_info = "";
+                    StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\proj.ini", Encoding.Default);
+                    String line;
+                    string temp;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Match result = Regex.Match(line, Compiler_Path_Pattern);
+                        if (result.Success == true)
+                        {
+                            //temp = line.Replace(cfg_low_sw_ver, toolStripTextBox3.Text);
+                            temp = @"Compiler_Path    = " + Org_tasking_setup_path;
+                        }
+                        else
+                        {
+                            temp = line;
+                        }
+                        out_info = out_info + temp + "\r\n";
+                    }
+                    sr.Close();
+                    Write_File(@"C:\Users\bai\Desktop\proj.ini", out_info);
+
                     MessageBox.Show("The configuration file(proj.ini) has been updated!");
                 }
                 else if (dr == DialogResult.No)
@@ -439,10 +463,8 @@ namespace WindowsFormsApplication3
             {
                 //do nothing ,and keep unchanged
             }
-
-
         }
-        /*****************************************************************
+     /*****************************************************************
         * The form load  
         ******************************************************************/
         private void Form1_Load(object sender, EventArgs e)
@@ -455,7 +477,7 @@ namespace WindowsFormsApplication3
 
             Parse_Project_Cfg_File(); // Parse the confiuration file
 
-            //Check_compiler_path(); //Update the compiler path
+            Check_compiler_path(); //Update the compiler path
 
             initialize_file_list(); // Init the file list
 
@@ -2699,6 +2721,7 @@ namespace WindowsFormsApplication3
                 if (System.IO.File.Exists(temp_path))
                 {
                     tasking_setup_path = temp_path;
+                    Org_tasking_setup_path = cfg_value[8];
                     tasking_cfgfile_detected = true;
                 }
                 else
