@@ -216,6 +216,8 @@
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -232,6 +234,7 @@
             this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.searchToolStripMenuItem,
             this.projectToolStripMenuItem,
             this.buildToolStripMenuItem,
@@ -338,6 +341,7 @@
             this.tASKINGToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.tASKINGToolStripMenuItem.Text = "TASKING";
             this.tASKINGToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tASKINGToolStripMenuItem_CheckedChanged);
+            this.tASKINGToolStripMenuItem.Click += new System.EventHandler(this.tASKINGToolStripMenuItem_Click);
             // 
             // openPathToolStripMenuItem8
             // 
@@ -1774,6 +1778,24 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarToolStripMenuItem});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(47, 21);
+            this.toolStripMenuItem2.Text = "View";
+            // 
+            // statusBarToolStripMenuItem
+            // 
+            this.statusBarToolStripMenuItem.Checked = true;
+            this.statusBarToolStripMenuItem.CheckOnClick = true;
+            this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusBarToolStripMenuItem.Text = "Status Bar";
+            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2001,6 +2023,8 @@
         private System.Windows.Forms.ToolStripMenuItem copyPathToolStripMenuItem14;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator37;
         private System.Windows.Forms.ToolStripMenuItem endProcessToolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
     }
 }
 

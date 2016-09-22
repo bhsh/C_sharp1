@@ -2542,7 +2542,7 @@ namespace WindowsFormsApplication3
         * Everytool cfg file 
         * 
         ******************************************************************/
-        string[] cfg_attribute = new string[20]
+        string[] cfg_attribute = new string[21]
         {
           "compiler_visible",           //cfg option
           "matlab_visible",             //cfg option
@@ -2563,9 +2563,10 @@ namespace WindowsFormsApplication3
           "size_height",
           "size_width",
           "location_x",
-          "location_y"
+          "location_y",
+          "statusstrip_visible"
         };
-        string[] cfg_value = new string[20]; //store the value of cfg attributes
+        string[] cfg_value = new string[21]; //store the value of cfg attributes
         bool tasking_cfgfile_detected = false;
         bool matlab_cfgfile_detected = false;
         bool ude_cfgfile_detected = false;
@@ -2692,13 +2693,18 @@ namespace WindowsFormsApplication3
                         string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
                         cfg_value[19] = resultString[1].Trim();
                     }
+                    else if (line.IndexOf(cfg_attribute[20]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[20] = resultString[1].Trim();
+                    }
                 }
                 sr.Close();
 
                 int index;
 
                 //for (index = 0; index < cfg_value.Length; index++)
-                for (index = 0; index < 20; index++)
+                for (index = 0; index < 21; index++)
                 {
                     Console.WriteLine(cfg_attribute[index]);
                     Console.WriteLine(cfg_value[index]);
@@ -2915,6 +2921,16 @@ namespace WindowsFormsApplication3
                 {
 
                 }
+                
+                //status bar visible
+                if (cfg_value[20] == "1")
+                {
+                    statusBarToolStripMenuItem.Checked = true;
+                }
+                else if (cfg_value[20] == "0")
+                {
+                    statusBarToolStripMenuItem.Checked = false;
+                }
             }
         }
 
@@ -2946,6 +2962,35 @@ namespace WindowsFormsApplication3
             form_y = this.Location.Y;
             update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[18], form_x.ToString());
             update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[19], form_y.ToString());
+        }
+
+        private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (statusBarToolStripMenuItem.Checked == true)
+            {
+                statusStrip1.Visible = true;
+
+                textBox1.Size = new Size(textBox1.Size.Width, (textBox1.Size.Height - statusStrip1.Size.Height));
+                listView1.Size = new Size(listView1.Size.Width, (listView1.Size.Height - statusStrip1.Size.Height));
+                tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height -statusStrip1.Size.Height));
+
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[20], "1");
+            }
+            else
+            {
+                statusStrip1.Visible = false;
+
+                textBox1.Size = new Size(textBox1.Size.Width , (textBox1.Size.Height + statusStrip1.Size.Height));
+                listView1.Size = new Size(listView1.Size.Width , (listView1.Size.Height + statusStrip1.Size.Height));
+                tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height + statusStrip1.Size.Height));
+
+                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[20], "0");
+            }
+        }
+
+        private void tASKINGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
