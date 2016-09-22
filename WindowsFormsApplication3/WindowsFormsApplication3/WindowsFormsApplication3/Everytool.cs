@@ -1630,21 +1630,21 @@ namespace WindowsFormsApplication3
         {
             //show the welcome context!
             Form2 f = new Form2();
-            f.Show();
+            f.ShowDialog();
         }
 
         private void learnAboutMeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //show the help context!
             Form3 f = new Form3();
-            f.Show();
+            f.ShowDialog();
         }
 
         private void toolStripButton24_Click(object sender, EventArgs e)
         {
             //show the help context!
             Form3 f = new Form3();
-            f.Show();
+            f.ShowDialog();
         }
 
         private void toolStripTextBox5_KeyDown(object sender, KeyEventArgs e)
@@ -1705,7 +1705,7 @@ namespace WindowsFormsApplication3
         {
             //show the help context!
             Form4 f = new Form4();
-            f.Show();
+            f.ShowDialog();
         }
 
 
