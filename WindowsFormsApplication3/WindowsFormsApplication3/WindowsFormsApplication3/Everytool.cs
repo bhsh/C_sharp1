@@ -78,6 +78,7 @@ namespace WindowsFormsApplication3
         //cfg path
         string cfg_file_path = @"C:\Users\bai\Desktop\proj.ini";
         string Everytool_cfg_file = @"C:\Users\bai\Desktop\Everytool.ini";
+        string curr_Work_path = @"01_Mak";
 
         //Build command
         string empty_command = "";
@@ -224,7 +225,7 @@ namespace WindowsFormsApplication3
             }
             sr.Close(); // close the stream and the input file is released.
 
-            Write_File(@"C:\Users\bai\Desktop\my2.ini", my_output);
+            //Write_File(@"C:\Users\bai\Desktop\my2.ini", my_output);
         }
         /*****************************************************************
         * Check the current directory  
@@ -233,6 +234,25 @@ namespace WindowsFormsApplication3
         {
             string curr_dir;
             curr_dir = System.Environment.CurrentDirectory;
+
+            //string path = System.IO.Path.GetDirectoryName(curr_dir);
+            string[] dirName = curr_dir.Split('\\');
+            Console.WriteLine("xiyanpengSystemDirectory:{0}", curr_dir);
+            Console.WriteLine("xiyanpengSystemDirectory:{0}", dirName[dirName.Length - 1].Trim());
+
+            if (dirName[dirName.Length - 1].Trim()!= curr_Work_path)
+            {
+                DialogResult dr;
+                dr = MessageBox.Show("Please check, the current work directory must be 01_Mak!", "Notice", MessageBoxButtons.OK,
+                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.OK)
+                {
+                    this.Close();
+                    //Application.Exit();
+                    //return;
+                }
+
+            }
             //toolStripTextBox3.Text = System.Environment.CurrentDirectory;
         }
         /*****************************************************************
@@ -470,8 +490,9 @@ namespace WindowsFormsApplication3
         ******************************************************************/
         private void Form1_Load(object sender, EventArgs e)
         {
+#if false
             Check_Dir(); //Check if the current dir is located in \01_Mak
-
+#endif
             everytool_cfg_file_read(Everytool_cfg_file);
 
             Get_tools_paths();  //Get the paths of tools from the register tables
@@ -483,6 +504,8 @@ namespace WindowsFormsApplication3
             initialize_file_list(); // Init the file list
 
             update_form_size();
+
+            //update_list_text_tab_size();
 
             //start the backwork1 for the paths search of everything,inca and total commander
             backgroundWorker1.RunWorkerAsync();
@@ -2543,7 +2566,7 @@ namespace WindowsFormsApplication3
         * Everytool cfg file 
         * 
         ******************************************************************/
-        string[] cfg_attribute = new string[21]
+        string[] cfg_attribute = new string[27]
         {
           "compiler_visible",           //cfg option
           "matlab_visible",             //cfg option
@@ -2565,9 +2588,15 @@ namespace WindowsFormsApplication3
           "size_width",
           "location_x",
           "location_y",
-          "statusstrip_visible"
+          "statusstrip_visible",
+          "list_size_height",
+          "list_size_width",
+          "text_size_height",
+          "text_size_width",
+          "tab_size_height",
+          "tab_size_width"
         };
-        string[] cfg_value = new string[21]; //store the value of cfg attributes
+        string[] cfg_value = new string[27]; //store the value of cfg attributes
         bool tasking_cfgfile_detected = false;
         bool matlab_cfgfile_detected = false;
         bool ude_cfgfile_detected = false;
@@ -2698,6 +2727,36 @@ namespace WindowsFormsApplication3
                     {
                         string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
                         cfg_value[20] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[21]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[21] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[22]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[22] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[23]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[23] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[24]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[24] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[25]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[25] = resultString[1].Trim();
+                    }
+                    else if (line.IndexOf(cfg_attribute[26]) >= 0)
+                    {
+                        string[] resultString = Regex.Split(line, "=", RegexOptions.IgnoreCase);
+                        cfg_value[26] = resultString[1].Trim();
                     }
                 }
                 sr.Close();
@@ -2932,6 +2991,60 @@ namespace WindowsFormsApplication3
                 {
                     statusBarToolStripMenuItem.Checked = false;
                 }
+
+                if (cfg_value[21] != "")
+                {
+                    list_size_height = Convert.ToInt32(cfg_value[21]);
+                }
+                else
+                {
+                }
+
+                if (cfg_value[22] != "")
+                {
+                    list_size_width = Convert.ToInt32(cfg_value[22]);
+                }
+                else
+                {
+
+                }
+
+                if (cfg_value[23] != "")
+                {
+                    text_size_height = Convert.ToInt32(cfg_value[23]);
+                }
+                else
+                {
+
+                }
+
+                if (cfg_value[24] != "")
+                {
+                    text_size_width = Convert.ToInt32(cfg_value[24]);
+                }
+                else
+                {
+
+                }
+
+                if (cfg_value[25] != "")
+                {
+                    tab_size_height = Convert.ToInt32(cfg_value[25]);
+                }
+                else
+                {
+
+                }
+
+                if (cfg_value[26] != "")
+                {
+                    tab_size_width = Convert.ToInt32(cfg_value[26]);
+                }
+                else
+                {
+
+                }
+
             }
         }
 
@@ -2939,10 +3052,24 @@ namespace WindowsFormsApplication3
         int form_size_width  = 600;
         int form_x = 600;
         int form_y = 600;
+
+        int list_size_height = 600;
+        int list_size_width = 600;
+        int text_size_height = 600;
+        int text_size_width = 600;
+        int tab_size_height = 600;
+        int tab_size_width = 600;
         private void update_form_size()
         {
             this.Size = new Size(form_size_width,form_size_height);
             this.Location = new System.Drawing.Point(form_x, form_y);
+        }
+
+        private void update_list_text_tab_size()
+        {
+            listView1.Size   = new Size(list_size_width, list_size_height);
+            textBox1.Size    = new Size(text_size_width, text_size_height);
+            tabControl1.Size = new Size(tab_size_width,  tab_size_height);
         }
 
         //update the size of the windows
@@ -2954,6 +3081,23 @@ namespace WindowsFormsApplication3
             form_size_width  = this.Size.Width;
             update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[16], form_size_height.ToString());
             update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[17], form_size_width.ToString());
+
+#if false
+            list_size_height = listView1.Size.Height;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[21], listView1.Size.Height.ToString());
+            list_size_width = listView1.Size.Width;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[22], listView1.Size.Width.ToString());
+
+            text_size_height = textBox1.Size.Height;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[23], textBox1.Size.Height.ToString());
+            text_size_width = textBox1.Size.Width;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[24], textBox1.Size.Width.ToString());
+
+            tab_size_height = tabControl1.Size.Height;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[25], tabControl1.Size.Height.ToString());
+            tab_size_width = tabControl1.Size.Width;
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[26], tabControl1.Size.Width.ToString());
+#endif
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
