@@ -77,6 +77,7 @@ namespace WindowsFormsApplication3
 
         //cfg path
         string cfg_file_path = @"C:\Users\bai\Desktop\proj.ini";
+        string Everytool_cfg_file = @"C:\Users\bai\Desktop\Everytool.ini";
 
         //Build command
         string empty_command = "";
@@ -471,7 +472,7 @@ namespace WindowsFormsApplication3
         {
             Check_Dir(); //Check if the current dir is located in \01_Mak
 
-            everytool_cfg_file_read(@"C:\Users\bai\Desktop\Everytool.ini");
+            everytool_cfg_file_read(Everytool_cfg_file);
 
             Get_tools_paths();  //Get the paths of tools from the register tables
 
@@ -1657,7 +1658,7 @@ namespace WindowsFormsApplication3
             textBox1.Text = "";  //clear the info windows first.
             statusstrip_info_print("Info:The screen has been cleared!");
 
-            everytool_cfg_file_read(@"C:\Users\bai\Desktop\Everytool.ini");
+            everytool_cfg_file_read(Everytool_cfg_file);
             //initialize_file_list();
             return;
             //test code
@@ -1921,7 +1922,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -1939,7 +1940,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //matlab
@@ -1947,7 +1948,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -1965,7 +1966,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //ude
@@ -1973,7 +1974,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -1991,7 +1992,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //smartgit
@@ -1999,7 +2000,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -2017,7 +2018,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //everything
@@ -2025,7 +2026,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -2043,7 +2044,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //inca
@@ -2051,7 +2052,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -2069,7 +2070,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //totalcmd
@@ -2077,7 +2078,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -2095,7 +2096,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
 
             //source insight
@@ -2103,7 +2104,7 @@ namespace WindowsFormsApplication3
             {
                 //read the configured file
                 string out_info = "";
-                StreamReader sr = new StreamReader(@"C:\Users\bai\Desktop\Everytool.ini", Encoding.Default);
+                StreamReader sr = new StreamReader(Everytool_cfg_file, Encoding.Default);
                 String line;
                 string temp;
                 while ((line = sr.ReadLine()) != null)
@@ -2121,7 +2122,7 @@ namespace WindowsFormsApplication3
                     out_info = out_info + temp + "\r\n";
                 }
                 sr.Close();
-                Write_File(@"C:\Users\bai\Desktop\Everytool.ini", out_info);
+                Write_File(Everytool_cfg_file, out_info);
             }
         }
 
@@ -2428,13 +2429,13 @@ namespace WindowsFormsApplication3
             if (tASKINGToolStripMenuItem.Checked == true)
             {
                 toolStripButton1.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[0], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[0], "1");
 
             }
             else
             {
                 toolStripButton1.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[0], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[0], "0");
             }
         }
 
@@ -2443,12 +2444,12 @@ namespace WindowsFormsApplication3
             if (matlabToolStripMenuItem.Checked == true)
             {
                 toolStripButton2.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[1], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[1], "1");
             }
             else
             {
                 toolStripButton2.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[1], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[1], "0");
             }
         }
 
@@ -2457,12 +2458,12 @@ namespace WindowsFormsApplication3
             if (smartGitToolStripMenuItem.Checked == true)
             {
                 toolStripButton3.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[3], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[3], "1");
             }
             else
             {
                 toolStripButton3.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[3], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[3], "0");
             }
         }
 
@@ -2471,12 +2472,12 @@ namespace WindowsFormsApplication3
             if (uDEToolStripMenuItem.Checked == true)
             {
                 toolStripButton5.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[2], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[2], "1");
             }
             else
             {
                 toolStripButton5.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[2], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[2], "0");
             }
         }
 
@@ -2485,12 +2486,12 @@ namespace WindowsFormsApplication3
             if (sourceInsightToolStripMenuItem.Checked == true)
             {
                 toolStripButton18.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[7], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[7], "1");
             }
             else
             {
                 toolStripButton18.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[7], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[7], "0");
             }
         }
 
@@ -2499,12 +2500,12 @@ namespace WindowsFormsApplication3
             if (totalCommanderToolStripMenuItem.Checked == true)
             {
                 toolStripButton19.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[6], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[6], "1");
             }
             else
             {
                 toolStripButton19.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[6], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[6], "1");
             }
         }
 
@@ -2513,12 +2514,12 @@ namespace WindowsFormsApplication3
             if (everythingToolStripMenuItem.Checked == true)
             {
                 toolStripButton20.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[4], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[4], "1");
             }
             else
             {
                 toolStripButton20.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[4], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[4], "0");
             }
         }
 
@@ -2527,12 +2528,12 @@ namespace WindowsFormsApplication3
             if (iNCAToolStripMenuItem.Checked == true)
             {
                 toolStripButton6.Visible = true;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[5], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[5], "1");
             }
             else
             {
                 toolStripButton6.Visible = false;
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[5], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[5], "0");
             }
         }
 
@@ -2951,8 +2952,8 @@ namespace WindowsFormsApplication3
             //get the latest
             form_size_height = this.Size.Height;
             form_size_width  = this.Size.Width;
-            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[16], form_size_height.ToString());
-            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[17], form_size_width.ToString());
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[16], form_size_height.ToString());
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[17], form_size_width.ToString());
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -2960,10 +2961,11 @@ namespace WindowsFormsApplication3
             //MessageBox.Show("changed!");
             form_x = this.Location.X;
             form_y = this.Location.Y;
-            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[18], form_x.ToString());
-            update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[19], form_y.ToString());
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[18], form_x.ToString());
+            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[19], form_y.ToString());
         }
 
+        //Update the statusstrip in the view of the menu.
         private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (statusBarToolStripMenuItem.Checked == true)
@@ -2974,7 +2976,7 @@ namespace WindowsFormsApplication3
                 listView1.Size = new Size(listView1.Size.Width, (listView1.Size.Height - statusStrip1.Size.Height));
                 tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height -statusStrip1.Size.Height));
 
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[20], "1");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[20], "1");
             }
             else
             {
@@ -2984,7 +2986,7 @@ namespace WindowsFormsApplication3
                 listView1.Size = new Size(listView1.Size.Width , (listView1.Size.Height + statusStrip1.Size.Height));
                 tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height + statusStrip1.Size.Height));
 
-                update_everytool_cfg_file(@"C:\Users\bai\Desktop\Everytool.ini", cfg_attribute[20], "0");
+                update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[20], "0");
             }
         }
 
