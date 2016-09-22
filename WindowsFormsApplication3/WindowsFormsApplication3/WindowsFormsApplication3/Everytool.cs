@@ -2990,6 +2990,10 @@ namespace WindowsFormsApplication3
                 else if (cfg_value[20] == "0")
                 {
                     statusBarToolStripMenuItem.Checked = false;
+
+                    textBox1.Size = new Size(textBox1.Size.Width, (textBox1.Size.Height + statusStrip1.Size.Height));
+                    listView1.Size = new Size(listView1.Size.Width, (listView1.Size.Height + statusStrip1.Size.Height));
+                    tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height + statusStrip1.Size.Height));
                 }
 
                 if (cfg_value[21] != "")
@@ -3081,23 +3085,6 @@ namespace WindowsFormsApplication3
             form_size_width  = this.Size.Width;
             update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[16], form_size_height.ToString());
             update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[17], form_size_width.ToString());
-
-#if false
-            list_size_height = listView1.Size.Height;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[21], listView1.Size.Height.ToString());
-            list_size_width = listView1.Size.Width;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[22], listView1.Size.Width.ToString());
-
-            text_size_height = textBox1.Size.Height;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[23], textBox1.Size.Height.ToString());
-            text_size_width = textBox1.Size.Width;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[24], textBox1.Size.Width.ToString());
-
-            tab_size_height = tabControl1.Size.Height;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[25], tabControl1.Size.Height.ToString());
-            tab_size_width = tabControl1.Size.Width;
-            update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[26], tabControl1.Size.Width.ToString());
-#endif
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -3115,21 +3102,21 @@ namespace WindowsFormsApplication3
             if (statusBarToolStripMenuItem.Checked == true)
             {
                 statusStrip1.Visible = true;
-
+//#if false
                 textBox1.Size = new Size(textBox1.Size.Width, (textBox1.Size.Height - statusStrip1.Size.Height));
                 listView1.Size = new Size(listView1.Size.Width, (listView1.Size.Height - statusStrip1.Size.Height));
                 tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height -statusStrip1.Size.Height));
-
+//#endif
                 update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[20], "1");
             }
             else
             {
                 statusStrip1.Visible = false;
-
+//#if false
                 textBox1.Size = new Size(textBox1.Size.Width , (textBox1.Size.Height + statusStrip1.Size.Height));
                 listView1.Size = new Size(listView1.Size.Width , (listView1.Size.Height + statusStrip1.Size.Height));
                 tabControl1.Size = new Size(tabControl1.Size.Width, (tabControl1.Size.Height + statusStrip1.Size.Height));
-
+//#endif
                 update_everytool_cfg_file(Everytool_cfg_file, cfg_attribute[20], "0");
             }
         }
